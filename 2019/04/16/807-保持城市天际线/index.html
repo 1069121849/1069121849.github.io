@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="白哥">
 <meta property="og:description" content="在二维数组grid中，grid[i][j]代表位于某处的建筑物的高度。 我们被允许增加任何数量（不同建筑物的数量可能不同）的建筑物的高度。 高度 0 也被认为是建筑物。 最后，从新数组的所有四个方向（即顶部，底部，左侧和右侧）观看的“天际线”必须与原始数组的天际线相同。 城市的天际线是从远处观看时，由所有建筑物形成的矩形的外部轮廓。 请看下面的例子。 建筑物高度可以增加的最大总和是多少？ 例子：输">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-16T10:24:31.059Z">
+<meta property="og:updated_time" content="2019-04-16T10:25:50.137Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode807. 保持城市天际线">
 <meta name="twitter:description" content="在二维数组grid中，grid[i][j]代表位于某处的建筑物的高度。 我们被允许增加任何数量（不同建筑物的数量可能不同）的建筑物的高度。 高度 0 也被认为是建筑物。 最后，从新数组的所有四个方向（即顶部，底部，左侧和右侧）观看的“天际线”必须与原始数组的天际线相同。 城市的天际线是从远处观看时，由所有建筑物形成的矩形的外部轮廓。 请看下面的例子。 建筑物高度可以增加的最大总和是多少？ 例子：输">
@@ -402,29 +402,29 @@
 <p>1 &lt; grid.length = grid[0].length &lt;= 50。<br> grid[i][j] 的高度范围是： [0, 100]。<br>一座建筑物占据一个grid[i][j]：换言之，它们是 1 x 1 x grid[i][j] 的长方体。<br>解题思路：<br>创建2个数组row、col，遍历<strong>一遍</strong>数组，使row、col保存水平、竖直“天际线”。<br>再遍历一遍数组，i行j列的楼层如果比Math.min(row[i],col[j]) 小的话，则是可以增加的楼层，Math.min(row[i],col[j])-grid[i][j]则是可增加的楼层数量。<br>代码如下：</p>
 <pre><code>class Solution {
     public int maxIncreaseKeepingSkyline(int[][] grid) {
-    int[] row = new int[grid.length];
-    int[] col = new int[grid[0].length];
-    for(int i = 0; i &lt; grid.length; i ++) {
-        int max = 0;
-        for(int j = 0; j &lt; grid.length; j ++) {
-            //更新col数组
-            if(grid[i][j] &gt; col[j]) col[j] = grid[i][j];
-            if(grid[i][j] &gt; max) max = grid[i][j];
+        int[] row = new int[grid.length];
+        int[] col = new int[grid[0].length];
+        for(int i = 0; i &lt; grid.length; i ++) {
+            int max = 0;
+            for(int j = 0; j &lt; grid.length; j ++) {
+                //更新col数组
+                if(grid[i][j] &gt; col[j]) col[j] = grid[i][j];
+                if(grid[i][j] &gt; max) max = grid[i][j];
+            }
+            //更新row数组
+            row[i] = max;
         }
-        //更新row数组
-        row[i] = max;
-    }
-    int res = 0;
-    for(int i = 0; i &lt; grid.length; i ++) {
-        for(int j = 0; j &lt; grid.length; j ++) {
-            int min = Math.min(row[i], col[j]);
-            if(grid[i][j] &lt; min) res += min - grid[i][j];
+        int res = 0;
+        for(int i = 0; i &lt; grid.length; i ++) {
+            for(int j = 0; j &lt; grid.length; j ++) {
+                int min = Math.min(row[i], col[j]);
+                if(grid[i][j] &lt; min) res += min - grid[i][j];
+            }
         }
+        return res;
     }
-    return res;
 }
-</code></pre><p>}</p>
-
+</code></pre>
       
     </div>
     
@@ -470,6 +470,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/16/leetcode654-最大二叉树/" rel="prev" title="leetcode654. 最大二叉树">
+                leetcode654. 最大二叉树 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -537,7 +541,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

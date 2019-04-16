@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-16T10:24:31.059Z</updated>
+  <updated>2019-04-16T11:41:15.187Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,13 +17,35 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>leetcode654. 最大二叉树</title>
+    <link href="http://yoursite.com/2019/04/16/leetcode654-%E6%9C%80%E5%A4%A7%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    <id>http://yoursite.com/2019/04/16/leetcode654-最大二叉树/</id>
+    <published>2019-04-16T11:40:51.000Z</published>
+    <updated>2019-04-16T11:41:15.187Z</updated>
+    
+    <content type="html"><![CDATA[<p>给定一个不含重复元素的整数数组。一个以此数组构建的最大二叉树定义如下：</p><p>二叉树的根是数组中的最大元素。<br>左子树是通过数组中最大值左边部分构造出的最大二叉树。<br>右子树是通过数组中最大值右边部分构造出的最大二叉树。<br>通过给定的数组构建最大二叉树，并且输出这个树的根节点。</p><p>Example 1:<br>输入: [3,2,1,6,0,5]<br>输入: 返回下面这棵树的根节点：</p><pre><code>  6/   \</code></pre><p>   3     5<br>    \    /<br>     2  0<br>       \<br>        1<br>注意:<br>给定的数组的大小在 [1, 1000] 之间。</p><p>解题思路：<br>创建一个辅助函数从left到right遍历找出最大值，保存其下标index，然后把其作为节点root的值，再使其左结点为left到index-1，右节点为index+1到right，最后返回root</p><p>代码如下：</p><pre><code>class Solution {    public TreeNode constructMaximumBinaryTree(int[] nums) {    return helper( 0, nums.length-1, nums);}public TreeNode helper(int left, int right, int[] nums) {    if(left &gt; right) return null;    if(left == right) {        return new TreeNode(nums[left]);    }    int max = 0,index = 0;    for(int i = left; i &lt;= right; i ++) {        if(nums[i] &gt; max) {            max = nums[i];            index = i;        }    }    TreeNode root = new TreeNode(max);    root.left = helper(left, index-1, nums);    root.right = helper(index+1, right, nums);    return root;}</code></pre><p>}</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;给定一个不含重复元素的整数数组。一个以此数组构建的最大二叉树定义如下：&lt;/p&gt;
+&lt;p&gt;二叉树的根是数组中的最大元素。&lt;br&gt;左子树是通过数组中最大值左边部分构造出的最大二叉树。&lt;br&gt;右子树是通过数组中最大值右边部分构造出的最大二叉树。&lt;br&gt;通过给定的数组构建最大二叉树，
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>leetcode807. 保持城市天际线</title>
     <link href="http://yoursite.com/2019/04/16/807-%E4%BF%9D%E6%8C%81%E5%9F%8E%E5%B8%82%E5%A4%A9%E9%99%85%E7%BA%BF/"/>
     <id>http://yoursite.com/2019/04/16/807-保持城市天际线/</id>
     <published>2019-04-16T10:22:52.000Z</published>
-    <updated>2019-04-16T10:24:31.059Z</updated>
+    <updated>2019-04-16T10:25:50.137Z</updated>
     
-    <content type="html"><![CDATA[<p>在二维数组grid中，grid[i][j]代表位于某处的建筑物的高度。 我们被允许增加任何数量（不同建筑物的数量可能不同）的建筑物的高度。 高度 0 也被认为是建筑物。</p><p>最后，从新数组的所有四个方向（即顶部，底部，左侧和右侧）观看的“天际线”必须与原始数组的天际线相同。 城市的天际线是从远处观看时，由所有建筑物形成的矩形的外部轮廓。 请看下面的例子。</p><p>建筑物高度可以增加的最大总和是多少？</p><p>例子：<br>输入： grid = [[3,0,8,4],[2,4,5,7],[9,2,6,3],[0,3,1,0]]<br>输出： 35<br>解释：<br>The grid is:<br>[ [3, 0, 8, 4],<br>  [2, 4, 5, 7],<br>  [9, 2, 6, 3],<br>  [0, 3, 1, 0] ]</p><p>从数组竖直方向（即顶部，底部）看“天际线”是：[9, 4, 8, 7]<br>从水平水平方向（即左侧，右侧）看“天际线”是：[8, 7, 9, 3]</p><p>在不影响天际线的情况下对建筑物进行增高后，新数组如下：</p><p>gridNew = [ [8, 4, 8, 7],<br>            [7, 4, 7, 7],<br>            [9, 4, 8, 7],<br>            [3, 3, 3, 3] ]<br>说明:</p><p>1 &lt; grid.length = grid[0].length &lt;= 50。<br> grid[i][j] 的高度范围是： [0, 100]。<br>一座建筑物占据一个grid[i][j]：换言之，它们是 1 x 1 x grid[i][j] 的长方体。<br>解题思路：<br>创建2个数组row、col，遍历<strong>一遍</strong>数组，使row、col保存水平、竖直“天际线”。<br>再遍历一遍数组，i行j列的楼层如果比Math.min(row[i],col[j]) 小的话，则是可以增加的楼层，Math.min(row[i],col[j])-grid[i][j]则是可增加的楼层数量。<br>代码如下：</p><pre><code>class Solution {    public int maxIncreaseKeepingSkyline(int[][] grid) {    int[] row = new int[grid.length];    int[] col = new int[grid[0].length];    for(int i = 0; i &lt; grid.length; i ++) {        int max = 0;        for(int j = 0; j &lt; grid.length; j ++) {            //更新col数组            if(grid[i][j] &gt; col[j]) col[j] = grid[i][j];            if(grid[i][j] &gt; max) max = grid[i][j];        }        //更新row数组        row[i] = max;    }    int res = 0;    for(int i = 0; i &lt; grid.length; i ++) {        for(int j = 0; j &lt; grid.length; j ++) {            int min = Math.min(row[i], col[j]);            if(grid[i][j] &lt; min) res += min - grid[i][j];        }    }    return res;}</code></pre><p>}</p>]]></content>
+    <content type="html"><![CDATA[<p>在二维数组grid中，grid[i][j]代表位于某处的建筑物的高度。 我们被允许增加任何数量（不同建筑物的数量可能不同）的建筑物的高度。 高度 0 也被认为是建筑物。</p><p>最后，从新数组的所有四个方向（即顶部，底部，左侧和右侧）观看的“天际线”必须与原始数组的天际线相同。 城市的天际线是从远处观看时，由所有建筑物形成的矩形的外部轮廓。 请看下面的例子。</p><p>建筑物高度可以增加的最大总和是多少？</p><p>例子：<br>输入： grid = [[3,0,8,4],[2,4,5,7],[9,2,6,3],[0,3,1,0]]<br>输出： 35<br>解释：<br>The grid is:<br>[ [3, 0, 8, 4],<br>  [2, 4, 5, 7],<br>  [9, 2, 6, 3],<br>  [0, 3, 1, 0] ]</p><p>从数组竖直方向（即顶部，底部）看“天际线”是：[9, 4, 8, 7]<br>从水平水平方向（即左侧，右侧）看“天际线”是：[8, 7, 9, 3]</p><p>在不影响天际线的情况下对建筑物进行增高后，新数组如下：</p><p>gridNew = [ [8, 4, 8, 7],<br>            [7, 4, 7, 7],<br>            [9, 4, 8, 7],<br>            [3, 3, 3, 3] ]<br>说明:</p><p>1 &lt; grid.length = grid[0].length &lt;= 50。<br> grid[i][j] 的高度范围是： [0, 100]。<br>一座建筑物占据一个grid[i][j]：换言之，它们是 1 x 1 x grid[i][j] 的长方体。<br>解题思路：<br>创建2个数组row、col，遍历<strong>一遍</strong>数组，使row、col保存水平、竖直“天际线”。<br>再遍历一遍数组，i行j列的楼层如果比Math.min(row[i],col[j]) 小的话，则是可以增加的楼层，Math.min(row[i],col[j])-grid[i][j]则是可增加的楼层数量。<br>代码如下：</p><pre><code>class Solution {    public int maxIncreaseKeepingSkyline(int[][] grid) {        int[] row = new int[grid.length];        int[] col = new int[grid[0].length];        for(int i = 0; i &lt; grid.length; i ++) {            int max = 0;            for(int j = 0; j &lt; grid.length; j ++) {                //更新col数组                if(grid[i][j] &gt; col[j]) col[j] = grid[i][j];                if(grid[i][j] &gt; max) max = grid[i][j];            }            //更新row数组            row[i] = max;        }        int res = 0;        for(int i = 0; i &lt; grid.length; i ++) {            for(int j = 0; j &lt; grid.length; j ++) {                int min = Math.min(row[i], col[j]);                if(grid[i][j] &lt; min) res += min - grid[i][j];            }        }        return res;    }}</code></pre>]]></content>
     
     <summary type="html">
     
