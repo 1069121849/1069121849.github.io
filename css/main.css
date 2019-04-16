@@ -1874,7 +1874,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #c1ffa2;
+  background: #ffffb5;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3088,12 +3088,14 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
+  cursor: url("images/favicon.ico");
 }
 .main-inner {
   margin-top: 60px;
   padding: 60px 60px 60px 60px;
+  border-radius: 5px;
   background: rgba(255,255,255,0.9);
-  opacity: 1;
+  opacity: 0.8;
   min-height: 500px;
 }
 .posts-expand .post-title-link::before {
