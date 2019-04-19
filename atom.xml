@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-19T08:39:43.420Z</updated>
+  <updated>2019-04-19T13:25:53.127Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,91 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode16. 最接近的三数之和</title>
+    <link href="http://yoursite.com/2019/04/19/leetcode16-%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9A%84%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/"/>
+    <id>http://yoursite.com/2019/04/19/leetcode16-最接近的三数之和/</id>
+    <published>2019-04-19T13:25:24.000Z</published>
+    <updated>2019-04-19T13:25:53.127Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>给定一个包括 n 个整数的数组 nums 和 一个目标值 target。找出 nums 中的三个整数，使得它们的和与 target<br>最接近。返回这三个数的和。假定每组输入只存在唯一答案。</p><p>例如，给定数组 nums = [-1，2，1，-4], 和 target = 1.</p><p>与 target 最接近的三个数的和为 2. (-1 + 2 + 1 = 2).</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>我的思路是直接暴力解了，没想到更好的办法，时间复杂度为O(n²)。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int threeSumClosest(int[] nums, int target) &#123;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        int res = Integer.MAX_VALUE;</span><br><span class="line">        boolean flag = false;</span><br><span class="line">        for(int i = 0; i &lt; nums.length - 2; i ++) &#123;</span><br><span class="line">        int left = i+1, right = nums.length-1;</span><br><span class="line">        while(left &lt; right) &#123;</span><br><span class="line">            int tmp = nums[i] + nums[left] + nums[right];</span><br><span class="line">            if(tmp == target) &#123;</span><br><span class="line">        res = 0;</span><br><span class="line">        flag = true;</span><br><span class="line">        break;</span><br><span class="line">        &#125;</span><br><span class="line">        else if(tmp &gt; target) &#123;</span><br><span class="line">        res = Math.abs(tmp - target) &gt; Math.abs(res) ? res : tmp - target;</span><br><span class="line">        right--;</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">        res = Math.abs(tmp - target) &gt; Math.abs(res) ? res : tmp - target;</span><br><span class="line">        left++;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(flag) break;</span><br><span class="line">        &#125;</span><br><span class="line">        return target + res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 17 ms, 在3Sum Closest的Java提交中击败了75.39% 的用户<br>内存消耗 : 35.5 MB, 在3Sum Closest的Java提交中击败了87.66% 的用户</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;给定一个包括 n 个整数的数组 nums 和 一个目标值 target。找出 nums 中的三个整数，使得它们的和
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode856. 括号的分数</title>
+    <link href="http://yoursite.com/2019/04/19/leetcode856-%E6%8B%AC%E5%8F%B7%E7%9A%84%E5%88%86%E6%95%B0/"/>
+    <id>http://yoursite.com/2019/04/19/leetcode856-括号的分数/</id>
+    <published>2019-04-19T13:25:13.000Z</published>
+    <updated>2019-04-19T13:25:40.824Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>给定一个平衡括号字符串 S，按下述规则计算该字符串的分数：</p><p>() 得 1 分。 AB 得 A + B 分，其中 A 和 B 是平衡括号字符串。 (A) 得 2 * A 分，其中 A 是平衡括号字符串。<br>示例 1：<br>输入： “()” 输出： 1<br>示例 2：<br>输入： “(())” 输出： 2<br>示例 3：<br>输入： “()()” 输出： 2<br>示例 4：<br>输入： “(()(()))” 输出： 6  </p><p>提示：</p><p>S 是平衡括号字符串，且只含有 ( 和 ) 。 2 &lt;= S.length &lt;= 50</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>遇到括号的题目首先想到了利用栈匹配括号。<br>遍历一遍字符串，如果是’(‘，就压栈；若不是，则分2种情况<br>⑴如果栈顶是’(‘,则                                                                                                                                                                                                                                                     往栈顶把pop(‘(‘),push(1)<br>⑵如果不是，则把不是’(‘的元素全部pop并加起来，最后pop(‘(‘) 并push(sum)。<br>最后返回栈内所有元素的总和。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int scoreOfParentheses(String S) &#123;</span><br><span class="line">if(S.length() &lt; 2) return 0;</span><br><span class="line">        int[] stack = new int[S.length()];</span><br><span class="line">        int top = -1;</span><br><span class="line">        for(int i = 0; i &lt; S.length(); i++) &#123;</span><br><span class="line">        char temp = S.charAt(i);</span><br><span class="line">        if(temp == &apos;(&apos;) </span><br><span class="line">        stack[++top] = &apos;(&apos;;</span><br><span class="line">        else &#123;</span><br><span class="line">        int cnt = 0;</span><br><span class="line">        if(stack[top]==&apos;(&apos;) &#123;</span><br><span class="line">        stack[top] = 1;</span><br><span class="line">        continue;</span><br><span class="line">        &#125;</span><br><span class="line">        while(stack[top] != &apos;(&apos;)</span><br><span class="line">        cnt += stack[top--];</span><br><span class="line">        stack[top] = cnt * 2 ;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int res = 0;</span><br><span class="line">        while(top &gt;= 0) </span><br><span class="line">        res += stack[top--];</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 1 ms, 在Score of Parentheses的Java提交中击败了100.00% 的用户<br>内存消耗 : 33.3 MB, 在Score of Parentheses的Java提交中击败了94.55% 的用户</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;给定一个平衡括号字符串 S，按下述规则计算该字符串的分数：&lt;/p&gt;
+&lt;p&gt;() 得 1 分。 AB 得 A + B
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode12. 整数转罗马数字</title>
+    <link href="http://yoursite.com/2019/04/19/leetcode12-%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97/"/>
+    <id>http://yoursite.com/2019/04/19/leetcode12-整数转罗马数字/</id>
+    <published>2019-04-19T13:24:33.000Z</published>
+    <updated>2019-04-19T13:24:54.804Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>罗马数字包含以下七种字符： I， V， X， L，C，D 和 M。<br>字符          数值 I             1 V             5 X             10 L<br>50 C             100 D             500 M             1000 例如， 罗马数字 2<br>写做 II ，即为两个并列的 1。12 写做 XII ，即为 X + II 。 27 写做  XXVII, 即为 XX + V + II 。</p><p>通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 IIII，而是 IV。数字 1 在数字 5<br>的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 IX。这个特殊的规则只适用于以下六种情况：</p><p>I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。 X 可以放在 L (50) 和 C (100) 的左边，来表示<br>40 和 90。  C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。<br>给定一个整数，将其转为罗马数字。输入确保在 1 到 3999 的范围内。<br>示例 1:<br>输入: 3<br>输出: “III”<br> 示例 2:<br>输入: 4<br>输出: “IV”<br>示例 3:<br>输入: 9<br>输出: “IX”<br>示例 4:<br>输入: 58<br>输出: “LVIII”<br> 解释: L = 50, V = 5, III = 3.<br> 示例 5:<br>输入: 1994<br>输出: “MCMXCIV”<br>解释: M = 1000, CM = 900, XC = 90, IV = 4.</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>把所有能转化的罗马数字存起来，把要转化的数字直接对所有的罗马数字（从最大开始）求余，结果res每次都加上 (num/罗马数字的对应值)个罗马数字即可。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public String intToRoman(int num) &#123;</span><br><span class="line">        String[] RomeNum = &#123;&quot;I&quot;, &quot;IV&quot;,&quot;V&quot;,&quot;IX&quot;,&quot;X&quot;, &quot;XL&quot;,&quot;L&quot;, &quot;XC&quot;, &quot;C&quot;, &quot;CD&quot;, &quot;D&quot;, &quot;CM&quot;, &quot;M&quot;&#125;;</span><br><span class="line">        int[] nums = &#123;1,4,5,9,10,40,50,90,100,400,500,900,1000&#125;;</span><br><span class="line">        //字符串相加使用StringBuilder更好</span><br><span class="line">        StringBuilder res = new StringBuilder();</span><br><span class="line">        int index = nums.length-1;//从最大的开始</span><br><span class="line">        while(num &gt; 0) &#123;</span><br><span class="line">        //整除当前罗马数组的商</span><br><span class="line">        int t = num / nums[index];</span><br><span class="line">        if(t &gt; 0) &#123;</span><br><span class="line">        while(t-- &gt; 0)</span><br><span class="line">        //加上相应个数的罗马数字</span><br><span class="line">        res.append(RomeNum[index]);</span><br><span class="line">        num %= nums[index];</span><br><span class="line">        &#125;</span><br><span class="line">        index --;</span><br><span class="line">        &#125;</span><br><span class="line">        return res.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 21 ms, 在Integer to Roman的Java提交中击败了96.36% 的用户<br>内存消耗 : 41 MB, 在Integer to Roman的Java提交中击败了78.75% 的用户</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;罗马数字包含以下七种字符： I， V， X， L，C，D 和 M。&lt;br&gt;字符          数值 I    
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode11. 盛最多水的容器</title>
