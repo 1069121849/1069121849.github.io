@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-20T04:40:59.247Z</updated>
+  <updated>2019-04-20T12:06:06.954Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,63 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode24. 两两交换链表中的节点</title>
+    <link href="http://yoursite.com/2019/04/20/leetcode24-%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/"/>
+    <id>http://yoursite.com/2019/04/20/leetcode24-两两交换链表中的节点/</id>
+    <published>2019-04-20T12:05:40.000Z</published>
+    <updated>2019-04-20T12:06:06.954Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。</p><p>你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。</p></blockquote><blockquote><p><strong>示例:</strong></p><p>给定 1-&gt;2-&gt;3-&gt;4, 你应该返回 2-&gt;1-&gt;4-&gt;3.</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>直接两两互换一直遍历到最后即可。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode swapPairs(ListNode head) &#123;</span><br><span class="line">if(head == null) return null;</span><br><span class="line">        ListNode p = head;</span><br><span class="line">        ListNode q = head.next;</span><br><span class="line">        ListNode pre = head;</span><br><span class="line">        while(q != null) &#123;</span><br><span class="line">        p.next = q.next;</span><br><span class="line">        q.next = p;</span><br><span class="line">        //如果是第一个，则pre不用指向q，而且要更新head</span><br><span class="line">        if(p == head) &#123;</span><br><span class="line">        head = q;</span><br><span class="line">        pre = head.next;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">        pre.next = q;</span><br><span class="line">        pre = p;</span><br><span class="line">        &#125;</span><br><span class="line">        p = p.next;</span><br><span class="line">        //q在p之后，如果p已经null则可以直接结束</span><br><span class="line">        if(p == null) break;</span><br><span class="line">        q = p.next;</span><br><span class="line">        &#125;</span><br><span class="line">        return head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 1 ms, 在Swap Nodes in Pairs的Java提交中击败了97.35% 的用户<br>内存消耗 : 33.4 MB, 在Swap Nodes in Pairs的Java提交中击败了98.47% 的用户</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。&lt;/p&gt;
+&lt;p&gt;你不能只是单纯的改变节点内部的值，而是需
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode29. 两数相除</title>
+    <link href="http://yoursite.com/2019/04/20/leetcode29-%E4%B8%A4%E6%95%B0%E7%9B%B8%E9%99%A4/"/>
+    <id>http://yoursite.com/2019/04/20/leetcode29-两数相除/</id>
+    <published>2019-04-20T12:04:49.000Z</published>
+    <updated>2019-04-20T12:05:52.731Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>给定两个整数，被除数 dividend 和除数 divisor。将两数相除，要求不使用乘法、除法和 mod 运算符。</p><p>返回被除数 dividend 除以除数 divisor 得到的商。</p><p><strong>示例 1:</strong></p><p><strong>输入:</strong> dividend = 10, divisor = 3<br><strong>输出:</strong> 3<br> <strong>示例 2:</strong></p><p><strong>输入:</strong> dividend = 7, divisor = -3<br><strong>输出:</strong> -2<br> <strong>说明:</strong></p><p>被除数和除数均为 32 位有符号整数。 除数不为 0。 假设我们的环境只能存储 32 位有符号整数，其数值范围是 [−231,  231 −<br>1]。本题中，如果除法结果溢出，则返回 231 − 1。</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>一开始的解题思路是直接用减法去实现，每次都减去除数，然后递归调用，结果在边界值爆了。<br>看了一下评论区的提示后，使用了移位运算解答此题。<br>dividend&lt;&lt;i相当于dividend除以2^i;<br>dividend&lt;<i \>=divisor就是disisor*2^n &lt;dividend;<br>由此来进行减法，可以大大的缩减运算时间。</i></p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int divide(int dividend, int divisor) &#123;</span><br><span class="line">        if(divisor == 1) return dividend;</span><br><span class="line">        if(dividend == Integer.MIN_VALUE &amp;&amp; divisor == -1) return Integer.MAX_VALUE;</span><br><span class="line">int res = 0;</span><br><span class="line">        int flag = (dividend^divisor) &lt; 0 ? -1 : 1;</span><br><span class="line">        long newDividend = Math.abs((long)dividend);</span><br><span class="line">        long newDivisor = Math.abs((long)divisor);</span><br><span class="line">        for(int i = 31; i &gt;= 0; i--) &#123;</span><br><span class="line">        if(newDividend&gt;&gt;i &gt;= newDivisor) &#123;</span><br><span class="line">        res += 1&lt;&lt;i;</span><br><span class="line">        newDividend -= newDivisor&lt;&lt;i;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return flag &gt; 0? res : -res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 6 ms, 在Divide Two Integers的Java提交中击败了95.78% 的用户<br>内存消耗 : 33.6 MB, 在Divide Two Integers的Java提交中击败了76.86% 的用户</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;给定两个整数，被除数 dividend 和除数 divisor。将两数相除，要求不使用乘法、除法和 mod 运算符
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode19. 删除链表的倒数第N个节点</title>
