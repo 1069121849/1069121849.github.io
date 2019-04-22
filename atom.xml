@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-21T08:37:55.042Z</updated>
+  <updated>2019-04-22T14:44:48.490Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,62 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode40. 组合总和 II</title>
+    <link href="http://yoursite.com/2019/04/22/leetcode40-%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C-II/"/>
+    <id>http://yoursite.com/2019/04/22/leetcode40-组合总和-II/</id>
+    <published>2019-04-22T14:44:26.000Z</published>
+    <updated>2019-04-22T14:44:48.490Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>给定一个数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。</p><p>candidates 中的每个数字在每个组合中只能使用一次。</p><p>说明：</p><p>所有数字（包括目标数）都是正整数。 解集不能包含重复的组合。  示例 1:</p><p>输入: candidates = [10,1,2,7,6,1,5], target = 8, 所求解集为: [   [1, 7],<br>[1, 2, 5],   [2, 6],   [1, 1, 6] ] 示例 2:</p><p>输入: candidates = [2,5,2,1,2], target = 5, 所求解集为: [   [1,2,2],   [5] ]</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>因为做了上一道题，这道题其实只是上一道题目的去重而已。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;List&lt;Integer&gt;&gt; combinationSum2(int[] candidates, int target) &#123;</span><br><span class="line">if(target &lt; 0) return null;</span><br><span class="line">List&lt;List&lt;Integer&gt;&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">Arrays.sort(candidates);</span><br><span class="line">dfs(res, candidates, new ArrayList&lt;Integer&gt;(), target, 0);</span><br><span class="line">return res;</span><br><span class="line">    &#125;</span><br><span class="line">public void dfs(List&lt;List&lt;Integer&gt;&gt; res, int[] candidates, List&lt;Integer&gt; tmp, int target, int index) &#123;</span><br><span class="line">if(target == 0) &#123;</span><br><span class="line">res.add(tmp);</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line">        if(target &lt; candidates[0]) return ;</span><br><span class="line">for(int i = index; i &lt; candidates.length &amp;&amp; candidates[i] &lt;= target; i++) &#123;</span><br><span class="line">//去重</span><br><span class="line">if (i &gt; index &amp;&amp; candidates[i] == candidates[i - 1]) continue;</span><br><span class="line">List&lt;Integer&gt; list = new ArrayList&lt;&gt;(tmp);</span><br><span class="line">list.add(candidates[i]);</span><br><span class="line">dfs(res, candidates, list, target-candidates[i], i+1);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 6 ms, 在Combination Sum II的Java提交中击败了98.24% 的用户<br>内存消耗 : 38.9 MB, 在Combination Sum II的Java提交中击败了80.83% 的用户</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;给定一个数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode39.总数之和</title>
+    <link href="http://yoursite.com/2019/04/22/leetcode39-%E6%80%BB%E6%95%B0%E4%B9%8B%E5%92%8C/"/>
+    <id>http://yoursite.com/2019/04/22/leetcode39-总数之和/</id>
+    <published>2019-04-22T14:43:41.000Z</published>
+    <updated>2019-04-22T14:44:37.243Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target<br>的组合。<br>candidates 中的数字可以无限制重复被选取。<br>说明：<br>所有数字（包括 target）都是正整数。 解集不能包含重复的组合。<br> <strong>示例 1:</strong><br><strong>输入:</strong> candidates = [2,3,6,7], target = 7,<br>所求解集为: [   [7],   [2,2,3] ]<br><strong>示例 2:</strong><br><strong>输入:</strong> candidates = [2,3,5], target = 8,<br>所求解集为: [   [2,2,2,2],   [2,3,3], [3,5] ]</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>深度搜索每一种可能，递归查找(target -candidates[i])是否有解。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;List&lt;Integer&gt;&gt; combinationSum(int[] candidates, int target) &#123;</span><br><span class="line">if(target &lt; 0) return null;</span><br><span class="line">List&lt;List&lt;Integer&gt;&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">Arrays.sort(candidates);</span><br><span class="line">dfs(res, candidates, new ArrayList&lt;Integer&gt;(), target, 0);</span><br><span class="line">return res;</span><br><span class="line">    &#125;</span><br><span class="line">public void dfs(List&lt;List&lt;Integer&gt;&gt; res, int[] candidates, List&lt;Integer&gt; tmp, int target, int index) &#123;</span><br><span class="line">//如果target==0则找到</span><br><span class="line">if(target == 0) &#123;</span><br><span class="line">res.add(tmp);</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line">//已经排序，所以如果target不为0且小于candidates[0]则return</span><br><span class="line">        if(target &lt; candidates[0]) return ;</span><br><span class="line">for(int i = 0; i &lt; candidates.length &amp;&amp; candidates[i] &lt;= target; i++) &#123;</span><br><span class="line">    //如果candidates[0] &gt; target则不用深度了</span><br><span class="line">    //index记录当前节点，之前的节点的结果已经被遍历了。</span><br><span class="line">if(i &lt; index) continue;</span><br><span class="line">List&lt;Integer&gt; list = new ArrayList&lt;&gt;(tmp);</span><br><span class="line">list.add(candidates[i]);</span><br><span class="line">dfs(res, candidates, list, target-candidates[i], i);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 6 ms, 在Combination Sum的Java提交中击败了98.24% 的用户<br>内存消耗 : 36.3 MB, 在Combination Sum的Java提交中击败了98.81% 的用户</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode36. 有效的数独</title>
@@ -524,27 +580,6 @@
       <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
     
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode995. K 连续位的最小翻转次数</title>
-    <link href="http://yoursite.com/2019/04/12/leetcode995/"/>
-    <id>http://yoursite.com/2019/04/12/leetcode995/</id>
-    <published>2019-04-12T03:16:55.890Z</published>
-    <updated>2019-04-12T03:25:29.397Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="995-K-连续位的最小翻转次数"><a href="#995-K-连续位的最小翻转次数" class="headerlink" title="995. K 连续位的最小翻转次数"></a>995. K 连续位的最小翻转次数</h2><p>在仅包含 0 和 1 的数组 A 中，一次 K 位翻转包括选择一个长度为 K 的（连续）子数组，同时将子数组中的每个 0 更改为 1，而每个 1 更改为 0。</p><p>返回所需的 K 位翻转的次数，以便数组没有值为 0 的元素。如果不可能，返回 -1。</p><p>示例 1：</p><p>输入：A = [0,1,0], K = 1<br>输出：2<br>解释：先翻转 A[0]，然后翻转 A[2]。<br>示例 2：</p><p>输入：A = [1,1,0], K = 2<br>输出：-1<br>解释：无论我们怎样翻转大小为 2 的子数组，我们都不能使数组变为 [1,1,1]。<br>示例 3：</p><p>输入：A = [0,0,0,1,0,1,1,0], K = 3<br>输出：3<br>解释：<br>翻转 A[0],A[1],A[2]: A变成 [1,1,1,1,0,1,1,0]<br>翻转 A[4],A[5],A[6]: A变成 [1,1,1,1,1,0,0,0]<br>翻转 A[5],A[6],A[7]: A变成 [1,1,1,1,1,1,1,1]</p><p>提示：</p><p>1.1 &lt;= A.length &lt;= 30000<br>2.1 &lt;= K &lt;= A.length<br>代码如下：</p><pre><code>class Solution {    public static int minKBitFlips(int[] A, int K) {    int times = 0;    int begin = 0;    // 如果剩下的牌不够K 则跳出    while (begin &lt;= A.length - K) {        begin = getFirstZero(A);        if (begin == -1) {            return times;        }        draw(A, begin, K);        times++;    }    return -1;    }    public static int getFirstZero(int[] A) {        for (int i = 0; i &lt; A.length; i++) {            if (A[i] == 0) {                return i;            }        }        return -1;    }    public static void draw(int[] A, int begin, int k) {        if (begin + k &gt; A.length) return;        for (int i = begin; i &lt; begin + k; i++) {            if (A[i] == 0) {                A[i] = 1;            } else {                A[i] = 0;            }        }    }}</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;995-K-连续位的最小翻转次数&quot;&gt;&lt;a href=&quot;#995-K-连续位的最小翻转次数&quot; class=&quot;headerlink&quot; title=&quot;995. K 连续位的最小翻转次数&quot;&gt;&lt;/a&gt;995. K 连续位的最小翻转次数&lt;/h2&gt;&lt;p&gt;在仅包含 0 和 1 的
-      
-    
-    </summary>
-    
     
   </entry>
   
