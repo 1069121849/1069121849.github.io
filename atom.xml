@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-23T07:05:23.614Z</updated>
+  <updated>2019-04-23T13:42:13.189Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>剑指offer1-5</title>
+    <link href="http://yoursite.com/2019/04/23/%E5%89%91%E6%8C%87offer1-5/"/>
+    <id>http://yoursite.com/2019/04/23/剑指offer1-5/</id>
+    <published>2019-04-23T13:41:44.000Z</published>
+    <updated>2019-04-23T13:42:13.189Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// 剑指offer1.二维数组中的查找</span><br><span class="line"></span><br><span class="line">    public boolean Find(int target, int [][] array) &#123;</span><br><span class="line">        int lo = 0, hi = array.length-1;</span><br><span class="line">        for(int j = 0; j &lt; array[0].length; j ++) &#123;</span><br><span class="line">        lo = 0;</span><br><span class="line">        while(lo &lt;= hi) &#123;</span><br><span class="line">        int mid = (lo + hi) &gt;&gt; 1;</span><br><span class="line">        if(array[mid][j] == target) &#123;</span><br><span class="line">        return true;</span><br><span class="line">        &#125;</span><br><span class="line">        else if(array[mid][j] &gt; target) &#123;</span><br><span class="line">        hi = mid-1;</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">        lo = mid + 1;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">//剑指offer2.替换空格</span><br><span class="line">public String replaceSpace(StringBuffer str) &#123;</span><br><span class="line">    return str.toString().replaceAll(&quot; &quot;, &quot;%20&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">//剑指offer3.从尾到头打印链表</span><br><span class="line">public ArrayList&lt;Integer&gt; printListFromTailToHead(ListNode listNode) &#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">        while(listNode != null) &#123;</span><br><span class="line">        res.add(0, listNode.val);</span><br><span class="line">        listNode = listNode.next;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">//剑指offer4.重建二叉树</span><br><span class="line">public TreeNode reConstructBinaryTree(int [] pre,int [] in) &#123;</span><br><span class="line">if(pre.length == 0 || in.length == 0) return null;</span><br><span class="line">TreeNode root = reConstructBinaryTree(pre, 0, pre.length, in, 0, in.length);</span><br><span class="line">return root;</span><br><span class="line">    &#125;</span><br><span class="line">public TreeNode reConstructBinaryTree(int [] pre,int startPre, int endPre,</span><br><span class="line">int [] in, int startIn, int endIn) &#123;</span><br><span class="line">if(startPre &gt;= endPre || startIn &gt;= endIn) </span><br><span class="line">return null;</span><br><span class="line">TreeNode root = new TreeNode(pre[startPre]);</span><br><span class="line">for(int i = startIn; i &lt; endIn; i ++) &#123;</span><br><span class="line">if(in[i] == pre[startPre]) &#123;</span><br><span class="line">root.left = reConstructBinaryTree(pre, startPre+1, startPre+i-startIn+1, in, startIn, i);</span><br><span class="line">root.right = reConstructBinaryTree(pre, startPre+i-startIn+1, endPre, in, i+1, endIn);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">return root;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">//剑指offer5.用两个栈实现队列</span><br><span class="line">Stack&lt;Integer&gt; stack1 = new Stack&lt;Integer&gt;();</span><br><span class="line">    Stack&lt;Integer&gt; stack2 = new Stack&lt;Integer&gt;();</span><br><span class="line">    public void push(int node) &#123;</span><br><span class="line">        while(!stack1.isEmpty()) &#123;</span><br><span class="line">        stack2.push(stack1.pop());</span><br><span class="line">        &#125;</span><br><span class="line">        stack2.push(node);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public int pop() &#123;</span><br><span class="line">    while(!stack2.isEmpty()) &#123;</span><br><span class="line">    stack1.push(stack2.pop());</span><br><span class="line">    &#125;</span><br><span class="line">    return stack1.pop();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode46. 全排列</title>
@@ -557,30 +584,6 @@
       <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
     
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode78.子集</title>
-    <link href="http://yoursite.com/2019/04/16/leetcode78-%E5%AD%90%E9%9B%86/"/>
-    <id>http://yoursite.com/2019/04/16/leetcode78-子集/</id>
-    <published>2019-04-16T13:40:53.000Z</published>
-    <updated>2019-04-16T13:41:16.203Z</updated>
-    
-    <content type="html"><![CDATA[<p>给定一组不含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。</p><p>说明：解集不能包含重复的子集。</p><p>示例:</p><p>输入: nums = [1,2,3]<br>输出:<br>[<br>  [3],<br>  [1],<br>  [2],<br>  [1,2,3],<br>  [1,3],<br>  [2,3],<br>  [1,2],<br>  []<br>]</p><p>解题思路：<br>遍历一遍数组，每次遍历都把原来res链表里面的子链全部加上这个数。</p><p>代码如下：</p><pre><code>class Solution {    public List&lt;List&lt;Integer&gt;&gt; subsets(int[] nums) {        List&lt;List&lt;Integer&gt;&gt; res = new LinkedList&lt;&gt;();        List&lt;Integer&gt; list = new LinkedList&lt;&gt;();        for(int i = 0; i &lt; nums.length; i ++) {            int size = res.size();            for(int j = 0; j &lt; size; j++) {                list = new LinkedList&lt;&gt;(res.get(j));                list.add(nums[i]);                res.add(list);            }            list = new LinkedList&lt;&gt;();            list.add(nums[i]);            res.add(list);        }        list = new LinkedList&lt;&gt;();        res.add(list);        return res;    }}</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;给定一组不含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。&lt;/p&gt;
-&lt;p&gt;说明：解集不能包含重复的子集。&lt;/p&gt;
-&lt;p&gt;示例:&lt;/p&gt;
-&lt;p&gt;输入: nums = [1,2,3]&lt;br&gt;输出:&lt;br&gt;[&lt;br&gt;  [3],&lt;br&gt;  [1],&lt;br&gt;  [
-      
-    
-    </summary>
-    
     
   </entry>
   
