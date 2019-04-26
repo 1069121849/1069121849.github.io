@@ -88,18 +88,20 @@
 
 
 
-<meta name="description" content="题目 给定一个平衡括号字符串 S，按下述规则计算该字符串的分数： () 得 1 分。 AB 得 A + B 分，其中 A 和 B 是平衡括号字符串。 (A) 得 2 * A 分，其中 A 是平衡括号字符串。示例 1：输入： “()” 输出： 1示例 2：输入： “(())” 输出： 2示例 3：输入： “()()” 输出： 2示例 4：输入： “(()(()))” 输出： 6   提示： S 是平">
+<meta name="description" content="题目给定一个包含 m x n 个元素的矩阵（m 行, n 列），请按照顺时针螺旋顺序，返回矩阵中的所有元素。示例 1:输入:[ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ]]输出: [1,2,3,6,9,8,7,4,5]示例 2:输入:[  [1, 2, 3, 4],  [5, 6, 7, 8],  [9,10,11,12]]输出: [1,2,3,4,8,12,11,">
 <meta name="keywords" content="leetcode,java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode856. 括号的分数">
-<meta property="og:url" content="http://yoursite.com/2019/04/19/leetcode856-括号的分数/index.html">
+<meta property="og:title" content="leetcode54. 螺旋矩阵">
+<meta property="og:url" content="http://yoursite.com/2019/04/26/leetcode54-螺旋矩阵/index.html">
 <meta property="og:site_name" content="白哥的博客">
-<meta property="og:description" content="题目 给定一个平衡括号字符串 S，按下述规则计算该字符串的分数： () 得 1 分。 AB 得 A + B 分，其中 A 和 B 是平衡括号字符串。 (A) 得 2 * A 分，其中 A 是平衡括号字符串。示例 1：输入： “()” 输出： 1示例 2：输入： “(())” 输出： 2示例 3：输入： “()()” 输出： 2示例 4：输入： “(()(()))” 输出： 6   提示： S 是平">
+<meta property="og:description" content="题目给定一个包含 m x n 个元素的矩阵（m 行, n 列），请按照顺时针螺旋顺序，返回矩阵中的所有元素。示例 1:输入:[ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ]]输出: [1,2,3,6,9,8,7,4,5]示例 2:输入:[  [1, 2, 3, 4],  [5, 6, 7, 8],  [9,10,11,12]]输出: [1,2,3,4,8,12,11,">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-19T13:25:40.824Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190426150525729.png">
+<meta property="og:updated_time" content="2019-04-26T08:55:32.992Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode856. 括号的分数">
-<meta name="twitter:description" content="题目 给定一个平衡括号字符串 S，按下述规则计算该字符串的分数： () 得 1 分。 AB 得 A + B 分，其中 A 和 B 是平衡括号字符串。 (A) 得 2 * A 分，其中 A 是平衡括号字符串。示例 1：输入： “()” 输出： 1示例 2：输入： “(())” 输出： 2示例 3：输入： “()()” 输出： 2示例 4：输入： “(()(()))” 输出： 6   提示： S 是平">
+<meta name="twitter:title" content="leetcode54. 螺旋矩阵">
+<meta name="twitter:description" content="题目给定一个包含 m x n 个元素的矩阵（m 行, n 列），请按照顺时针螺旋顺序，返回矩阵中的所有元素。示例 1:输入:[ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ]]输出: [1,2,3,6,9,8,7,4,5]示例 2:输入:[  [1, 2, 3, 4],  [5, 6, 7, 8],  [9,10,11,12]]输出: [1,2,3,4,8,12,11,">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190426150525729.png">
 
 
 
@@ -129,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/19/leetcode856-括号的分数/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/26/leetcode54-螺旋矩阵/">
 
 
 
 
 
-  <title>leetcode856. 括号的分数 | 白哥的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>leetcode54. 螺旋矩阵 | 白哥的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -310,7 +312,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/19/leetcode856-括号的分数/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/26/leetcode54-螺旋矩阵/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="白哥">
@@ -327,7 +329,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetcode856. 括号的分数</h1>
+          <h1 class="post-title" itemprop="name headline">leetcode54. 螺旋矩阵</h1>
         
 
         <div class="post-meta">
@@ -339,8 +341,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-19T21:25:13+08:00">
-                2019-04-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-26T16:55:16+08:00">
+                2019-04-26
               </time>
             
 
@@ -398,7 +400,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  363
+                  517
                 </span>
               
 
@@ -414,7 +416,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1 分钟
+                  2 分钟
                 </span>
               
             </div>
@@ -435,15 +437,10 @@
       
 
       
-        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
-<p>给定一个平衡括号字符串 S，按下述规则计算该字符串的分数：</p>
-<p>() 得 1 分。 AB 得 A + B 分，其中 A 和 B 是平衡括号字符串。 (A) 得 2 * A 分，其中 A 是平衡括号字符串。<br>示例 1：<br>输入： “()” 输出： 1<br>示例 2：<br>输入： “(())” 输出： 2<br>示例 3：<br>输入： “()()” 输出： 2<br>示例 4：<br>输入： “(()(()))” 输出： 6  </p>
-<p>提示：</p>
-<p>S 是平衡括号字符串，且只含有 ( 和 ) 。 2 &lt;= S.length &lt;= 50</p>
-</blockquote>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>遇到括号的题目首先想到了利用栈匹配括号。<br>遍历一遍字符串，如果是’(‘，就压栈；若不是，则分2种情况<br>⑴如果栈顶是’(‘,则                                                                                                                                                                                                                                                     往栈顶把pop(‘(‘),push(1)<br>⑵如果不是，则把不是’(‘的元素全部pop并加起来，最后pop(‘(‘) 并push(sum)。<br>最后返回栈内所有元素的总和。</p>
-<h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int scoreOfParentheses(String S) &#123;</span><br><span class="line">		if(S.length() &lt; 2) return 0;</span><br><span class="line">        int[] stack = new int[S.length()];</span><br><span class="line">        int top = -1;</span><br><span class="line">        for(int i = 0; i &lt; S.length(); i++) &#123;</span><br><span class="line">        	char temp = S.charAt(i);</span><br><span class="line">        	if(temp == &apos;(&apos;) </span><br><span class="line">        		stack[++top] = &apos;(&apos;;</span><br><span class="line">        	else &#123;</span><br><span class="line">        		int cnt = 0;</span><br><span class="line">        		if(stack[top]==&apos;(&apos;) &#123;</span><br><span class="line">        			stack[top] = 1;</span><br><span class="line">        			continue;</span><br><span class="line">        		&#125;</span><br><span class="line">        		while(stack[top] != &apos;(&apos;)</span><br><span class="line">        			cnt += stack[top--];</span><br><span class="line">        		stack[top] = cnt * 2 ;</span><br><span class="line">        	&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int res = 0;</span><br><span class="line">        while(top &gt;= 0) </span><br><span class="line">        	res += stack[top--];</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 1 ms, 在Score of Parentheses的Java提交中击败了100.00% 的用户<br>内存消耗 : 33.3 MB, 在Score of Parentheses的Java提交中击败了94.55% 的用户</p>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个包含 m x n 个元素的矩阵（m 行, n 列），请按照顺时针螺旋顺序，返回矩阵中的所有元素。<br><strong>示例 1:<br>输入:</strong><br>[<br> [ 1, 2, 3 ],<br> [ 4, 5, 6 ],<br> [ 7, 8, 9 ]<br>]<br><strong>输出:</strong> [1,2,3,6,9,8,7,4,5]<br><strong>示例 2:<br>输入:</strong><br>[<br>  [1, 2, 3, 4],<br>  [5, 6, 7, 8],<br>  [9,10,11,12]<br>]<br><strong>输出:</strong> [1,2,3,4,8,12,11,10,9,5,6,7]</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>先把上面一整行加入链表，然后判断是否有竖的列，如若有，则加入；如果最后一列不是当前列，再加入最后一列；再加入左边的一列，加入步骤可以理解为如图的加入顺序，剩下的是对于坐标的理解和处理了。<br><img src="https://img-blog.csdnimg.cn/20190426150525729.png" alt="在这里插入图片描述"></p>
+<h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">public List&lt;Integer&gt; spiralOrder(int[][] matrix) &#123;</span><br><span class="line">		if(matrix == null || matrix.length == 0) return new ArrayList&lt;&gt;();</span><br><span class="line">		List&lt;Integer&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">		int rlen = matrix.length-1, clen = matrix[0].length-1;</span><br><span class="line">		for(int i = 0; i &lt; (rlen+2)/2 &amp;&amp; i&lt;(clen+2)/2; i++) &#123;</span><br><span class="line">			addRow(res, matrix, i, i, clen-i);</span><br><span class="line">			if(i+1 &lt;= rlen-i-1)</span><br><span class="line">				addCol(res, matrix, clen-i,i+1, rlen-i-1);</span><br><span class="line">			if(rlen-i &gt; i)</span><br><span class="line">				addRow(res, matrix, rlen-i, clen-i, i);</span><br><span class="line">			if(i+1 &lt;= rlen-i-1 &amp;&amp; i &lt; clen-i)</span><br><span class="line">				addCol(res, matrix, i, rlen-i-1, i+1);</span><br><span class="line">		&#125;</span><br><span class="line">		return res;</span><br><span class="line">    &#125;</span><br><span class="line">	public void addRow(List&lt;Integer&gt; list, int[][] matrix,int row, int colStart, int colEnd) &#123;</span><br><span class="line">		//根据行下标，开始下标结束下标加入行</span><br><span class="line">		if(colStart == colEnd) &#123;</span><br><span class="line">			list.add(matrix[row][colStart]);</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		//如果colStart&lt;colEnd则从前往后加入</span><br><span class="line">		for(int j = colStart; j &lt;= colEnd; j ++) &#123;</span><br><span class="line">			list.add(matrix[row][j]);</span><br><span class="line">		&#125;</span><br><span class="line">		//如果colStart》colEnd则从后往前加入</span><br><span class="line">		for(int j = colStart; j &gt;= colEnd; j --) &#123;</span><br><span class="line">			list.add(matrix[row][j]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	public void addCol(List&lt;Integer&gt; list, int[][] matrix,int col, int rowStart, int rowEnd) &#123;</span><br><span class="line">		if(rowStart == rowEnd) &#123;</span><br><span class="line">			list.add(matrix[rowStart][col]);</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		for(int i = rowStart; i &lt;= rowEnd; i ++) &#123;</span><br><span class="line">			list.add(matrix[i][col]);</span><br><span class="line">		&#125;</span><br><span class="line">		for(int i = rowStart; i &gt;= rowEnd; i --) &#123;</span><br><span class="line">			list.add(matrix[i][col]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 1 ms, 在Spiral Matrix的Java提交中击败了96.80% 的用户<br>内存消耗 : 32.1 MB, 在Spiral Matrix的Java提交中击败了100.00% 的用户</p>
 
       
     </div>
@@ -489,8 +486,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/19/leetcode12-整数转罗马数字/" rel="next" title="leetcode12. 整数转罗马数字">
-                <i class="fa fa-chevron-left"></i> leetcode12. 整数转罗马数字
+              <a href="/2019/04/26/leetcode55-跳跃游戏/" rel="next" title="leetcode55. 跳跃游戏">
+                <i class="fa fa-chevron-left"></i> leetcode55. 跳跃游戏
               </a>
             
           </div>
@@ -498,10 +495,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/19/leetcode16-最接近的三数之和/" rel="prev" title="leetcode16. 最接近的三数之和">
-                leetcode16. 最接近的三数之和 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-25T15:35:43.781Z</updated>
+  <updated>2019-04-26T08:55:32.992Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,60 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode54. 螺旋矩阵</title>
+    <link href="http://yoursite.com/2019/04/26/leetcode54-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/"/>
+    <id>http://yoursite.com/2019/04/26/leetcode54-螺旋矩阵/</id>
+    <published>2019-04-26T08:55:16.000Z</published>
+    <updated>2019-04-26T08:55:32.992Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个包含 m x n 个元素的矩阵（m 行, n 列），请按照顺时针螺旋顺序，返回矩阵中的所有元素。<br><strong>示例 1:<br>输入:</strong><br>[<br> [ 1, 2, 3 ],<br> [ 4, 5, 6 ],<br> [ 7, 8, 9 ]<br>]<br><strong>输出:</strong> [1,2,3,6,9,8,7,4,5]<br><strong>示例 2:<br>输入:</strong><br>[<br>  [1, 2, 3, 4],<br>  [5, 6, 7, 8],<br>  [9,10,11,12]<br>]<br><strong>输出:</strong> [1,2,3,4,8,12,11,10,9,5,6,7]</p><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>先把上面一整行加入链表，然后判断是否有竖的列，如若有，则加入；如果最后一列不是当前列，再加入最后一列；再加入左边的一列，加入步骤可以理解为如图的加入顺序，剩下的是对于坐标的理解和处理了。<br><img src="https://img-blog.csdnimg.cn/20190426150525729.png" alt="在这里插入图片描述"></p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">public List&lt;Integer&gt; spiralOrder(int[][] matrix) &#123;</span><br><span class="line">if(matrix == null || matrix.length == 0) return new ArrayList&lt;&gt;();</span><br><span class="line">List&lt;Integer&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">int rlen = matrix.length-1, clen = matrix[0].length-1;</span><br><span class="line">for(int i = 0; i &lt; (rlen+2)/2 &amp;&amp; i&lt;(clen+2)/2; i++) &#123;</span><br><span class="line">addRow(res, matrix, i, i, clen-i);</span><br><span class="line">if(i+1 &lt;= rlen-i-1)</span><br><span class="line">addCol(res, matrix, clen-i,i+1, rlen-i-1);</span><br><span class="line">if(rlen-i &gt; i)</span><br><span class="line">addRow(res, matrix, rlen-i, clen-i, i);</span><br><span class="line">if(i+1 &lt;= rlen-i-1 &amp;&amp; i &lt; clen-i)</span><br><span class="line">addCol(res, matrix, i, rlen-i-1, i+1);</span><br><span class="line">&#125;</span><br><span class="line">return res;</span><br><span class="line">    &#125;</span><br><span class="line">public void addRow(List&lt;Integer&gt; list, int[][] matrix,int row, int colStart, int colEnd) &#123;</span><br><span class="line">//根据行下标，开始下标结束下标加入行</span><br><span class="line">if(colStart == colEnd) &#123;</span><br><span class="line">list.add(matrix[row][colStart]);</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line">//如果colStart&lt;colEnd则从前往后加入</span><br><span class="line">for(int j = colStart; j &lt;= colEnd; j ++) &#123;</span><br><span class="line">list.add(matrix[row][j]);</span><br><span class="line">&#125;</span><br><span class="line">//如果colStart》colEnd则从后往前加入</span><br><span class="line">for(int j = colStart; j &gt;= colEnd; j --) &#123;</span><br><span class="line">list.add(matrix[row][j]);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">public void addCol(List&lt;Integer&gt; list, int[][] matrix,int col, int rowStart, int rowEnd) &#123;</span><br><span class="line">if(rowStart == rowEnd) &#123;</span><br><span class="line">list.add(matrix[rowStart][col]);</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line">for(int i = rowStart; i &lt;= rowEnd; i ++) &#123;</span><br><span class="line">list.add(matrix[i][col]);</span><br><span class="line">&#125;</span><br><span class="line">for(int i = rowStart; i &gt;= rowEnd; i --) &#123;</span><br><span class="line">list.add(matrix[i][col]);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 1 ms, 在Spiral Matrix的Java提交中击败了96.80% 的用户<br>内存消耗 : 32.1 MB, 在Spiral Matrix的Java提交中击败了100.00% 的用户</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;p&gt;给定一个包含 m x n 个元素的矩阵（m 行, n 列），请按照顺时针螺旋顺序，返回矩阵中的所有元素。&lt;br&gt;&lt;strong&gt;示例 1:&lt;
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode55. 跳跃游戏</title>
+    <link href="http://yoursite.com/2019/04/26/leetcode55-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F/"/>
+    <id>http://yoursite.com/2019/04/26/leetcode55-跳跃游戏/</id>
+    <published>2019-04-26T08:55:04.000Z</published>
+    <updated>2019-04-26T08:55:21.871Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个非负整数数组，你最初位于数组的第一个位置。<br>数组中的每个元素代表你在该位置可以跳跃的最大长度。<br>判断你是否能够到达最后一个位置。<br><strong>示例 1:<br>输入:</strong> [2,3,1,1,4]<br><strong>输出:</strong> true<br><strong>解释:</strong> 从位置 0 到 1 跳 1 步, 然后跳 3 步到达最后一个位置。<br><strong>示例 2:</strong><br><strong>输入:</strong> [3,2,1,0,4]<br><strong>输出:</strong> false<br><strong>解释:</strong> 无论怎样，你总会到达索引为 3 的位置。但该位置的最大跳跃长度是 0 ， 所以你永远不可能到达最后一个位置。</p><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>从数组后面遍历，如果nums[i]&gt;=len-i的话，则说明这一块可以达到终点，继续查找下一个能达到nums[len]的位置，如果最后len==0则说明起点能达到终点。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public boolean canJump(int[] nums) &#123;</span><br><span class="line">int len = nums.length-1;</span><br><span class="line">if(len &lt; 1) return true;</span><br><span class="line">        for(int i = len-1; i &gt;= 0; i --) &#123;</span><br><span class="line">        if(nums[i] &gt;= len - i) </span><br><span class="line">        len = i;</span><br><span class="line">        if(len == 0) return true;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 2 ms, 在Jump Game的Java提交中击败了99.14% 的用户<br>内存消耗 : 36.4 MB, 在Jump Game的Java提交中击败了99.59% 的用户</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;p&gt;给定一个非负整数数组，你最初位于数组的第一个位置。&lt;br&gt;数组中的每个元素代表你在该位置可以跳跃的最大长度。&lt;br&gt;判断你是否能够到达最后一
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode50. Pow(x, n)</title>
@@ -516,62 +570,6 @@
         &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;给出 n 代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且有效的括号组合。&lt;/p&gt;
 &lt;p&gt;&lt;str
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode18. 四数之和</title>
-    <link href="http://yoursite.com/2019/04/20/leetcode18-%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C/"/>
-    <id>http://yoursite.com/2019/04/20/leetcode18-四数之和/</id>
-    <published>2019-04-20T04:39:28.939Z</published>
-    <updated>2019-04-20T04:39:53.092Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id><a href="#" class="headerlink" title="??"></a>??</h2><blockquote><p>?????? n ?????? nums ?????? target,?? nums ????????? a,b,c ? d ,?? a +<br>b + c + d ??? target ????????????????????</p><p><strong>??:</strong></p><p>???????????????</p><p><strong>??:</strong></p><p>???? nums = [1, 0, -1, 0, -2, 2],? target = 0?</p><p>???????????: [   [-1,  0, 0, 1],   [-2, -1, 1, 2],   [-2,  0, 0, 2] ]</p></blockquote><h2 id="-1"><a href="#-1" class="headerlink" title="????"></a>????</h2><p>????????????,?????????????</p><h2 id="-2"><a href="#-2" class="headerlink" title="????"></a>????</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;List&lt;Integer&gt;&gt; fourSum(int[] nums, int target) &#123;</span><br><span class="line">        if(nums.length &lt; 4) &#123;</span><br><span class="line">return new ArrayList&lt;&gt;();</span><br><span class="line">&#125;</span><br><span class="line">Arrays.sort(nums);</span><br><span class="line">//??set??</span><br><span class="line">Set&lt;List&lt;Integer&gt;&gt; set = new HashSet&lt;&gt;();</span><br><span class="line">for(int a = 0; a &lt; nums.length-3; a ++) &#123;</span><br><span class="line">//????</span><br><span class="line">if(nums[a] + nums[nums.length-1] +nums[nums.length-2]+nums[nums.length-3] &lt; target) &#123;</span><br><span class="line">continue;</span><br><span class="line">&#125;</span><br><span class="line">if(nums[a] + nums[a+1] +nums[a+2]+nums[a+3] &gt; target) &#123;</span><br><span class="line">break;</span><br><span class="line">&#125;</span><br><span class="line">if(a&gt;0 &amp;&amp; nums[a] == nums[a-1]) &#123;</span><br><span class="line">continue;</span><br><span class="line">&#125;</span><br><span class="line">for(int b = nums.length-1; b &gt; a; b--) &#123;</span><br><span class="line">int c = a+1, d = b-1;</span><br><span class="line">while(c &lt; d) &#123;</span><br><span class="line">int tmp = nums[a] + nums[b] + nums[c] + nums[d];</span><br><span class="line">if(tmp == target) &#123;</span><br><span class="line">List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">list.add(nums[a]);list.add(nums[b]);list.add(nums[c]);list.add(nums[d]);</span><br><span class="line">set.add(list);</span><br><span class="line">c++;d--;</span><br><span class="line">continue;</span><br><span class="line">&#125;</span><br><span class="line">else if(tmp &lt; target) &#123;</span><br><span class="line">c++;</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">d--;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">return new ArrayList&lt;&gt;(set);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="-3"><a href="#-3" class="headerlink" title="????"></a>????</h2><p>??<br>????<br>???? : 20 ms, ?4Sum?Java??????96.47% ???<br>???? : 37.5 MB, ?4Sum?Java??????94.30% ???</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;??&quot;&gt;&lt;/a&gt;??&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;?????? n ?????? nums ?????? target,?? nums ????????? a,b,c ? d ,
-      
-    
-    </summary>
-    
-      <category term="??" scheme="http://yoursite.com/categories//"/>
-    
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode16. 最接近的三数之和</title>
-    <link href="http://yoursite.com/2019/04/19/leetcode16-%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9A%84%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/"/>
-    <id>http://yoursite.com/2019/04/19/leetcode16-最接近的三数之和/</id>
-    <published>2019-04-19T13:25:24.000Z</published>
-    <updated>2019-04-19T13:25:53.127Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>给定一个包括 n 个整数的数组 nums 和 一个目标值 target。找出 nums 中的三个整数，使得它们的和与 target<br>最接近。返回这三个数的和。假定每组输入只存在唯一答案。</p><p>例如，给定数组 nums = [-1，2，1，-4], 和 target = 1.</p><p>与 target 最接近的三个数的和为 2. (-1 + 2 + 1 = 2).</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>我的思路是直接暴力解了，没想到更好的办法，时间复杂度为O(n²)。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int threeSumClosest(int[] nums, int target) &#123;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        int res = Integer.MAX_VALUE;</span><br><span class="line">        boolean flag = false;</span><br><span class="line">        for(int i = 0; i &lt; nums.length - 2; i ++) &#123;</span><br><span class="line">        int left = i+1, right = nums.length-1;</span><br><span class="line">        while(left &lt; right) &#123;</span><br><span class="line">            int tmp = nums[i] + nums[left] + nums[right];</span><br><span class="line">            if(tmp == target) &#123;</span><br><span class="line">        res = 0;</span><br><span class="line">        flag = true;</span><br><span class="line">        break;</span><br><span class="line">        &#125;</span><br><span class="line">        else if(tmp &gt; target) &#123;</span><br><span class="line">        res = Math.abs(tmp - target) &gt; Math.abs(res) ? res : tmp - target;</span><br><span class="line">        right--;</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">        res = Math.abs(tmp - target) &gt; Math.abs(res) ? res : tmp - target;</span><br><span class="line">        left++;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(flag) break;</span><br><span class="line">        &#125;</span><br><span class="line">        return target + res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 17 ms, 在3Sum Closest的Java提交中击败了75.39% 的用户<br>内存消耗 : 35.5 MB, 在3Sum Closest的Java提交中击败了87.66% 的用户</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;给定一个包括 n 个整数的数组 nums 和 一个目标值 target。找出 nums 中的三个整数，使得它们的和
       
     
     </summary>
