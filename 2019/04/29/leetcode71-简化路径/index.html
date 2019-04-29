@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="题目 罗马数字包含以下七种字符： I， V， X， L，C，D 和 M。字符          数值 I             1 V             5 X             10 L50 C             100 D             500 M             1000 例如， 罗马数字 2写做 II ，即为两个并列的 1。12 写做 XII ，即为">
+<meta name="description" content="题目 以 Unix 风格给出一个文件的绝对路径，你需要简化它。或者换句话说，将其转换为规范路径。 在 Unix 风格的文件系统中，一个点（.）表示当前目录本身；此外，两个点 （..）表示将目录切换到上一级（指向父目录）；两者都可以是复杂相对路径的组成部分。更多信息请参阅：Linux / Unix中的绝对路径 vs 相对路径请注意，返回的规范路径必须始终以斜杠 / 开头，并且两个目录名之间必须只有一">
 <meta name="keywords" content="leetcode,java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode12. 整数转罗马数字">
-<meta property="og:url" content="http://yoursite.com/2019/04/19/leetcode12-整数转罗马数字/index.html">
+<meta property="og:title" content=" leetcode71.简化路径">
+<meta property="og:url" content="http://yoursite.com/2019/04/29/leetcode71-简化路径/index.html">
 <meta property="og:site_name" content="白哥的博客">
-<meta property="og:description" content="题目 罗马数字包含以下七种字符： I， V， X， L，C，D 和 M。字符          数值 I             1 V             5 X             10 L50 C             100 D             500 M             1000 例如， 罗马数字 2写做 II ，即为两个并列的 1。12 写做 XII ，即为">
+<meta property="og:description" content="题目 以 Unix 风格给出一个文件的绝对路径，你需要简化它。或者换句话说，将其转换为规范路径。 在 Unix 风格的文件系统中，一个点（.）表示当前目录本身；此外，两个点 （..）表示将目录切换到上一级（指向父目录）；两者都可以是复杂相对路径的组成部分。更多信息请参阅：Linux / Unix中的绝对路径 vs 相对路径请注意，返回的规范路径必须始终以斜杠 / 开头，并且两个目录名之间必须只有一">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-19T13:24:54.804Z">
+<meta property="og:updated_time" content="2019-04-29T01:51:13.161Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode12. 整数转罗马数字">
-<meta name="twitter:description" content="题目 罗马数字包含以下七种字符： I， V， X， L，C，D 和 M。字符          数值 I             1 V             5 X             10 L50 C             100 D             500 M             1000 例如， 罗马数字 2写做 II ，即为两个并列的 1。12 写做 XII ，即为">
+<meta name="twitter:title" content=" leetcode71.简化路径">
+<meta name="twitter:description" content="题目 以 Unix 风格给出一个文件的绝对路径，你需要简化它。或者换句话说，将其转换为规范路径。 在 Unix 风格的文件系统中，一个点（.）表示当前目录本身；此外，两个点 （..）表示将目录切换到上一级（指向父目录）；两者都可以是复杂相对路径的组成部分。更多信息请参阅：Linux / Unix中的绝对路径 vs 相对路径请注意，返回的规范路径必须始终以斜杠 / 开头，并且两个目录名之间必须只有一">
 
 
 
@@ -129,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/19/leetcode12-整数转罗马数字/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/29/leetcode71-简化路径/">
 
 
 
 
 
-  <title>leetcode12. 整数转罗马数字 | 白哥的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> leetcode71.简化路径 | 白哥的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -310,7 +310,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/19/leetcode12-整数转罗马数字/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/29/leetcode71-简化路径/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="白哥">
@@ -327,7 +327,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetcode12. 整数转罗马数字</h1>
+          <h1 class="post-title" itemprop="name headline"> leetcode71.简化路径</h1>
         
 
         <div class="post-meta">
@@ -339,8 +339,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-19T21:24:33+08:00">
-                2019-04-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-29T09:50:21+08:00">
+                2019-04-29
               </time>
             
 
@@ -398,7 +398,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  586
+                  582
                 </span>
               
 
@@ -436,13 +436,16 @@
 
       
         <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
-<p>罗马数字包含以下七种字符： I， V， X， L，C，D 和 M。<br>字符          数值 I             1 V             5 X             10 L<br>50 C             100 D             500 M             1000 例如， 罗马数字 2<br>写做 II ，即为两个并列的 1。12 写做 XII ，即为 X + II 。 27 写做  XXVII, 即为 XX + V + II 。</p>
-<p>通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 IIII，而是 IV。数字 1 在数字 5<br>的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 IX。这个特殊的规则只适用于以下六种情况：</p>
-<p>I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。 X 可以放在 L (50) 和 C (100) 的左边，来表示<br>40 和 90。  C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。<br>给定一个整数，将其转为罗马数字。输入确保在 1 到 3999 的范围内。<br>示例 1:<br>输入: 3<br>输出: “III”<br> 示例 2:<br>输入: 4<br>输出: “IV”<br>示例 3:<br>输入: 9<br>输出: “IX”<br>示例 4:<br>输入: 58<br>输出: “LVIII”<br> 解释: L = 50, V = 5, III = 3.<br> 示例 5:<br>输入: 1994<br>输出: “MCMXCIV”<br>解释: M = 1000, CM = 900, XC = 90, IV = 4.</p>
+<p>以 Unix 风格给出一个文件的绝对路径，你需要简化它。或者换句话说，将其转换为规范路径。 在 Unix 风格的文件系统中，一个点（.）表示当前目录本身；此外，两个点 （..）表示将目录切换到上一级（指向父目录）；两者都可以是复杂相对路径的组成部分。更多信息请参阅：<a href="https://blog.csdn.net/u011327334/article/details/50355600" target="_blank" rel="noopener">Linux / Unix中的绝对路径 vs 相对路径</a><br>请注意，返回的规范路径必须始终以斜杠 / 开头，并且两个目录名之间必须只有一个斜杠 /。最后一个目录名（如果存在）不能以 / 结尾。此外，规范路径必须是表示绝对路径的最短字符串。<br><strong>示例 1：</strong><br><strong>输入：</strong>“/home/“<br><strong>输出：</strong>“/home”<br><strong>解释：</strong> 注意，最后一个目录名后面没有斜杠。</p>
+<p><strong>示例 2：</strong><br><strong>输入：</strong>“/../“<br><strong>输出：</strong>“/“<br><strong>解释：</strong> 从根目录向上一级是不可行的，因为根是你可以到达的最高级。</p>
+<p><strong>示例 3：</strong><br><strong>输入：</strong>“/home//foo/“<br><strong>输出：</strong>“/home/foo”<br><strong>解释：</strong> 在规范路径中，多个连续斜杠需要用一个斜杠替换。</p>
+<p><strong>示例 4：</strong><br><strong>输入：</strong>“/a/./b/../../c/“<br><strong>输出：</strong>“/c”</p>
+<p><strong>示例 5：</strong><br><strong>输入：</strong>“/a/../../b/../c//.//“<br><strong>输出：</strong>“/c”</p>
+<p><strong>示例 6：</strong><br><strong>输入：</strong>“/a//b////c/d//././/..”<br><strong>输出：</strong>“/a/b/c”</p>
 </blockquote>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>把所有能转化的罗马数字存起来，把要转化的数字直接对所有的罗马数字（从最大开始）求余，结果res每次都加上 (num/罗马数字的对应值)个罗马数字即可。</p>
-<h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public String intToRoman(int num) &#123;</span><br><span class="line">        String[] RomeNum = &#123;&quot;I&quot;, &quot;IV&quot;,&quot;V&quot;,&quot;IX&quot;,&quot;X&quot;, &quot;XL&quot;,&quot;L&quot;, &quot;XC&quot;, &quot;C&quot;, &quot;CD&quot;, &quot;D&quot;, &quot;CM&quot;, &quot;M&quot;&#125;;</span><br><span class="line">        int[] nums = &#123;1,4,5,9,10,40,50,90,100,400,500,900,1000&#125;;</span><br><span class="line">        //字符串相加使用StringBuilder更好</span><br><span class="line">        StringBuilder res = new StringBuilder();</span><br><span class="line">        int index = nums.length-1;//从最大的开始</span><br><span class="line">        while(num &gt; 0) &#123;</span><br><span class="line">        	//整除当前罗马数组的商</span><br><span class="line">        	int t = num / nums[index];</span><br><span class="line">        	if(t &gt; 0) &#123;</span><br><span class="line">	        	while(t-- &gt; 0)</span><br><span class="line">	        		//加上相应个数的罗马数字</span><br><span class="line">	        		res.append(RomeNum[index]);</span><br><span class="line">	        	num %= nums[index];</span><br><span class="line">        	&#125;</span><br><span class="line">        	index --;</span><br><span class="line">        &#125;</span><br><span class="line">        return res.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 21 ms, 在Integer to Roman的Java提交中击败了96.36% 的用户<br>内存消耗 : 41 MB, 在Integer to Roman的Java提交中击败了78.75% 的用户</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>使用双下标，判断/与/之间的字符串，如果是<strong>一点</strong>则直接跳过，如果是 <strong>两点</strong> 则判断栈是否为空，如果不为空则pop栈顶元素，其他元素则push到栈中，最后把栈的元素转化为题目所求即可。</p>
+<h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public String simplifyPath(String path) &#123;</span><br><span class="line">        if(path.isEmpty() || path.length() == 1) return &quot;/&quot;;</span><br><span class="line">        Stack&lt;String&gt; stack = new Stack&lt;&gt;();</span><br><span class="line">        StringBuilder res = new StringBuilder();</span><br><span class="line">        int pre = 0, next = 1;</span><br><span class="line">        while(next &lt; path.length()) &#123;</span><br><span class="line">        	while(next &lt; path.length() &amp;&amp; path.charAt(next) != &apos;/&apos;) &#123;</span><br><span class="line">        		next++;</span><br><span class="line">        	&#125;</span><br><span class="line">        	//如果/与/之间不为空</span><br><span class="line">        	if(next - 1 != pre) &#123;</span><br><span class="line">        		String tmp = path.substring(pre+1, next);</span><br><span class="line">        		if(tmp.equals(&quot;..&quot;)) &#123;</span><br><span class="line">        			if(!stack.isEmpty()) stack.pop();</span><br><span class="line">        		&#125; else if(tmp.equals(&quot;.&quot;)) &#123;</span><br><span class="line">        			;</span><br><span class="line">        		&#125;else &#123;</span><br><span class="line">        			stack.push(tmp);</span><br><span class="line">        		&#125;</span><br><span class="line">        	&#125;</span><br><span class="line">        	pre = next++;</span><br><span class="line">        &#125;</span><br><span class="line">        while(!stack.isEmpty()) &#123;</span><br><span class="line">        	res.insert(0, &quot;/&quot; + stack.pop());</span><br><span class="line">        &#125;</span><br><span class="line">        return res.length() == 0 ? &quot;/&quot; : res.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 9 ms, 在Simplify Path的Java提交中击败了97.92% 的用户<br>内存消耗 : 35.2 MB, 在Simplify Path的Java提交中击败了100.00% 的用户</p>
 
       
     </div>
@@ -488,8 +491,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/19/leetcode11-盛最多水的容器/" rel="next" title="leetcode11. 盛最多水的容器">
-                <i class="fa fa-chevron-left"></i> leetcode11. 盛最多水的容器
+              <a href="/2019/04/29/leetcode64-最小路径和/" rel="next" title="leetcode64. 最小路径和">
+                <i class="fa fa-chevron-left"></i> leetcode64. 最小路径和
               </a>
             
           </div>
@@ -498,8 +501,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/19/leetcode856-括号的分数/" rel="prev" title="leetcode856. 括号的分数">
-                leetcode856. 括号的分数 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/29/leetcode74-搜索二维矩阵/" rel="prev" title="leetcode74. 搜索二维矩阵">
+                leetcode74. 搜索二维矩阵 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
