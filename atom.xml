@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-29T03:46:51.400Z</updated>
+  <updated>2019-05-04T13:34:04.024Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,64 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode90. 子集 II</title>
+    <link href="http://yoursite.com/2019/05/04/leetcode90-%E5%AD%90%E9%9B%86-II/"/>
+    <id>http://yoursite.com/2019/05/04/leetcode90-子集-II/</id>
+    <published>2019-05-04T13:33:52.000Z</published>
+    <updated>2019-05-04T13:34:04.024Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个可能包含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。</p><p><strong>说明：</strong> 解集不能包含重复的子集。</p><p><strong>示例:</strong></p><p><strong>输入:</strong> [1,2,2]<br><strong>输出:</strong><br>[<br>  [2],<br>  [1],<br>  [1,2,2],<br>  [2,2],<br>  [1,2],<br>  []<br>]</p><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>先排列数组，再遍历数组，每遍历到一个元素，就把链表的元素取出来复制，都加上这个元素再放回结果链表，重复的不放入结果链表即可。可以直接用链表的contains方法，也可以使用下标记录。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><pre><code>class Solution {    public List&lt;List&lt;Integer&gt;&gt; subsetsWithDup(int[] nums) {        List&lt;List&lt;Integer&gt;&gt; res = new ArrayList&lt;List&lt;Integer&gt;&gt;();        Arrays.sort(nums);        List&lt;Integer&gt; list = new ArrayList&lt;&gt;();        res.add(list);        int l, r, len = 0;        for(int i = 0; i &lt; nums.length; i ++) {            r = res.size();            //减去上一次新增的链表数量，即上一次增加的链表才需要取出来            if(i != 0 &amp;&amp; nums[i] == nums[i-1]) l = r-len;            //不是重复的则res的所有都需要拿出来            else l = 0;            //新增的链表数量            len = r - l;            for(int j = l; j &lt; r; j ++) {                list = new ArrayList&lt;&gt;(res.get(j));                list.add(nums[i]);                res.add(list);            }        }        return res;        }}</code></pre><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 3 ms, 在Subsets II的Java提交中击败了94.02% 的用户<br>内存消耗 : 38 MB, 在Subsets II的Java提交中击败了60.93% 的用户</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;p&gt;给定一个可能包含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;说明：&lt;/strong&gt; 解
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>
+leetcode82. 删除排序链表中的重复元素 II</title>
+    <link href="http://yoursite.com/2019/04/30/leetcode82-%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0-II/"/>
+    <id>http://yoursite.com/2019/04/30/leetcode82-删除排序链表中的重复元素-II/</id>
+    <published>2019-04-30T13:05:22.000Z</published>
+    <updated>2019-04-30T13:05:49.598Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>给定一个排序链表，删除所有含有重复数字的节点，只保留原始链表中 没有重复出现 的数字。</p><p><strong>示例 1:</strong></p><p><strong>输入:</strong> 1-&gt;2-&gt;3-&gt;3-&gt;4-&gt;4-&gt;5<br><strong>输出:</strong> 1-&gt;2-&gt;5<br><strong>示例 2:</strong></p><p><strong>输入:</strong> 1-&gt;1-&gt;1-&gt;2-&gt;3<br><strong>输出:</strong> 2-&gt;3</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>使用双指针，判断结点是否重复，不重复则加入链表，重复则跳过即可。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * public class ListNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     ListNode next;</span><br><span class="line"> *     ListNode(int x) &#123; val = x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode deleteDuplicates(ListNode head) &#123;</span><br><span class="line">        if(head == null) return null;</span><br><span class="line">if(head.next == null) return head;</span><br><span class="line">ListNode root = new ListNode(0);</span><br><span class="line">ListNode index = root;//合适的结点放入的位置</span><br><span class="line">ListNode p = head;</span><br><span class="line">ListNode q = head.next;</span><br><span class="line">while(q != null) &#123;</span><br><span class="line">while(q!=null &amp;&amp; p.val == q.val) &#123;</span><br><span class="line">q = q.next;</span><br><span class="line">&#125; </span><br><span class="line">            if(q == null)&#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">if(p.next == q) &#123;</span><br><span class="line">index.next = p;</span><br><span class="line">index = index.next;</span><br><span class="line">&#125;</span><br><span class="line">if(q.next == null) &#123;</span><br><span class="line">index.next = q;</span><br><span class="line">index = index.next;</span><br><span class="line">break;</span><br><span class="line">&#125;</span><br><span class="line">p = q;</span><br><span class="line">q = q.next;</span><br><span class="line">&#125;</span><br><span class="line">index.next = null;//去掉尾巴</span><br><span class="line">return root.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 2 ms, 在Remove Duplicates from Sorted List II的Java提交中击败了80.87% 的用户<br>内存消耗 : 36 MB, 在Remove Duplicates from Sorted List II的Java提交中击败了73.50% 的用户</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;给定一个排序链表，删除所有含有重复数字的节点，只保留原始链表中 没有重复出现 的数字。&lt;/p&gt;
+&lt;p&gt;&lt;stron
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode81. 搜索旋转排序数组 II</title>
@@ -513,63 +571,6 @@
         &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;给定一个可包含重复数字的序列，返回所有不重复的全排列。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;示例:&lt;/strong&gt;&lt;/
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode48. 旋转图像</title>
-    <link href="http://yoursite.com/2019/04/25/leetcode48-%E6%97%8B%E8%BD%AC%E5%9B%BE%E5%83%8F/"/>
-    <id>http://yoursite.com/2019/04/25/leetcode48-旋转图像/</id>
-    <published>2019-04-25T08:14:04.000Z</published>
-    <updated>2019-04-25T08:14:41.292Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>给定一个 n × n 的二维矩阵表示一个图像。</p><p>将图像顺时针旋转 90 度。</p><p><strong>说明：</strong><br>你必须在原地旋转图像，这意味着你需要直接修改输入的二维矩阵。请不要使用另一个矩阵来旋转图像。</p><p><strong>示例 1:</strong></p><p>给定 matrix =<br>[[1,2,3],<br>[4,5,6],<br>[7,8,9] ],</p><p>原地旋转输入矩阵，使其变为:<br>[[7,4,1],<br>[8,5,2],<br>[9,6,3] ]<br><strong>示例 2:</strong></p><p>给定 matrix = [<br>[ 5, 1, 9,11],<br> [ 2, 4, 8,10],<br>[13, 3, 6, 7],<br>[15,14,12,16] ], </p><p>原地旋转输入矩阵，使其变为: [<br> [15,13, 2, 5],<br> [14, 3, 4, 1],<br> [12, 6, 8, 9],<br>[16, 7,10,11] ]</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>很直观的一道题目，我的解法是从外向内，然后一直转换。<br>把matrix[i][j]放到matrix[j][len-i]中，旋转一周，然后一直向内执行即可。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">   public void rotate(int[][] matrix) &#123;</span><br><span class="line">        int len = matrix.length-1;</span><br><span class="line">        for(int i = 0; i &lt;= len/2; i ++) &#123;</span><br><span class="line">        for(int j = i; j &lt; len-i; j ++) &#123;</span><br><span class="line">        int cnt = 0;</span><br><span class="line">        int i1 = j, j1 = len-i;</span><br><span class="line">        int temp1 = matrix[i][j];</span><br><span class="line">        do &#123;</span><br><span class="line">        int temp2 = matrix[i1][j1];//保存替换掉的值</span><br><span class="line">            matrix[i1][j1] = temp1;</span><br><span class="line">            int t = i1;</span><br><span class="line">            i1 = j1;//更新下一个替换的下标</span><br><span class="line">            j1 = len-t;</span><br><span class="line">            temp1 = temp2;//替换掉的值 是 下一个替换上去的值</span><br><span class="line">        &#125;while(cnt++ &lt; 3) ;//旋转一周，替换4次。</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 1 ms, 在Rotate Image的Java提交中击败了90.11% 的用户<br>内存消耗 : 35.7 MB, 在Rotate Image的Java提交中击败了68.85% 的用户</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;给定一个 n × n 的二维矩阵表示一个图像。&lt;/p&gt;
-&lt;p&gt;将图像顺时针旋转 90 度。&lt;/p&gt;
-&lt;p&gt;&lt;str
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>剑指offer1-5</title>
-    <link href="http://yoursite.com/2019/04/23/%E5%89%91%E6%8C%87offer1-5/"/>
-    <id>http://yoursite.com/2019/04/23/剑指offer1-5/</id>
-    <published>2019-04-23T13:41:44.000Z</published>
-    <updated>2019-04-23T13:42:13.189Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// 剑指offer1.二维数组中的查找</span><br><span class="line"></span><br><span class="line">    public boolean Find(int target, int [][] array) &#123;</span><br><span class="line">        int lo = 0, hi = array.length-1;</span><br><span class="line">        for(int j = 0; j &lt; array[0].length; j ++) &#123;</span><br><span class="line">        lo = 0;</span><br><span class="line">        while(lo &lt;= hi) &#123;</span><br><span class="line">        int mid = (lo + hi) &gt;&gt; 1;</span><br><span class="line">        if(array[mid][j] == target) &#123;</span><br><span class="line">        return true;</span><br><span class="line">        &#125;</span><br><span class="line">        else if(array[mid][j] &gt; target) &#123;</span><br><span class="line">        hi = mid-1;</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">        lo = mid + 1;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">//剑指offer2.替换空格</span><br><span class="line">public String replaceSpace(StringBuffer str) &#123;</span><br><span class="line">    return str.toString().replaceAll(&quot; &quot;, &quot;%20&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">//剑指offer3.从尾到头打印链表</span><br><span class="line">public ArrayList&lt;Integer&gt; printListFromTailToHead(ListNode listNode) &#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">        while(listNode != null) &#123;</span><br><span class="line">        res.add(0, listNode.val);</span><br><span class="line">        listNode = listNode.next;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">//剑指offer4.重建二叉树</span><br><span class="line">public TreeNode reConstructBinaryTree(int [] pre,int [] in) &#123;</span><br><span class="line">if(pre.length == 0 || in.length == 0) return null;</span><br><span class="line">TreeNode root = reConstructBinaryTree(pre, 0, pre.length, in, 0, in.length);</span><br><span class="line">return root;</span><br><span class="line">    &#125;</span><br><span class="line">public TreeNode reConstructBinaryTree(int [] pre,int startPre, int endPre,</span><br><span class="line">int [] in, int startIn, int endIn) &#123;</span><br><span class="line">if(startPre &gt;= endPre || startIn &gt;= endIn) </span><br><span class="line">return null;</span><br><span class="line">TreeNode root = new TreeNode(pre[startPre]);</span><br><span class="line">for(int i = startIn; i &lt; endIn; i ++) &#123;</span><br><span class="line">if(in[i] == pre[startPre]) &#123;</span><br><span class="line">root.left = reConstructBinaryTree(pre, startPre+1, startPre+i-startIn+1, in, startIn, i);</span><br><span class="line">root.right = reConstructBinaryTree(pre, startPre+i-startIn+1, endPre, in, i+1, endIn);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">return root;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">//剑指offer5.用两个栈实现队列</span><br><span class="line">Stack&lt;Integer&gt; stack1 = new Stack&lt;Integer&gt;();</span><br><span class="line">    Stack&lt;Integer&gt; stack2 = new Stack&lt;Integer&gt;();</span><br><span class="line">    public void push(int node) &#123;</span><br><span class="line">        while(!stack1.isEmpty()) &#123;</span><br><span class="line">        stack2.push(stack1.pop());</span><br><span class="line">        &#125;</span><br><span class="line">        stack2.push(node);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public int pop() &#123;</span><br><span class="line">    while(!stack2.isEmpty()) &#123;</span><br><span class="line">    stack1.push(stack2.pop());</span><br><span class="line">    &#125;</span><br><span class="line">    return stack1.pop();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
       
     
     </summary>
