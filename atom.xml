@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-04T13:34:04.024Z</updated>
+  <updated>2019-05-05T09:45:50.613Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,93 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode95. 不同的二叉搜索树 II</title>
+    <link href="http://yoursite.com/2019/05/05/leetcode95-%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91-II/"/>
+    <id>http://yoursite.com/2019/05/05/leetcode95-不同的二叉搜索树-II/</id>
+    <published>2019-05-05T09:45:23.000Z</published>
+    <updated>2019-05-05T09:45:50.613Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>给定一个整数 n，生成所有由 1 … n 为节点所组成的二叉搜索树。</p><p><strong>示例:</strong></p><p><strong>输入:</strong> 3<br> <strong>输出:</strong> [   [1,null,3,2],   [3,2,null,1],   [3,1,null,null,2],<br>[2,1,3],   [1,null,2,null,3] ]<br><strong>解释:</strong> 以上的输出对应以下 5 种不同结构的二叉搜索树：<br><img src="https://img-blog.csdnimg.cn/20190505172755456.png" alt="在这里插入图片描述"></p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>使用分治+递归的方法建树，<strong>[1,n]中取k(1&lt;=k&lt;=n)为根节点，则他的左子树必定为[1,k-1]，右子树为[k+1,n]</strong>，所以递归调用建树的方法，最后把他所有的左右子树整合在一起。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode left;</span><br><span class="line"> *     TreeNode right;</span><br><span class="line"> *     TreeNode(int x) &#123; val = x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;TreeNode&gt; generateTrees(int n) &#123;</span><br><span class="line">        if(n == 0) return new ArrayList&lt;&gt;();</span><br><span class="line">        return generateTreeHelper(1,n);</span><br><span class="line">    &#125;</span><br><span class="line">    public List&lt;TreeNode&gt; generateTreeHelper(int i, int j)&#123;</span><br><span class="line">        List&lt;TreeNode&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">        //i&gt;j返回一个空的子树</span><br><span class="line">        if(i &gt; j) &#123;</span><br><span class="line">            res.add(null);</span><br><span class="line">            return res;</span><br><span class="line">        &#125;</span><br><span class="line">        //i==j返回一个结点的子树</span><br><span class="line">        if(i == j)&#123;</span><br><span class="line">            res.add(new TreeNode(i));</span><br><span class="line">            return res;</span><br><span class="line">        &#125;</span><br><span class="line">        //分治+递归建树</span><br><span class="line">        for(int k = i; k &lt;= j; k++)&#123;</span><br><span class="line">            List&lt;TreeNode&gt; left = generateTreeHelper(i,k-1);</span><br><span class="line">            List&lt;TreeNode&gt; right = generateTreeHelper(k+1,j);</span><br><span class="line">            for(TreeNode tmpR: right)&#123;</span><br><span class="line">                for(TreeNode tmpL: left)&#123;</span><br><span class="line">                    TreeNode tn = new TreeNode(k);</span><br><span class="line">                    tn.left = tmpL;</span><br><span class="line">                    tn.right = tmpR;</span><br><span class="line">                    res.add(tn);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 5 ms, 在Unique Binary Search Trees II的Java提交中击败了66.57% 的用户<br>内存消耗 : 38.8 MB, 在Unique Binary Search Trees II的Java提交中击败了68.05% 的用户</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;给定一个整数 n，生成所有由 1 … n 为节点所组成的二叉搜索树。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;示例:&lt;/st
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode93. 复原IP地址</title>
+    <link href="http://yoursite.com/2019/05/05/leetcode93-%E5%A4%8D%E5%8E%9FIP%E5%9C%B0%E5%9D%80/"/>
+    <id>http://yoursite.com/2019/05/05/leetcode93-复原IP地址/</id>
+    <published>2019-05-05T09:35:00.000Z</published>
+    <updated>2019-05-05T09:45:10.830Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>给定一个只包含数字的字符串，复原它并返回所有可能的 IP 地址格式。</p><p><strong>示例:</strong></p><p><strong>输入:</strong> “25525511135”<br><strong>输出:</strong> [“255.255.11.135”, “255.255.111.35”]</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>记录每次放入的ip节，对字符串其进行回溯，即每次放入前1-3个数字，一直深度即可。<br>需要注意的是：<br>1.如果第1个数字是0的话可以直接剪枝（必须，不然会解答错误，因为ip节可能出现00这种情况）。<br>2.如果s的长度大于还未放入的ip节数*3可以剪枝。<br>3.放入4个之后即count==0，如果s不为空，则不用继续深度搜索。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">//93. 复原IP地址</span><br><span class="line">    public List&lt;String&gt; restoreIpAddresses(String s) &#123;</span><br><span class="line">        ArrayList&lt;String&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">        dfs(res, 4, s, new StringBuilder(16));</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    public void dfs(List&lt;String&gt; list, int count, String s, StringBuilder ip)&#123;</span><br><span class="line">//        大于最大的长度</span><br><span class="line">        if(s.length() &gt; 3 * count) return;</span><br><span class="line">        //ip中已经放入4个时</span><br><span class="line">        if(count == 0)&#123;</span><br><span class="line">            if(s.isEmpty()) &#123;</span><br><span class="line">                //去掉最后多的“”&quot;.&quot;</span><br><span class="line">                list.add(ip.substring(0,ip.length()-1));</span><br><span class="line">            &#125;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i = 1; i &lt;= 3 &amp;&amp; i &lt;= s.length(); i ++)&#123;</span><br><span class="line">            String tmp  = s.substring(0,i);</span><br><span class="line">            if(Integer.parseInt(tmp) &lt;= 255)&#123;</span><br><span class="line">                int len = ip.length();</span><br><span class="line">                ip.append(tmp);</span><br><span class="line">                ip.append(&quot;.&quot;);</span><br><span class="line">                dfs(list, count-1, s.substring(i), ip);</span><br><span class="line">                ip.delete(len, ip.length());</span><br><span class="line">                if(tmp.equals(&quot;0&quot;))&#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else &#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 5 ms, 在Restore IP Addresses的Java提交中击败了73.10% 的用户<br>内存消耗 : 35.2 MB, 在Restore IP Addresses的Java提交中击败了77.65% 的用户</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;给定一个只包含数字的字符串，复原它并返回所有可能的 IP 地址格式。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;示例:&lt;/st
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title> leetcode反转链表2</title>
+    <link href="http://yoursite.com/2019/05/05/leetcode%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A82/"/>
+    <id>http://yoursite.com/2019/05/05/leetcode反转链表2/</id>
+    <published>2019-05-05T09:34:54.000Z</published>
+    <updated>2019-05-05T09:44:58.776Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>反转从位置 m 到 n 的链表。请使用一趟扫描完成反转。</p><p><strong>说明:</strong> 1 ≤ m ≤ n ≤ 链表长度。</p><p><strong>示例:</strong></p><p><strong>输入:</strong> 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL, m = 2, n = 4<br><strong>输出:</strong> 1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;NULL</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>把前面的结点直接接到新链表后面，最后一个结点为<strong>index</strong>，需要反转的结点依次<strong>插入到index后面</strong>，即 <strong>p.next = index.next;           index.next = p;</strong>最后把剩下的结点放到第一个插入index后面的结点即可。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public ListNode reverseBetween(ListNode head, int m, int n) &#123;</span><br><span class="line">        ListNode resList = new ListNode(0);</span><br><span class="line">        ListNode p = head;</span><br><span class="line">        ListNode index = resList;</span><br><span class="line">        //不用反转的结点</span><br><span class="line">        for(int i = 1; i &lt; m; i ++) &#123;</span><br><span class="line">            index.next = p;</span><br><span class="line">            p = p.next;</span><br><span class="line">            index = index.next;</span><br><span class="line">        &#125;</span><br><span class="line">        //需要反转的第一个结点</span><br><span class="line">        ListNode next = index.next;</span><br><span class="line">        next = p;</span><br><span class="line">        p = p.next;</span><br><span class="line">        index.next = next;</span><br><span class="line">        if(p == null) return resList.next;</span><br><span class="line">        ListNode q = p.next;</span><br><span class="line">        //其他结点放在第一个结点之后</span><br><span class="line">        for(int i = m; i &lt; n; i ++) &#123;</span><br><span class="line">            p.next = index.next;</span><br><span class="line">            index.next = p;</span><br><span class="line">            p = q;</span><br><span class="line">            if(q != null) q = q.next;</span><br><span class="line">        &#125;</span><br><span class="line">        //把剩下的结点接上去</span><br><span class="line">        next.next = p;</span><br><span class="line">        return resList.next;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 1 ms, 在Reverse Linked List II的Java提交中击败了94.17% 的用户<br>内存消耗 : 33.8 MB, 在Reverse Linked List II的Java提交中击败了92.92% 的用户</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;反转从位置 m 到 n 的链表。请使用一趟扫描完成反转。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;说明:&lt;/strong&gt; 
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode90. 子集 II</title>
@@ -486,91 +573,6 @@ leetcode82. 删除排序链表中的重复元素 II</title>
       
         &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;p&gt;一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。&lt;/p&gt;
 &lt;h2 id
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>剑指offer6.旋转数组的最小数字</title>
-    <link href="http://yoursite.com/2019/04/25/%E5%89%91%E6%8C%87offer6-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97/"/>
-    <id>http://yoursite.com/2019/04/25/剑指offer6-旋转数组的最小数字/</id>
-    <published>2019-04-25T15:34:40.000Z</published>
-    <updated>2019-04-25T15:35:10.807Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。 输入一个非减排序的数组的一个旋转，输出旋转数组的最小元素。 例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。 NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。</p><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>最简单是思路是直接遍历，不做解释。<br>我的思路是使用二分查找，找到最小的元素。<br>若low指针向右移到最大的即不再移动，high指针一直往左移动直到最小的元素。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int minNumberInRotateArray(int [] array) &#123;</span><br><span class="line">        if(array == null || array.length &lt; 1) return 0;</span><br><span class="line">    int low = 0, high = array.length-1;</span><br><span class="line">    while(low != high-1) &#123;</span><br><span class="line">    int mid = (low + high) &gt;&gt; 1;</span><br><span class="line">    if(array[mid] &lt;= array[high]) &#123;</span><br><span class="line">    high = mid;</span><br><span class="line">    &#125;</span><br><span class="line">    else if(array[mid] &gt;= array[low]) &#123;</span><br><span class="line">    low = mid;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    return array[high];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;p&gt;把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。 输入一个非减排序的数组的一个旋转，输出旋转数组的最小元素
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode49. 字母异位词分组</title>
-    <link href="http://yoursite.com/2019/04/25/leetcode49-%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84/"/>
-    <id>http://yoursite.com/2019/04/25/leetcode49-字母异位词分组/</id>
-    <published>2019-04-25T08:15:14.000Z</published>
-    <updated>2019-04-25T08:15:35.500Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>给定一个字符串数组，将字母异位词组合在一起。字母异位词指字母相同，但排列不同的字符串。</p><p><strong>示例:</strong></p><p><strong>输入:</strong> [“eat”, “tea”, “tan”, “ate”, “nat”, “bat”],<br><strong>输出:</strong> [[“ate”,”eat”,”tea”],   [“nat”,”tan”],   [“bat”] ]<br><strong>说明：</strong><br>所有输入均为小写字母。 不考虑答案输出的顺序。</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>学了一下别人使用26个素数对应26个字母，用素数的乘积来表示单词具有一样的字母，然后使用一个map保存对应字母所在res中的list的下标，每个单词都查找map中有没有，有的话则取出res中的list然后添加，没有则创建一个list然后用map记录下标，再放进res。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;List&lt;String&gt;&gt; groupAnagrams(String[] strs) &#123;</span><br><span class="line">        //26个素数对应26个字母</span><br><span class="line">int[] primeNumber = &#123;2,3,5,7,11,13,17,19,23,29,</span><br><span class="line">31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101&#125;;</span><br><span class="line">//保存字母所在res中的下标</span><br><span class="line">        Map&lt;Integer, Integer&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">        List&lt;List&lt;String&gt;&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">        int index = 0;//list计数器</span><br><span class="line">        for(int i = 0; i &lt; strs.length; i++) &#123;</span><br><span class="line">        int ch = 1;</span><br><span class="line">        for(int j = 0; j &lt; strs[i].length(); j++) </span><br><span class="line">        //获取该单词所有字母对应素数的乘积</span><br><span class="line">        ch *= primeNumber[strs[i].charAt(j)-&apos;a&apos;];</span><br><span class="line">        if(map.containsKey(ch)) </span><br><span class="line">        //如果已经存在字母异位词，则加入其中</span><br><span class="line">        res.get(map.get(ch)).add(strs[i]);</span><br><span class="line">        else &#123;</span><br><span class="line">        //没有则创建一个list加入其中并在map记录下其下标</span><br><span class="line">        map.put(ch, index++);</span><br><span class="line">        List&lt;String&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">        list.add(strs[i]);</span><br><span class="line">        res.add(list);</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 22 ms, 在Group Anagrams的Java提交中击败了85.81% 的用户<br>内存消耗 : 52.1 MB, 在Group Anagrams的Java提交中击败了73.13% 的用户</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;给定一个字符串数组，将字母异位词组合在一起。字母异位词指字母相同，但排列不同的字符串。&lt;/p&gt;
-&lt;p&gt;&lt;stron
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode47. 全排列 II</title>
-    <link href="http://yoursite.com/2019/04/25/leetcode47-%E5%85%A8%E6%8E%92%E5%88%97-II/"/>
-    <id>http://yoursite.com/2019/04/25/leetcode47-全排列-II/</id>
-    <published>2019-04-25T08:14:27.000Z</published>
-    <updated>2019-04-25T08:14:56.721Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>给定一个可包含重复数字的序列，返回所有不重复的全排列。</p><p><strong>示例:</strong></p><p><strong>输入:</strong> [1,1,2]<br><strong>输出:</strong> [   [1,1,2],   [1,2,1],   [2,1,1] ]</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p><strong>定义变量：</strong> 结果链表res；临时链表list（用来存储全排列）；布尔数组states。<br>首先<strong>排序nums数组</strong>，然后使用一个states布尔数组记录nums数组的元素是否已经加入list，由于先前已经对nums数组排序，所以如果nums[i] == nums[i-]那么nums[i-1]没被加入list，则nums[i]也不可以加入list，因为在排列中可以看出重复的数字只有一个，而且由最前面的那么决定是否加入list。<br>使用回溯算法进行解答。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;List&lt;Integer&gt;&gt; permuteUnique(int[] nums) &#123;</span><br><span class="line">List&lt;List&lt;Integer&gt;&gt; res = new ArrayList&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line">List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">Arrays.sort(nums);</span><br><span class="line">boolean[] states = new boolean[nums.length];</span><br><span class="line">helper(res, list, nums, states);</span><br><span class="line">return res;</span><br><span class="line">    &#125;</span><br><span class="line">public void helper(List&lt;List&lt;Integer&gt;&gt; res, List&lt;Integer&gt; list, int[] nums, boolean[] states) &#123;</span><br><span class="line">if(list.size() == nums.length) &#123;</span><br><span class="line">res.add(new ArrayList&lt;&gt;(list));</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line">for(int i = 0;i&lt;nums.length; i ++) &#123;</span><br><span class="line">//已经加入list， 重复而且前一个重复的没有放进list</span><br><span class="line">if(states[i] || (i &gt; 0 &amp;&amp; nums[i] == nums[i-1] &amp;&amp; !states[i-1])) continue;</span><br><span class="line">states[i] = true;</span><br><span class="line">list.add(nums[i]);</span><br><span class="line">helper(res, list, nums, states);</span><br><span class="line">list.remove(list.size()-1);</span><br><span class="line">states[i] = false;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 5 ms, 在Permutations II的Java提交中击败了90.61% 的用户<br>内存消耗 : 42.6 MB, 在Permutations II的Java提交中击败了77.99% 的用户</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;给定一个可包含重复数字的序列，返回所有不重复的全排列。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;示例:&lt;/strong&gt;&lt;/
       
     
     </summary>
