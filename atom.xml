@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-05T09:45:50.613Z</updated>
+  <updated>2019-05-06T08:12:53.475Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode96. 不同的二叉搜索树</title>
+    <link href="http://yoursite.com/2019/05/06/leetcode96-%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/"/>
+    <id>http://yoursite.com/2019/05/06/leetcode96-不同的二叉搜索树/</id>
+    <published>2019-05-06T08:12:28.000Z</published>
+    <updated>2019-05-06T08:12:53.475Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>给定一个整数 n，求以 1 … n 为节点组成的二叉搜索树有多少种？</p><p><strong>示例:</strong></p><p><strong>输入:</strong> 3<br><strong>输出:</strong> 5<br><strong>解释:</strong> 给定 n = 3, 一共有 5 种不同结构的二叉搜索树: <img src="https://img-blog.csdnimg.cn/20190505203055142.png" alt="在这里插入图片描述"></p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>因为1-n中不包含<strong>重复</strong>的结点，所以n个结点所能组成的二叉搜索树的固定个数的，例如（1,2）（2,3）所能组成的二叉搜索树都是2棵。所以这道题就可以直接用动态规划来进行求解了。<br>选定一个结点j，一棵n个结点的二叉搜索树就有<strong>j从0到n,  res += numTrees(j) * numTrees(n-j-1)</strong> 棵子树。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public int numTrees(int n) &#123;</span><br><span class="line">        int[] res = new int[n+1];</span><br><span class="line">        res[0] = 1; res[1] = 1;</span><br><span class="line">        for(int i = 2; i &lt;= n; i ++)&#123;</span><br><span class="line">            for(int j = 0; j &lt; i; j ++)&#123;</span><br><span class="line">                res[i] += res[j] * res[i-j-1];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res[n];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 1 ms, 在Unique Binary Search Trees的Java提交中击败了20.73% 的用户<br>内存消耗 : 33.2 MB, 在Unique Binary Search Trees的Java提交中击败了9.48% 的用户</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;给定一个整数 n，求以 1 … n 为节点组成的二叉搜索树有多少种？&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;示例:&lt;/st
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode95. 不同的二叉搜索树 II</title>
@@ -545,34 +574,6 @@ leetcode82. 删除排序链表中的重复元素 II</title>
         &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;实现 pow(x, n) ，即计算 x 的 n 次幂函数。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;示例 1:&lt;/stron
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>剑指offer 8.跳台阶</title>
-    <link href="http://yoursite.com/2019/04/25/%E5%89%91%E6%8C%87offer-8-%E8%B7%B3%E5%8F%B0%E9%98%B6/"/>
-    <id>http://yoursite.com/2019/04/25/剑指offer-8-跳台阶/</id>
-    <published>2019-04-25T15:35:00.000Z</published>
-    <updated>2019-04-25T15:35:33.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。</p><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>不管多少台阶都可以分解成为2个子问题的和，即target-1和target-2的和；<br>使用递归、动态等方法都可以解答。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int JumpFloor(int target) &#123;</span><br><span class="line">        if(target == 1) return 1;</span><br><span class="line">if(target == 2) return 2;</span><br><span class="line">//直接使用递归；</span><br><span class="line">//return JumpFloor(target-1) + JumpFloor(target-2);</span><br><span class="line">//动态规划</span><br><span class="line">int[] dp = new int[target+1];</span><br><span class="line">        dp[1] = 1; dp[2] = 2;</span><br><span class="line">for(int i = 3; i &lt; dp.length; i ++) &#123;</span><br><span class="line">dp[i] = dp[i-1] + dp[i-2];</span><br><span class="line">&#125;</span><br><span class="line">return dp[target];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;p&gt;一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。&lt;/p&gt;
-&lt;h2 id
       
     
     </summary>
