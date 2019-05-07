@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-06T08:12:53.475Z</updated>
+  <updated>2019-05-07T03:15:31.091Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode105. 从前序与中序遍历序列构造二叉树</title>
+    <link href="http://yoursite.com/2019/05/07/leetcode105.%20%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    <id>http://yoursite.com/2019/05/07/leetcode105. 从前序与中序遍历序列构造二叉树/</id>
+    <published>2019-05-07T03:15:07.863Z</published>
+    <updated>2019-05-07T03:15:31.091Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>根据一棵树的前序遍历与中序遍历构造二叉树。</p><p><strong>注意:</strong> 你可以假设树中没有重复的元素。</p><p>例如，给出</p><p>前序遍历 preorder = [3,9,20,15,7] 中序遍历 inorder = [9,3,15,20,7]<br>返回如下的二叉树：<br><img src="https://img-blog.csdnimg.cn/2019050710210233.png" alt="在这里插入图片描述"></p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>根据前序遍历和中序遍历的性质，<strong>前序遍历的第一个元素即根</strong>，中序遍历中根的<strong>左边的它的左子树的中序遍历，右边为右子树的中序遍历</strong>，前序遍历中根的后边是它的<strong>左子树+右子树的前序遍历</strong>。<br>所以这就可以使用递归来解决。<br>⒈把前序遍历preorder[preStart, preEnd]第一个元素preorder[preStart]作为根root；<br>⒉在中序遍历inorder[inStart, inEnd]中找到根的下标i；<br>⒊root.left的前序遍历即为preorder[preStart+1, preStart+1+i-inStart),中序遍历为inorder[inStart, i)；<br>（preStart+1即去掉根元素，+i-inStart是由中序遍历计算出左子树的长度。）<br>⒋root.right也同理，注意下标越界的处理即可ac。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public TreeNode buildTree(int[] preorder, int[] inorder) &#123;</span><br><span class="line">        return helper(preorder, 0, preorder.length, inorder, 0, inorder.length);</span><br><span class="line">    &#125;</span><br><span class="line">    public TreeNode helper(int[] preprder, int preStart, int preEnd, int[] inorder, int inStart, int inEnd)&#123;</span><br><span class="line">        if(preStart &gt;= preprder.length)&#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        int rootVal = preprder[preStart];</span><br><span class="line">        TreeNode root = null;</span><br><span class="line">        for(int i = inStart; i &lt; inEnd; i ++) &#123;</span><br><span class="line">            if(inorder[i] == rootVal) &#123;</span><br><span class="line">                root = new TreeNode(rootVal);</span><br><span class="line">                root.left = helper(preprder, preStart+1, i+preStart+1-inStart, inorder, inStart, i);</span><br><span class="line">                root.right = helper(preprder, i+preStart+1-inStart, preEnd, inorder, i+1, inEnd);</span><br><span class="line">                return root;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 33 ms, 在Construct Binary Tree from Preorder and Inorder Traversal的Java提交中击败了42.18% 的用户<br>内存消耗 : 38.7 MB, 在Construct Binary Tree from Preorder and Inorder Traversal的Java提交中击败了56.29% 的用户</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;根据一棵树的前序遍历与中序遍历构造二叉树。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意:&lt;/strong&gt; 你可以假设树中
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode96. 不同的二叉搜索树</title>
@@ -545,35 +574,6 @@ leetcode82. 删除排序链表中的重复元素 II</title>
       
       
         &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;p&gt;给定一个非负整数数组，你最初位于数组的第一个位置。&lt;br&gt;数组中的每个元素代表你在该位置可以跳跃的最大长度。&lt;br&gt;判断你是否能够到达最后一
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode50. Pow(x, n)</title>
-    <link href="http://yoursite.com/2019/04/25/leetcode50-Pow-x-n/"/>
-    <id>http://yoursite.com/2019/04/25/leetcode50-Pow-x-n/</id>
-    <published>2019-04-25T15:35:25.000Z</published>
-    <updated>2019-04-25T15:35:43.781Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>实现 pow(x, n) ，即计算 x 的 n 次幂函数。</p><p><strong>示例 1:</strong></p><p><strong>输入:</strong> 2.00000, 10 <strong>输出:</strong> 1024.00000<br><strong>示例 2:</strong></p><p><strong>输入:</strong> 2.10000, 3 <strong>输出:</strong> 9.26100<br> <strong>示例 3:</strong></p><p><strong>输入:</strong> 2.00000, -2 <strong>输出:</strong> 0.25000<br><strong>解释:</strong> 2-2 = 1/22 = 1/4 = 0.25<br> <strong>说明:</strong></p><p>-100.0 &lt; x &lt; 100.0 n 是 32 位有符号整数，其数值范围是 [−231, 231 − 1] 。</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>当n&gt;1的时候，如果n是偶数，x的n次方 == x²的n/2次方；n是奇数，则有 x的n次方 == x²的n/2次方*x；当n &lt; 0时，则可以转化为1/x的-n次方来处理。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public double myPow(double x, int n) &#123;</span><br><span class="line">        if(x == 1) return 1;</span><br><span class="line">        if(x == 0) return 0;</span><br><span class="line">if(n == 0) return 1;</span><br><span class="line">if(n == 1) return x;</span><br><span class="line">if(n &gt; 0) &#123;</span><br><span class="line">if(n%2 == 0)</span><br><span class="line">return myPow(x*x, n/2);</span><br><span class="line">return myPow(x*x, n/2)*x;</span><br><span class="line">&#125;</span><br><span class="line">        if(n == Integer.MIN_VALUE)</span><br><span class="line">return Math.abs(myPow(1/x, Integer.MAX_VALUE));</span><br><span class="line">return myPow(1/x, -n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 2 ms, 在Pow(x, n)的Java提交中击败了99.79% 的用户<br>内存消耗 : 32.7 MB, 在Pow(x, n)的Java提交中击败了92.74% 的用户</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;实现 pow(x, n) ，即计算 x 的 n 次幂函数。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;示例 1:&lt;/stron
       
     
     </summary>
