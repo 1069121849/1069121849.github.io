@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-07T03:15:31.091Z</updated>
+  <updated>2019-05-07T03:20:56.515Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode106. 从中序与后序遍历序列构造二叉树</title>
+    <link href="http://yoursite.com/2019/05/07/leetcode106.%20%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    <id>http://yoursite.com/2019/05/07/leetcode106. 从中序与后序遍历序列构造二叉树/</id>
+    <published>2019-05-07T03:20:40.826Z</published>
+    <updated>2019-05-07T03:20:56.515Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>根据一棵树的中序遍历与后序遍历构造二叉树。</p><p><strong>注意:</strong> 你可以假设树中没有重复的元素。</p><p>例如，给出</p><p>中序遍历 inorder = [9,3,15,20,7] 后序遍历 postorder = [9,15,7,20,3] 返回如下的二叉树：<br><img src="https://img-blog.csdnimg.cn/20190507110245228.png" alt="在这里插入图片描述"></p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>跟使用前序遍历和中序遍历建树一样的思路，就是后序遍历的最后结点为根结点root而已。<br>这题我学习了leetcode上的一个小技巧，在遍历中序遍历的时候从尾遍历，提交结果就快了近10倍，可能是用例问题 <strong>？</strong></p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public TreeNode buildTree(int[] inorder, int[] postorder) &#123;</span><br><span class="line">        int len = inorder.length;</span><br><span class="line">        if(len == 0) return null;</span><br><span class="line">        return helper(inorder,0,len, postorder,0,len);</span><br><span class="line">    &#125;</span><br><span class="line">    public TreeNode helper(int[] inorder, int inStart, int inEnd, int[] postorder, int postStart, int postEnd) &#123;</span><br><span class="line">        if(postEnd == 0) return null;</span><br><span class="line">        TreeNode root = null;</span><br><span class="line">        int rootVal = postorder[postEnd-1];</span><br><span class="line">        for(int i = inEnd-1; i &gt;= inStart; i --)&#123;</span><br><span class="line">            if(inorder[i] == rootVal)&#123;</span><br><span class="line">                root = new TreeNode(rootVal);</span><br><span class="line">                root.left = helper(inorder, inStart, i, postorder, postStart, postStart+i-inStart);</span><br><span class="line">                root.right = helper(inorder, i+1, inEnd, postorder, postStart+i-inStart, postEnd-1);</span><br><span class="line">                return root;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 3 ms, 在Construct Binary Tree from Inorder and Postorder Traversal的Java提交中击败了97.97% 的用户<br>内存消耗 : 35.3 MB, 在Construct Binary Tree from Inorder and Postorder Traversal的Java提交中击败了99.05% 的用户</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;根据一棵树的中序遍历与后序遍历构造二叉树。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意:&lt;/strong&gt; 你可以假设树中
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode105. 从前序与中序遍历序列构造二叉树</title>
@@ -547,33 +576,6 @@ leetcode82. 删除排序链表中的重复元素 II</title>
       
       
         &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;p&gt;给定一个包含 m x n 个元素的矩阵（m 行, n 列），请按照顺时针螺旋顺序，返回矩阵中的所有元素。&lt;br&gt;&lt;strong&gt;示例 1:&lt;
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode55. 跳跃游戏</title>
-    <link href="http://yoursite.com/2019/04/26/leetcode55-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F/"/>
-    <id>http://yoursite.com/2019/04/26/leetcode55-跳跃游戏/</id>
-    <published>2019-04-26T08:55:04.000Z</published>
-    <updated>2019-04-26T08:55:21.871Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个非负整数数组，你最初位于数组的第一个位置。<br>数组中的每个元素代表你在该位置可以跳跃的最大长度。<br>判断你是否能够到达最后一个位置。<br><strong>示例 1:<br>输入:</strong> [2,3,1,1,4]<br><strong>输出:</strong> true<br><strong>解释:</strong> 从位置 0 到 1 跳 1 步, 然后跳 3 步到达最后一个位置。<br><strong>示例 2:</strong><br><strong>输入:</strong> [3,2,1,0,4]<br><strong>输出:</strong> false<br><strong>解释:</strong> 无论怎样，你总会到达索引为 3 的位置。但该位置的最大跳跃长度是 0 ， 所以你永远不可能到达最后一个位置。</p><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>从数组后面遍历，如果nums[i]&gt;=len-i的话，则说明这一块可以达到终点，继续查找下一个能达到nums[len]的位置，如果最后len==0则说明起点能达到终点。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public boolean canJump(int[] nums) &#123;</span><br><span class="line">int len = nums.length-1;</span><br><span class="line">if(len &lt; 1) return true;</span><br><span class="line">        for(int i = len-1; i &gt;= 0; i --) &#123;</span><br><span class="line">        if(nums[i] &gt;= len - i) </span><br><span class="line">        len = i;</span><br><span class="line">        if(len == 0) return true;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 2 ms, 在Jump Game的Java提交中击败了99.14% 的用户<br>内存消耗 : 36.4 MB, 在Jump Game的Java提交中击败了99.59% 的用户</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;p&gt;给定一个非负整数数组，你最初位于数组的第一个位置。&lt;br&gt;数组中的每个元素代表你在该位置可以跳跃的最大长度。&lt;br&gt;判断你是否能够到达最后一
       
     
     </summary>
