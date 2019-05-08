@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-08T10:18:16.040Z</updated>
+  <updated>2019-05-08T13:31:16.389Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2019/05/08/leetcode114.%20%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B1%95%E5%BC%80%E4%B8%BA%E9%93%BE%E8%A1%A8/"/>
+    <id>http://yoursite.com/2019/05/08/leetcode114. 二叉树展开为链表/</id>
+    <published>2019-05-08T13:31:24.045Z</published>
+    <updated>2019-05-08T13:31:16.389Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>给定一个二叉树，原地将它展开为链表。</p><p>例如，给定二叉树<br><img src="https://img-blog.csdnimg.cn/20190508194419597.png" alt="在这里插入图片描述"> 将其展开为：<br><img src="https://img-blog.csdnimg.cn/20190508194434133.png" alt="在这里插入图片描述"></p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>1.因为其左右子结点的关系很符合栈的先进后出原理，所以可以利用栈，把root右结点先push，然后push左结点；从栈中取出的栈顶元素，如果再push其右结点、左结点，接到root的最右个结点（记得把其左子树置null），直到栈为空即可。<br>2.使用递归方式求解。把左子树的结点接到root的右边，右子树接到左子树的右边，一直递归进行即可。</p><h2 id="思路1代码如下"><a href="#思路1代码如下" class="headerlink" title="思路1代码如下"></a>思路1代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public void flatten(TreeNode root) &#123;</span><br><span class="line">        if(root == null) return;</span><br><span class="line">        Stack&lt;TreeNode&gt; stack = new Stack&lt;&gt;();</span><br><span class="line">        //栈先进后出，所以先把右结点push，再push左结点</span><br><span class="line">        if(root.right != null) stack.push(root.right);</span><br><span class="line">        if(root.left != null) stack.push(root.left);</span><br><span class="line">        TreeNode p = root;</span><br><span class="line">        p.left = null;</span><br><span class="line">        while(!stack.isEmpty())&#123;</span><br><span class="line">            TreeNode tn = stack.pop();</span><br><span class="line">            if(tn.right != null) stack.push(tn.right);</span><br><span class="line">            if(tn.left != null) stack.push(tn.left);</span><br><span class="line">            //把结点取出来接到p的右边，然后把取出来的结点的左子树去掉</span><br><span class="line">            p.right = tn;</span><br><span class="line">            p = p.right;</span><br><span class="line">            p.left = null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 4 ms, 在Flatten Binary Tree to Linked List的Java提交中击败了68.62% 的用户<br>内存消耗 : 35.3 MB, 在Flatten Binary Tree to Linked List的Java提交中击败了85.69% 的用户</p><h2 id="思路2代码如下"><a href="#思路2代码如下" class="headerlink" title="思路2代码如下"></a>思路2代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public void flatten(TreeNode root) &#123;</span><br><span class="line">    helper(root);</span><br><span class="line">    &#125;</span><br><span class="line">    public TreeNode helper(TreeNode root) &#123;</span><br><span class="line">        if(root == null) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        TreeNode left = helper(root.left);</span><br><span class="line">        TreeNode right = helper(root.right);</span><br><span class="line">        if(left != null)&#123;</span><br><span class="line">            root.right = left;</span><br><span class="line">            //left指针走到left&quot;链表&quot;的最后</span><br><span class="line">            while(left.right != null)&#123;</span><br><span class="line">                left = left.right;</span><br><span class="line">            &#125;</span><br><span class="line">            left.right = right;</span><br><span class="line">        &#125;</span><br><span class="line">        //去掉root的左子树</span><br><span class="line">        root.left = null;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果-1"><a href="#提交结果-1" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 2 ms, 在Flatten Binary Tree to Linked List的Java提交中击败了98.12% 的用户<br>内存消耗 : 34.7 MB, 在Flatten Binary Tree to Linked List的Java提交中击败了91.99% 的用户</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;给定一个二叉树，原地将它展开为链表。&lt;/p&gt;
+&lt;p&gt;例如，给定二叉树&lt;br&gt;&lt;img src=&quot;https://i
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>apache POI学习</title>
@@ -547,34 +576,6 @@ leetcode82. 删除排序链表中的重复元素 II</title>
         &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。&lt;/p&gt;
 &lt;p&gt;机器人每次
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode61. 旋转链表</title>
-    <link href="http://yoursite.com/2019/04/27/leetcode61-%E6%97%8B%E8%BD%AC%E9%93%BE%E8%A1%A8/"/>
-    <id>http://yoursite.com/2019/04/27/leetcode61-旋转链表/</id>
-    <published>2019-04-27T09:51:49.000Z</published>
-    <updated>2019-04-27T09:52:18.346Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>给定一个链表，旋转链表，将链表每个节点向右移动 k 个位置，其中 k 是非负数。<br><strong>示例 1:</strong><br><strong>输入:</strong> 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL, k = 2<br><strong>输出:</strong> 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL<br><strong>解释:</strong> 向右旋转 1 步: 5-&gt;1-&gt;2-&gt;3-&gt;4-&gt;NULL 向右旋转 2 步: 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL<br><strong>示例 2:</strong></p><p><strong>输入:</strong> 0-&gt;1-&gt;2-&gt;NULL, k = 4<br><strong>输出:</strong> 2-&gt;0-&gt;1-&gt;NULL<br><strong>解释:</strong> 向右旋转 1 步: 2-&gt;0-&gt;1-&gt;NULL 向右旋转 2 步: 1-&gt;2-&gt;0-&gt;NULL 向右旋转 3 步: 0-&gt;1-&gt;2-&gt;NULL 向右旋转 4 步: 2-&gt;0-&gt;1-&gt;NULL</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>在k&lt;链表长度len的前提下，使用2个指针p、q，<strong>q指向链表的最后一个结点，p指向q第前k个结点</strong>，然后q.next -&gt;head,p的前一个结点指向null，即可旋转完成。<br>k大于链表长度的话，则直接求k%len即可。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * public class ListNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     ListNode next;</span><br><span class="line"> *     ListNode(int x) &#123; val = x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode rotateRight(ListNode head, int k) &#123;</span><br><span class="line">        if(k == 0) return head;</span><br><span class="line">        if(head == null || head.next == null) return head;</span><br><span class="line">ListNode p = head, q = head, ppre = head;</span><br><span class="line">for(int i = 2; i &lt;= k; i ++) &#123;</span><br><span class="line">q= q.next;</span><br><span class="line">//说明k大于或等于链表的长度</span><br><span class="line">if(q.next==null) &#123;</span><br><span class="line">return rotateRight(head, k%i);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">//q走到最后一个节点</span><br><span class="line">while(q.next != null) &#123;</span><br><span class="line">if(p != head) </span><br><span class="line">ppre = ppre.next;</span><br><span class="line">p = p.next;</span><br><span class="line">q = q.next;</span><br><span class="line">&#125;</span><br><span class="line">//旋转链表</span><br><span class="line">q.next = head;</span><br><span class="line">ppre.next = null;</span><br><span class="line">return p;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 2 ms, 在Rotate List的Java提交中击败了98.90% 的用户<br>内存消耗 : 36.1 MB, 在Rotate List的Java提交中击败了82.48% 的用户</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;给定一个链表，旋转链表，将链表每个节点向右移动 k 个位置，其中 k 是非负数。&lt;br&gt;&lt;strong&gt;示例 1:
       
     
     </summary>
