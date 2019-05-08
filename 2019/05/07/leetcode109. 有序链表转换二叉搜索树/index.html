@@ -88,20 +88,21 @@
 
 
 
-<meta name="description" content="题目 根据一棵树的中序遍历与后序遍历构造二叉树。 注意: 你可以假设树中没有重复的元素。 例如，给出 中序遍历 inorder = [9,3,15,20,7] 后序遍历 postorder = [9,15,7,20,3] 返回如下的二叉树：  解题思路跟使用前序遍历和中序遍历建树一样的思路，就是后序遍历的最后结点为根结点root而已。这题我学习了leetcode上的一个小技巧，在遍历中序遍历的时候">
+<meta name="description" content="题目 给定一个单链表，其中的元素按升序排序，将其转换为高度平衡的二叉搜索树。 本题中，一个高度平衡二叉树是指一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过 1。 示例: 给定的有序链表： [-10, -3, 0, 5, 9], 一个可能的答案是：[0, -3, 9, -10, null, 5], 它可以表示下面这个高度平衡二叉搜索树：  解题思路找出list的中间结点list[i]，以其">
 <meta name="keywords" content="leetcode,java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode106. 从中序与后序遍历序列构造二叉树">
-<meta property="og:url" content="http://yoursite.com/2019/05/07/leetcode106. 从中序与后序遍历序列构造二叉树/index.html">
+<meta property="og:title" content="leetcode109. 有序链表转换二叉搜索树">
+<meta property="og:url" content="http://yoursite.com/2019/05/07/leetcode109. 有序链表转换二叉搜索树/index.html">
 <meta property="og:site_name" content="白哥的博客">
-<meta property="og:description" content="题目 根据一棵树的中序遍历与后序遍历构造二叉树。 注意: 你可以假设树中没有重复的元素。 例如，给出 中序遍历 inorder = [9,3,15,20,7] 后序遍历 postorder = [9,15,7,20,3] 返回如下的二叉树：  解题思路跟使用前序遍历和中序遍历建树一样的思路，就是后序遍历的最后结点为根结点root而已。这题我学习了leetcode上的一个小技巧，在遍历中序遍历的时候">
+<meta property="og:description" content="题目 给定一个单链表，其中的元素按升序排序，将其转换为高度平衡的二叉搜索树。 本题中，一个高度平衡二叉树是指一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过 1。 示例: 给定的有序链表： [-10, -3, 0, 5, 9], 一个可能的答案是：[0, -3, 9, -10, null, 5], 它可以表示下面这个高度平衡二叉搜索树：  解题思路找出list的中间结点list[i]，以其">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190507110245228.png">
-<meta property="og:updated_time" content="2019-05-07T03:20:56.515Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190507171848340.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190507172545934.png">
+<meta property="og:updated_time" content="2019-05-07T12:41:54.984Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode106. 从中序与后序遍历序列构造二叉树">
-<meta name="twitter:description" content="题目 根据一棵树的中序遍历与后序遍历构造二叉树。 注意: 你可以假设树中没有重复的元素。 例如，给出 中序遍历 inorder = [9,3,15,20,7] 后序遍历 postorder = [9,15,7,20,3] 返回如下的二叉树：  解题思路跟使用前序遍历和中序遍历建树一样的思路，就是后序遍历的最后结点为根结点root而已。这题我学习了leetcode上的一个小技巧，在遍历中序遍历的时候">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190507110245228.png">
+<meta name="twitter:title" content="leetcode109. 有序链表转换二叉搜索树">
+<meta name="twitter:description" content="题目 给定一个单链表，其中的元素按升序排序，将其转换为高度平衡的二叉搜索树。 本题中，一个高度平衡二叉树是指一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过 1。 示例: 给定的有序链表： [-10, -3, 0, 5, 9], 一个可能的答案是：[0, -3, 9, -10, null, 5], 它可以表示下面这个高度平衡二叉搜索树：  解题思路找出list的中间结点list[i]，以其">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190507171848340.png">
 
 
 
@@ -131,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/07/leetcode106. 从中序与后序遍历序列构造二叉树/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/07/leetcode109. 有序链表转换二叉搜索树/">
 
 
 
 
 
-  <title>leetcode106. 从中序与后序遍历序列构造二叉树 | 白哥的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>leetcode109. 有序链表转换二叉搜索树 | 白哥的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -312,7 +313,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/07/leetcode106. 从中序与后序遍历序列构造二叉树/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/07/leetcode109. 有序链表转换二叉搜索树/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="白哥">
@@ -329,7 +330,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetcode106. 从中序与后序遍历序列构造二叉树</h1>
+          <h1 class="post-title" itemprop="name headline">leetcode109. 有序链表转换二叉搜索树</h1>
         
 
         <div class="post-meta">
@@ -341,7 +342,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-07T11:20:40+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-07T20:42:00+08:00">
                 2019-05-07
               </time>
             
@@ -400,7 +401,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  332
+                  474
                 </span>
               
 
@@ -416,7 +417,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1 分钟
+                  2 分钟
                 </span>
               
             </div>
@@ -438,14 +439,16 @@
 
       
         <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
-<p>根据一棵树的中序遍历与后序遍历构造二叉树。</p>
-<p><strong>注意:</strong> 你可以假设树中没有重复的元素。</p>
-<p>例如，给出</p>
-<p>中序遍历 inorder = [9,3,15,20,7] 后序遍历 postorder = [9,15,7,20,3] 返回如下的二叉树：<br><img src="https://img-blog.csdnimg.cn/20190507110245228.png" alt="在这里插入图片描述"></p>
+<p>给定一个单链表，其中的元素按升序排序，将其转换为高度平衡的二叉搜索树。</p>
+<p>本题中，一个高度平衡二叉树是指一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过 1。</p>
+<p><strong>示例:</strong></p>
+<p>给定的有序链表： [-10, -3, 0, 5, 9],</p>
+<p>一个可能的答案是：[0, -3, 9, -10, null, 5], 它可以表示下面这个高度平衡二叉搜索树：<br><img src="https://img-blog.csdnimg.cn/20190507171848340.png" alt="在这里插入图片描述"></p>
 </blockquote>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>跟使用前序遍历和中序遍历建树一样的思路，就是后序遍历的最后结点为根结点root而已。<br>这题我学习了leetcode上的一个小技巧，在遍历中序遍历的时候从尾遍历，提交结果就快了近10倍，可能是用例问题 <strong>？</strong></p>
-<h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public TreeNode buildTree(int[] inorder, int[] postorder) &#123;</span><br><span class="line">        int len = inorder.length;</span><br><span class="line">        if(len == 0) return null;</span><br><span class="line">        return helper(inorder,0,len, postorder,0,len);</span><br><span class="line">    &#125;</span><br><span class="line">    public TreeNode helper(int[] inorder, int inStart, int inEnd, int[] postorder, int postStart, int postEnd) &#123;</span><br><span class="line">        if(postEnd == 0) return null;</span><br><span class="line">        TreeNode root = null;</span><br><span class="line">        int rootVal = postorder[postEnd-1];</span><br><span class="line">        for(int i = inEnd-1; i &gt;= inStart; i --)&#123;</span><br><span class="line">            if(inorder[i] == rootVal)&#123;</span><br><span class="line">                root = new TreeNode(rootVal);</span><br><span class="line">                root.left = helper(inorder, inStart, i, postorder, postStart, postStart+i-inStart);</span><br><span class="line">                root.right = helper(inorder, i+1, inEnd, postorder, postStart+i-inStart, postEnd-1);</span><br><span class="line">                return root;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 3 ms, 在Construct Binary Tree from Inorder and Postorder Traversal的Java提交中击败了97.97% 的用户<br>内存消耗 : 35.3 MB, 在Construct Binary Tree from Inorder and Postorder Traversal的Java提交中击败了99.05% 的用户</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>找出list的中间结点list[i]，以其作为根结点，然后把list[0,i)作为其左子树，list[i+1,n]为其右子树，递归建树即可。<br>在找list的中间结点时，我本来是用传入链表长度len参数的方法去找，然后又学习了一种查找list中间指针的方法—<strong>快慢指针</strong>的方法，就是使用2个指针mid,midNext每次<strong>mid走一步，midNext走2步</strong>，等到midNext为空或者midNext.next为空，mid即为中间结点。</p>
+<h2 id="使用len参数的代码"><a href="#使用len参数的代码" class="headerlink" title="使用len参数的代码"></a>使用len参数的代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public TreeNode sortedListToBST(ListNode head) &#123;</span><br><span class="line">        ListNode p = head;</span><br><span class="line">        int len = 0;</span><br><span class="line">        while (p != null)&#123;</span><br><span class="line">            len++;</span><br><span class="line">            p = p.next;</span><br><span class="line">        &#125;</span><br><span class="line">        if(len == 0) return null;</span><br><span class="line">        return helper(head, len);</span><br><span class="line">    &#125;</span><br><span class="line">    public TreeNode helper(ListNode head, int len)&#123;</span><br><span class="line">        TreeNode root;</span><br><span class="line">        if(len == 1)&#123;</span><br><span class="line">            root = new TreeNode(head.val);</span><br><span class="line">            return root;</span><br><span class="line">        &#125;</span><br><span class="line">        if(len &lt; 1)&#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode p = head;</span><br><span class="line">        //找到中间结点</span><br><span class="line">        for(int i = 1; i &lt; (len+1)/2; i ++)&#123;</span><br><span class="line">            p = p.next;</span><br><span class="line">        &#125;</span><br><span class="line">        root = new TreeNode(p.val);</span><br><span class="line">        root.right = helper(p.next, len-(len+1)/2);</span><br><span class="line">        p.next = null;</span><br><span class="line">        //-1是去掉中间结点</span><br><span class="line">        root.left = helper(head, (len+1)/2-1);</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="使用快慢指针的方法"><a href="#使用快慢指针的方法" class="headerlink" title="使用快慢指针的方法"></a>使用快慢指针的方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public TreeNode sortedListToBST(ListNode head) &#123;</span><br><span class="line">        if(head == null || head.next == null)&#123;</span><br><span class="line">            return head == null ? null : new TreeNode(head.val);</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode pre = head, mid = head, midNext = head;</span><br><span class="line">        while(midNext != null &amp;&amp; midNext.next != null)&#123;</span><br><span class="line">            pre = mid;</span><br><span class="line">            mid = mid.next;</span><br><span class="line">            midNext = midNext.next.next;</span><br><span class="line">        &#125;</span><br><span class="line">        pre.next = null;</span><br><span class="line">        TreeNode root = new TreeNode(mid.val);</span><br><span class="line">        root.left = sortedListToBST(head);</span><br><span class="line">        root.right = sortedListToBST(mid.next);</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p><img src="https://img-blog.csdnimg.cn/20190507172545934.png" alt="在这里插入图片描述"></p>
 
       
     </div>
@@ -491,8 +494,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/07/leetcode105. 从前序与中序遍历序列构造二叉树/" rel="next" title="leetcode105. 从前序与中序遍历序列构造二叉树">
-                <i class="fa fa-chevron-left"></i> leetcode105. 从前序与中序遍历序列构造二叉树
+              <a href="/2019/05/07/leetcode106. 从中序与后序遍历序列构造二叉树/" rel="next" title="leetcode106. 从中序与后序遍历序列构造二叉树">
+                <i class="fa fa-chevron-left"></i> leetcode106. 从中序与后序遍历序列构造二叉树
               </a>
             
           </div>
@@ -501,8 +504,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/07/leetcode109. 有序链表转换二叉搜索树/" rel="prev" title="leetcode109. 有序链表转换二叉搜索树">
-                leetcode109. 有序链表转换二叉搜索树 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/08/apache POI学习/" rel="prev" title="apache POI学习">
+                apache POI学习 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -658,7 +661,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码如下"><span class="nav-number">3.</span> <span class="nav-text">代码如下</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提交结果"><span class="nav-number">4.</span> <span class="nav-text">提交结果</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用len参数的代码"><span class="nav-number">3.</span> <span class="nav-text">使用len参数的代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用快慢指针的方法"><span class="nav-number">4.</span> <span class="nav-text">使用快慢指针的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提交结果"><span class="nav-number">5.</span> <span class="nav-text">提交结果</span></a></li></ol></div>
             
 
           </div>
