@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-12T15:14:30.002Z</updated>
+  <updated>2019-05-13T16:00:28.605Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,168 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode152. 乘积最大子序列</title>
+    <link href="http://yoursite.com/2019/05/13/leetcode152.%20%E4%B9%98%E7%A7%AF%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%88%97/"/>
+    <id>http://yoursite.com/2019/05/13/leetcode152. 乘积最大子序列/</id>
+    <published>2019-05-13T15:59:58.034Z</published>
+    <updated>2019-05-13T16:00:28.605Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="152-乘积最大子序列"><a href="#152-乘积最大子序列" class="headerlink" title="152. 乘积最大子序列"></a><a href="https://leetcode-cn.com/problems/maximum-product-subarray/" target="_blank" rel="noopener">152. 乘积最大子序列</a></h4><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个整数数组 <code>nums</code> ，找出一个序列中乘积最大的连续子序列（该序列至少包含一个数）。</p><p><strong>示例 1:</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: [2,3,-2,4]</span><br><span class="line">输出: 6</span><br><span class="line">解释: 子数组 [2,3] 有最大乘积 6。</span><br></pre></td></tr></table></figure><p><strong>示例 2:</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: [-2,0,-1]</span><br><span class="line">输出: 0</span><br><span class="line">解释: 结果不能为 2, 因为 [-2,-1] 不是子数组。</span><br></pre></td></tr></table></figure><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>使用2个数组，保存当前位置所能得到的最大值以及最小值，如果下一个位置的数组是负数，则乘最小值，整数乘最大值；需要注意判断如果乘上一个位置最大值之后是否比当前位置的值还小，则当前位置的最大值为当前的值，同理最小值也如此。</p><p>上面的思路我们可以发现，每次只需要根据上一个位置的最大值最小值我们就可以判断出当前位置所能得到的最大值和最小值，所以我们可以把2个数组简化为2个变量。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int maxProduct(int[] nums) &#123;</span><br><span class="line">        int len = nums.length;</span><br><span class="line">        int res = nums[0];</span><br><span class="line">        int nowMax = res;</span><br><span class="line">        int nowMin = res;</span><br><span class="line">        for (int i = 1; i &lt; len; i++) &#123;</span><br><span class="line">            if(nums[i] &lt; 0)&#123;</span><br><span class="line">            //负数则交换最大值最小值</span><br><span class="line">                nowMax = nowMin ^ nowMax;</span><br><span class="line">                nowMin = nowMax ^ nowMin;</span><br><span class="line">                nowMax = nowMax ^ nowMin;</span><br><span class="line">            &#125;</span><br><span class="line">            nowMax = Math.max(nums[i], nums[i]*nowMax);</span><br><span class="line">            nowMin = Math.min(nums[i], nums[i]*nowMin);</span><br><span class="line">            res = Math.max(res, nowMax);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功</p><p>显示详情 </p><p>执行用时 : 4 ms, 在Maximum Product Subarray的Java提交中击败了62.07% 的用户</p><p>内存消耗 : 35.9 MB, 在Maximum Product Subarray的Java提交中击败了54.02% 的用户</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;152-乘积最大子序列&quot;&gt;&lt;a href=&quot;#152-乘积最大子序列&quot; class=&quot;headerlink&quot; title=&quot;152. 乘积最大子序列&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/maximum-pr
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>反射</title>
+    <link href="http://yoursite.com/2019/05/13/%E5%8F%8D%E5%B0%84/"/>
+    <id>http://yoursite.com/2019/05/13/反射/</id>
+    <published>2019-05-13T15:54:01.440Z</published>
+    <updated>2019-05-14T07:24:15.383Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><p>JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能称为java语言的反射机制。</p><h3 id="创建Robot类"><a href="#创建Robot类" class="headerlink" title="创建Robot类"></a>创建Robot类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">package reflect;</span><br><span class="line"></span><br><span class="line">public class Robot &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    public void sayHello(String name) &#123;</span><br><span class="line">        System.out.println(&quot;hello &quot; + name);</span><br><span class="line">    &#125;</span><br><span class="line">    private int throwMaxNumber(int[] nums) &#123;</span><br><span class="line">        int max = 0;</span><br><span class="line">        for (int i = 0; i &lt; nums.length; i++) &#123;</span><br><span class="line">            if (nums[i] &gt; max) &#123;</span><br><span class="line">                max = nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return max;</span><br><span class="line">    &#125;</span><br><span class="line">    public void introduce()&#123;</span><br><span class="line">        System.out.println(&quot;my name is &quot; + name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="在通过forName和反射获取Robot类的所有方法和属性"><a href="#在通过forName和反射获取Robot类的所有方法和属性" class="headerlink" title="在通过forName和反射获取Robot类的所有方法和属性"></a>在通过forName和反射获取Robot类的所有方法和属性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">package reflect;</span><br><span class="line"></span><br><span class="line">import java.lang.reflect.Field;</span><br><span class="line">import java.lang.reflect.InvocationTargetException;</span><br><span class="line">import java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line">public class ReflectSample &#123;</span><br><span class="line">    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException, InstantiationException, NoSuchFieldException &#123;</span><br><span class="line">        //通过类名获取Class对象</span><br><span class="line">        Class robot = Class.forName(&quot;reflect.Robot&quot;);</span><br><span class="line">        //通过Class对象的newInstance方法创建一个对象</span><br><span class="line">        Robot r = (Robot) robot.newInstance();</span><br><span class="line">        //获取Class对象中的sayHello方法，该方法需要传入一个String参数</span><br><span class="line">//        Method sayHello = robot.getDeclaredMethod(&quot;sayHello&quot;, String.class);</span><br><span class="line">        Method sayHello = robot.getMethod(&quot;sayHello&quot;, String.class);</span><br><span class="line">        //通过反射机制执行该方法,传入参数： 丁先生</span><br><span class="line">        Object sayHelloOut = sayHello.invoke(r, &quot;丁先生&quot;);</span><br><span class="line">        //输出该方法返回的值</span><br><span class="line">//        System.out.println(sayHelloOut);</span><br><span class="line"></span><br><span class="line">        //获取对象中的private方法需要使用getDeclaredMethod获取</span><br><span class="line">        Method throwMaxNumber = robot.getDeclaredMethod(&quot;throwMaxNumber&quot;, int[].class);</span><br><span class="line">        //默认Accessible是false 需要设置为true,因为方法是私有的</span><br><span class="line">        throwMaxNumber.setAccessible(true);</span><br><span class="line">        Object invoke = throwMaxNumber.invoke(r, new int[]&#123;3, 5, 2, 6, 1&#125;);</span><br><span class="line">        System.out.println(invoke);</span><br><span class="line"></span><br><span class="line">        //设置r中的私有变量</span><br><span class="line">        Field name = robot.getDeclaredField(&quot;name&quot;);</span><br><span class="line">        //同私有方法也是要设置accessible为true</span><br><span class="line">        name.setAccessible(true);</span><br><span class="line">        name.set(r, &quot;陈先生&quot;);</span><br><span class="line">        Method introduce = robot.getMethod(&quot;introduce&quot;);</span><br><span class="line">        introduce.invoke(r);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="执行的输出结果"><a href="#执行的输出结果" class="headerlink" title="执行的输出结果"></a>执行的输出结果</h4><p><img src="C:\Users\xin\AppData\Roaming\Typora\typora-user-images\1557762815500.png" alt="1557762815500"></p><h3 id="通过classLoader获取Class对象"><a href="#通过classLoader获取Class对象" class="headerlink" title="通过classLoader获取Class对象"></a>通过classLoader获取Class对象</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">package reflect;</span><br><span class="line"></span><br><span class="line">import java.lang.reflect.InvocationTargetException;</span><br><span class="line">import java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line">public class ClassLoaderTest &#123;</span><br><span class="line">    public static void main(String[] args) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException, ClassNotFoundException &#123;</span><br><span class="line">        ClassLoader classLoader = Robot.class.getClassLoader();</span><br><span class="line">        Class robot = classLoader.loadClass(&quot;reflect.Robot&quot;);</span><br><span class="line">//      Class robot2 = Class.forName(&quot;reflect.Robot&quot;);</span><br><span class="line">        Robot r = (Robot) robot.newInstance();</span><br><span class="line">        Method introduce = robot.getMethod(&quot;introduce&quot;);</span><br><span class="line">        Object invoke = introduce.invoke(r);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;反射&quot;&gt;&lt;a href=&quot;#反射&quot; class=&quot;headerlink&quot; title=&quot;反射&quot;&gt;&lt;/a&gt;反射&lt;/h2&gt;&lt;p&gt;JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode 139. 单词拆分</title>
+    <link href="http://yoursite.com/2019/05/13/leetcode%20139.%20%E5%8D%95%E8%AF%8D%E6%8B%86%E5%88%86/"/>
+    <id>http://yoursite.com/2019/05/13/leetcode 139. 单词拆分/</id>
+    <published>2019-05-13T12:14:07.077Z</published>
+    <updated>2019-05-13T12:13:58.387Z</updated>
+    
+    <content type="html"><![CDATA[<p>﻿## 题目</p><blockquote><p>给定一个非空字符串 s 和一个包含非空单词列表的字典 wordDict，判定 s 是否可以被空格拆分为一个或多个在字典中出现的单词。</p><p><strong>说明：</strong></p><p>拆分时可以重复使用字典中的单词。 你可以假设字典中没有重复的单词。<br><strong>示例 1：</strong></p><p><strong>输入:</strong> s = “leetcode”, wordDict = [“leet”, “code”]<br><strong>输出:</strong> true<br><strong>解释:</strong> 返回 true 因为 “leetcode” 可以被拆分成 “leet code”。<br><strong>示例 2：</strong></p><p><strong>输入:</strong> s = “applepenapple”, wordDict = [“apple”, “pen”]<br><strong>输出:</strong> true<br><strong>解释:</strong> 返回 true 因为 “applepenapple” 可以被拆分成 “apple pen apple”。<br>     注意你可以重复使用字典中的单词。<br><strong>示例 3：</strong></p><p><strong>输入:</strong> s = “catsandog”, wordDict = [“cats”, “dog”, “sand”, “and”, “cat”]<br><strong>输出:</strong> false</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>使用一个布尔数组dp，<strong>dp[i]表示s.substring(0,i)是可以由wordDic中的单词组合而来的</strong>，遍历单词可能的组成，如果s.substring(i,j)存在于wordDict中，则dp[j]=dp[i]的值，即等于s.substring(0,i)能否由wordDic中的单词组成。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public boolean wordBreak(String s, List&lt;String&gt; wordDict) &#123;</span><br><span class="line">        int len = s.length();</span><br><span class="line">        boolean[] dp = new boolean[len+1];</span><br><span class="line">        dp[0] = true;</span><br><span class="line">        //dp[i]记录s.substring(0,i+1)是可以由wordDic组合而来的</span><br><span class="line">        for (int i = 0; i &lt; len; i++) &#123;</span><br><span class="line">            for (int j = i+1; j &lt;= len; j++) &#123;</span><br><span class="line">                if(wordDict.contains(s.substring(i,j)))&#123;</span><br><span class="line">                    if(dp[j]) continue;</span><br><span class="line"></span><br><span class="line">                    dp[j] = dp[i];</span><br><span class="line">                    if (dp[len]) return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[len];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>36 / 36 个通过测试用例<br>状态：通过<br>执行用时：7 ms</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;﻿## 题目&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;给定一个非空字符串 s 和一个包含非空单词列表的字典 wordDict，判定 s 是否可以被空格拆分为一个或多个在字典中出现的单词。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;说明：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;拆分时可以重复使
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode138. 复制带随机指针的链表</title>
+    <link href="http://yoursite.com/2019/05/13/leetcode138.%20%E5%A4%8D%E5%88%B6%E5%B8%A6%E9%9A%8F%E6%9C%BA%E6%8C%87%E9%92%88%E7%9A%84%E9%93%BE%E8%A1%A8/"/>
+    <id>http://yoursite.com/2019/05/13/leetcode138. 复制带随机指针的链表/</id>
+    <published>2019-05-13T08:19:59.319Z</published>
+    <updated>2019-05-13T08:22:52.517Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="138-复制带随机指针的链表"><a href="#138-复制带随机指针的链表" class="headerlink" title="138. 复制带随机指针的链表"></a><a href="https://leetcode-cn.com/problems/copy-list-with-random-pointer/" target="_blank" rel="noopener">138. 复制带随机指针的链表</a></h4><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>给定一个链表，每个节点包含一个额外增加的随机指针，该指针可以指向链表中的任何节点或空节点。</p><p>要求返回这个链表的<strong>深拷贝</strong>。 </p><p><strong>示例：</strong></p><p><strong><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/02/23/1470150906153-2yxeznm.png" alt="img"></strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; 输入：</span><br><span class="line">&gt; &#123;&quot;$id&quot;:&quot;1&quot;,&quot;next&quot;:&#123;&quot;$id&quot;:&quot;2&quot;,&quot;next&quot;:null,&quot;random&quot;:&#123;&quot;$ref&quot;:&quot;2&quot;&#125;,&quot;val&quot;:2&#125;,&quot;random&quot;:&#123;&quot;$ref&quot;:&quot;2&quot;&#125;,&quot;val&quot;:1&#125;</span><br><span class="line">&gt; </span><br><span class="line">&gt; 解释：</span><br><span class="line">&gt; 节点 1 的值是 1，它的下一个指针和随机指针都指向节点 2 。</span><br><span class="line">&gt; 节点 2 的值是 2，它的下一个指针指向 null，随机指针指向它自己。</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></blockquote><blockquote><p><strong>提示：</strong></p><ol><li>你必须返回<strong>给定头的拷贝</strong>作为对克隆列表的引用。</li></ol></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>用一个map保存原来node对应的newNode</p><p>从头开始，创建一个新的结点，先把它put到map中，然后继续创建它的下一个结点和随机指针指向的结点，遍历到底即可。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public Node copyRandomList(Node head) &#123;</span><br><span class="line">        HashMap&lt;Node, Node&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">        return helper(head, map);</span><br><span class="line">    &#125;</span><br><span class="line">    public Node helper(Node node, Map&lt;Node, Node&gt; map) &#123;</span><br><span class="line">        if (node == null) return null;</span><br><span class="line">        if (map.containsKey(node)) &#123;</span><br><span class="line">            return map.get(node);</span><br><span class="line">        &#125;</span><br><span class="line">        Node newNode = new Node(node.val, null, null);</span><br><span class="line">        map.put(node, newNode);</span><br><span class="line">        if(node.next != null) &#123;</span><br><span class="line">            newNode.next = helper(node.next, map);</span><br><span class="line">        &#125;</span><br><span class="line">        if(node.random != null) &#123;</span><br><span class="line">            newNode.random = helper(node.random, map);</span><br><span class="line">        &#125;</span><br><span class="line">        return newNode;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功</p><p>显示详情 </p><p>执行用时 : 3 ms, 在Copy List with Random Pointer的Java提交中击败了27.10% 的用户</p><p>内存消耗 : 33.8 MB, 在Copy List with Random Pointer的Java提交中击败了71.29% 的用户</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;138-复制带随机指针的链表&quot;&gt;&lt;a href=&quot;#138-复制带随机指针的链表&quot; class=&quot;headerlink&quot; title=&quot;138. 复制带随机指针的链表&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/c
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode134. 加油站</title>
+    <link href="http://yoursite.com/2019/05/13/leetcode134.%20%E5%8A%A0%E6%B2%B9%E7%AB%99/"/>
+    <id>http://yoursite.com/2019/05/13/leetcode134. 加油站/</id>
+    <published>2019-05-13T07:59:02.985Z</published>
+    <updated>2019-05-13T08:23:13.358Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>在一条环路上有 N 个加油站，其中第 i 个加油站有汽油 gas[i] 升。</p><p>你有一辆油箱容量无限的的汽车，从第 i 个加油站开往第 i+1 个加油站需要消耗汽油 cost[i]<br>升。你从其中的一个加油站出发，开始时油箱为空。</p><p>如果你可以绕环路行驶一周，则返回出发时加油站的编号，否则返回 -1。</p><p><strong>说明:</strong> </p><p>如果题目有解，该答案即为唯一答案。 输入数组均为非空数组，且长度相同。 输入数组中的元素均为非负数。<br><strong>示例 1:</strong></p><p><strong>输入:</strong>  gas  = [1,2,3,4,5] cost = [3,4,5,1,2]</p><p><strong>输出: 3</strong></p><p><strong>解释:</strong> 从 3 号加油站(索引为 3 处)出发，可获得 4 升汽油。此时油箱有 = 0 + 4 = 4 升汽油 开往 4 号加油站，此时油箱有 4 - 1 + 5 = 8 升汽油 开往 0 号加油站，此时油箱有 8 - 2 + 1 = 7 升汽油 开往 1<br>号加油站，此时油箱有 7 - 3 + 2 = 6 升汽油 开往 2 号加油站，此时油箱有 6 - 4 + 3 = 5 升汽油 开往 3<br>号加油站，你需要消耗 5 升汽油，正好足够你返回到 3 号加油站。 因此，3 可为起始索引。<br><strong>示例 2:</strong></p><p><strong>输入:</strong>  gas  = [2,3,4] cost = [3,4,3]</p><p><strong>输出:</strong> -1</p><p><strong>解释:</strong> 你不能从 0 号或 1 号加油站出发，因为没有足够的汽油可以让你行驶到下一个加油站。 我们从 2 号加油站出发，可以获得 4 升汽油。 此时油箱有 = 0 + 4 = 4 升汽油 开往 0 号加油站，此时油箱有 4 - 3 + 2 = 3 升汽油 开往 1<br>号加油站，此时油箱有 3 - 3 + 3 = 3 升汽油 你无法返回 2 号加油站，因为返程需要消耗 4 升汽油，但是你的油箱只有 3<br>升汽油。 因此，无论怎样，你都不可能绕环路行驶一周。</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>oil[i]为到达i油站时剩余的油量<br>len为一共有多少个油站<br>sum为从头到尾所剩余的油量<br>可以看出来<br>假设该题目有解，则会<strong>存在sum&gt;0，并且从oil[res]+oil[len-1]&gt;0;</strong><br>如果没解则会有 <strong>sum&lt;0</strong>。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int canCompleteCircuit(int[] gas, int[] cost) &#123;</span><br><span class="line">        int len = gas.length;</span><br><span class="line">        if (len == 1) &#123;</span><br><span class="line">            return gas[0] - cost[0] &gt;= 0 ? 0: -1;</span><br><span class="line">        &#125;</span><br><span class="line">        //保存每个油站所能剩余的油量</span><br><span class="line">        int[] oil = new int[len];</span><br><span class="line">        for (int i = 0; i &lt; len; i++) &#123;</span><br><span class="line">            oil[i] = gas[i] - cost[i];</span><br><span class="line">        &#125;</span><br><span class="line">        int sum = 0;//从头到尾的油量，如果最后小于0则说明饶不了一圈</span><br><span class="line">        int res = 0;//开始出发的油站</span><br><span class="line">        int nowOil = 0;//开始出发的油站到当前剩下的油</span><br><span class="line">        for (int i = 0; i &lt; len; i++) &#123;</span><br><span class="line">            sum += oil[i];</span><br><span class="line">            nowOil += oil[i];</span><br><span class="line">            if(nowOil &lt; 0) &#123;</span><br><span class="line">                nowOil = 0;</span><br><span class="line">                res = i+1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(sum &lt; 0) &#123;</span><br><span class="line">            return  -1;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 1 ms, 在Gas Station的Java提交中击败了93.51% 的用户<br>内存消耗 : 36.8 MB, 在Gas Station的Java提交中击败了91.99% 的用户</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;在一条环路上有 N 个加油站，其中第 i 个加油站有汽油 gas[i] 升。&lt;/p&gt;
+&lt;p&gt;你有一辆油箱容量无限的
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据库学习</title>
+    <link href="http://yoursite.com/2019/05/13/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <id>http://yoursite.com/2019/05/13/数据库/</id>
+    <published>2019-05-13T00:24:29.971Z</published>
+    <updated>2019-05-13T08:22:25.048Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="索引模块"><a href="#索引模块" class="headerlink" title="索引模块"></a>索引模块</h2><h3 id="为什么要使用索引"><a href="#为什么要使用索引" class="headerlink" title="为什么要使用索引"></a>为什么要使用索引</h3><p>避免全表扫描去查找数据，提升检索效率</p><h3 id="什么样的信息能成为索引"><a href="#什么样的信息能成为索引" class="headerlink" title="什么样的信息能成为索引"></a>什么样的信息能成为索引</h3><p>主键、唯一键等能区分数据的字段</p><h3 id="索引的数据结构"><a href="#索引的数据结构" class="headerlink" title="索引的数据结构"></a>索引的数据结构</h3><p>主流是B+树，还有哈希结构以及BitMap，其中MySQL不支持BitMap索引，基于InnoDB以及MyISAM的MySQL不显式支持哈希索引</p><h3 id="密集索引和稀疏索引的区别"><a href="#密集索引和稀疏索引的区别" class="headerlink" title="密集索引和稀疏索引的区别"></a>密集索引和稀疏索引的区别</h3><p>密集索引文件中的每个搜索码都对应一个索引值</p><p>稀疏索引文件只为索引码的某些值建立索引项</p><h3 id="如何定位并优化慢查询sql"><a href="#如何定位并优化慢查询sql" class="headerlink" title="如何定位并优化慢查询sql"></a>如何定位并优化慢查询sql</h3><p>根据慢日志定位慢查询sql语句</p><p>使用explain 等工具分析sql</p><p>修改sql或者尽量让sql走索引；<strong>force index()</strong> <strong>强制走某个索引</strong></p><h3 id="索引是建立得越多越好吗"><a href="#索引是建立得越多越好吗" class="headerlink" title="索引是建立得越多越好吗"></a>索引是建立得越多越好吗</h3><p>数据量小的表不需要建立索引，建立会增加额外的索引开销</p><p>数据变更需要维护索引，隐藏更多的索引意味着更多的维护成本</p><p>更多的索引意味着也需要更多的空间</p><h2 id="数据库锁"><a href="#数据库锁" class="headerlink" title="数据库锁"></a>数据库锁</h2><h3 id="MyISAM和InnoDB关于锁方面的区别是什么"><a href="#MyISAM和InnoDB关于锁方面的区别是什么" class="headerlink" title="MyISAM和InnoDB关于锁方面的区别是什么"></a>MyISAM和InnoDB关于锁方面的区别是什么</h3><p>MyISAM默认使用的是表级锁，不支持行级锁</p><p>InnoDB默认用的是行级锁，也支持表级锁</p><h4 id="MyISAM适合的场景"><a href="#MyISAM适合的场景" class="headerlink" title="MyISAM适合的场景"></a>MyISAM适合的场景</h4><p>1.频繁执行全表count语句</p><p>2.对数据进行增删改的频率不高，查询非常频繁</p><p>3.没有事务</p><h4 id="InnoDB适合的场景"><a href="#InnoDB适合的场景" class="headerlink" title="InnoDB适合的场景"></a>InnoDB适合的场景</h4><p>1.数据增删改查都相当频繁</p><p>2.可靠性要求比较高，要求支持事务</p><h3 id="数据库锁的分类"><a href="#数据库锁的分类" class="headerlink" title="数据库锁的分类"></a>数据库锁的分类</h3><ul><li>按锁的粒度划分，可分为表级锁、行级锁、页级锁</li><li>按锁级别划分，可分为共享锁、排它锁</li><li>按加锁方式划分，可分为自动锁，显式锁</li><li>按操作划分，可分为DML锁、DDL锁</li><li>按使用方式划分，可分为乐观锁、悲观锁</li></ul><h3 id="事务隔离级别以及各级别下的并发访问问题"><a href="#事务隔离级别以及各级别下的并发访问问题" class="headerlink" title="事务隔离级别以及各级别下的并发访问问题"></a>事务隔离级别以及各级别下的并发访问问题</h3><ul><li>更新丢失—-mysql所有事务隔离级别在数据库层面上均可避免</li><li>脏读——read-committed事务隔离级别以上可避免</li><li>不可重复读——repeatable-read事务隔离级别以上可避免</li><li>幻读—–serializable事务隔离级别可避免</li></ul><h2 id="MySQL语法"><a href="#MySQL语法" class="headerlink" title="MySQL语法"></a>MySQL语法</h2><h3 id="GROUP-BY"><a href="#GROUP-BY" class="headerlink" title="GROUP BY"></a>GROUP BY</h3><ul><li><p>[ ] 满足select选出的列<strong>要么是group by的列要么是sum，max等列函数中的列(针对一张表)</strong>。</p></li><li><p>[ ] 列函数对于group by子句定义的每个组各返回一个结果</p></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#查询所有同学的学号、选课数、总成绩</span><br><span class="line">select student_id, count(course_id), sum(score)</span><br><span class="line">from score</span><br><span class="line">group by student_id</span><br></pre></td></tr></table></figure><h3 id="HAVING"><a href="#HAVING" class="headerlink" title="HAVING"></a>HAVING</h3><ul><li style="list-style: none"><input type="checkbox"> 通常与GROUP BY子句一起使用</li><li style="list-style: none"><input type="checkbox"> WHERE过滤行，HAVING过滤组</li><li style="list-style: none"><input type="checkbox"> 出现在同一sql的顺序：WHERE &gt; GROUP UP &gt; HAVING</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#查询平均成绩大于60的同学的学号和平均成绩</span><br><span class="line">select student_id, avg(score)</span><br><span class="line">from score</span><br><span class="line">group by student_id,</span><br><span class="line">having avg(score)&gt;60</span><br><span class="line"></span><br><span class="line">#取出student_id为1的学生的成绩情况</span><br><span class="line">select * from score where student_id = 1;</span><br><span class="line">#如果省略group by子句，having子句行为跟where一样</span><br><span class="line">select * from score having student_id = 1;</span><br></pre></td></tr></table></figure><p>查询没有学全所有课的同学的学号、姓名</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">select stu.student_id, stu.name</span><br><span class="line">from score s, student stu</span><br><span class="line">where stu.student_id = s.student_id</span><br><span class="line">group by s.student_id</span><br><span class="line">having count(*) &lt;</span><br><span class="line">(</span><br><span class="line">select count(*) from course</span><br><span class="line">)</span><br></pre></td></tr></table></figure><p>查询表中name的数据，并且desc是降序排序，asc是升序。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select name from student order by name desc;</span><br></pre></td></tr></table></figure><p>查询表中id从1到2000000的数据</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from table_name where id between 1 and 2000000;</span><br></pre></td></tr></table></figure><p>更新表中的数据</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update table_name set account = newAccount  where id between 1 and 2000000;</span><br></pre></td></tr></table></figure><p>给表加锁</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lock tables table_name read | write;</span><br></pre></td></tr></table></figure><p>释放锁</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unlock tables;</span><br></pre></td></tr></table></figure><p>查询事务隔离级别</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select @@tx_isolation;</span><br></pre></td></tr></table></figure><p>修改事务隔离级别为read-committed，可以避免脏读，不可以避免不可重复读</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED;</span><br></pre></td></tr></table></figure><p>开始事务</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">START TRANSACTION;</span><br></pre></td></tr></table></figure><p>回滚事务</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ROLLBACK;</span><br></pre></td></tr></table></figure><p>提交事务</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">COMMIT;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;索引模块&quot;&gt;&lt;a href=&quot;#索引模块&quot; class=&quot;headerlink&quot; title=&quot;索引模块&quot;&gt;&lt;/a&gt;索引模块&lt;/h2&gt;&lt;h3 id=&quot;为什么要使用索引&quot;&gt;&lt;a href=&quot;#为什么要使用索引&quot; class=&quot;headerlink&quot; title=&quot;为
+      
+    
+    </summary>
+    
+      <category term="数据库" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="mysql" scheme="http://yoursite.com/tags/mysql/"/>
+    
+  </entry>
   
   <entry>
     <title>ArrayList源码阅读</title>
@@ -393,179 +555,6 @@
         &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;根据一棵树的中序遍历与后序遍历构造二叉树。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;注意:&lt;/strong&gt; 你可以假设树中
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode105. 从前序与中序遍历序列构造二叉树</title>
-    <link href="http://yoursite.com/2019/05/07/leetcode105.%20%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
-    <id>http://yoursite.com/2019/05/07/leetcode105. 从前序与中序遍历序列构造二叉树/</id>
-    <published>2019-05-07T03:15:07.863Z</published>
-    <updated>2019-05-07T03:15:31.091Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>根据一棵树的前序遍历与中序遍历构造二叉树。</p><p><strong>注意:</strong> 你可以假设树中没有重复的元素。</p><p>例如，给出</p><p>前序遍历 preorder = [3,9,20,15,7] 中序遍历 inorder = [9,3,15,20,7]<br>返回如下的二叉树：<br><img src="https://img-blog.csdnimg.cn/2019050710210233.png" alt="在这里插入图片描述"></p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>根据前序遍历和中序遍历的性质，<strong>前序遍历的第一个元素即根</strong>，中序遍历中根的<strong>左边的它的左子树的中序遍历，右边为右子树的中序遍历</strong>，前序遍历中根的后边是它的<strong>左子树+右子树的前序遍历</strong>。<br>所以这就可以使用递归来解决。<br>⒈把前序遍历preorder[preStart, preEnd]第一个元素preorder[preStart]作为根root；<br>⒉在中序遍历inorder[inStart, inEnd]中找到根的下标i；<br>⒊root.left的前序遍历即为preorder[preStart+1, preStart+1+i-inStart),中序遍历为inorder[inStart, i)；<br>（preStart+1即去掉根元素，+i-inStart是由中序遍历计算出左子树的长度。）<br>⒋root.right也同理，注意下标越界的处理即可ac。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public TreeNode buildTree(int[] preorder, int[] inorder) &#123;</span><br><span class="line">        return helper(preorder, 0, preorder.length, inorder, 0, inorder.length);</span><br><span class="line">    &#125;</span><br><span class="line">    public TreeNode helper(int[] preprder, int preStart, int preEnd, int[] inorder, int inStart, int inEnd)&#123;</span><br><span class="line">        if(preStart &gt;= preprder.length)&#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        int rootVal = preprder[preStart];</span><br><span class="line">        TreeNode root = null;</span><br><span class="line">        for(int i = inStart; i &lt; inEnd; i ++) &#123;</span><br><span class="line">            if(inorder[i] == rootVal) &#123;</span><br><span class="line">                root = new TreeNode(rootVal);</span><br><span class="line">                root.left = helper(preprder, preStart+1, i+preStart+1-inStart, inorder, inStart, i);</span><br><span class="line">                root.right = helper(preprder, i+preStart+1-inStart, preEnd, inorder, i+1, inEnd);</span><br><span class="line">                return root;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 33 ms, 在Construct Binary Tree from Preorder and Inorder Traversal的Java提交中击败了42.18% 的用户<br>内存消耗 : 38.7 MB, 在Construct Binary Tree from Preorder and Inorder Traversal的Java提交中击败了56.29% 的用户</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;根据一棵树的前序遍历与中序遍历构造二叉树。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;注意:&lt;/strong&gt; 你可以假设树中
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode96. 不同的二叉搜索树</title>
-    <link href="http://yoursite.com/2019/05/06/leetcode96-%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/"/>
-    <id>http://yoursite.com/2019/05/06/leetcode96-不同的二叉搜索树/</id>
-    <published>2019-05-06T08:12:28.000Z</published>
-    <updated>2019-05-06T08:12:53.475Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>给定一个整数 n，求以 1 … n 为节点组成的二叉搜索树有多少种？</p><p><strong>示例:</strong></p><p><strong>输入:</strong> 3<br><strong>输出:</strong> 5<br><strong>解释:</strong> 给定 n = 3, 一共有 5 种不同结构的二叉搜索树: <img src="https://img-blog.csdnimg.cn/20190505203055142.png" alt="在这里插入图片描述"></p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>因为1-n中不包含<strong>重复</strong>的结点，所以n个结点所能组成的二叉搜索树的固定个数的，例如（1,2）（2,3）所能组成的二叉搜索树都是2棵。所以这道题就可以直接用动态规划来进行求解了。<br>选定一个结点j，一棵n个结点的二叉搜索树就有<strong>j从0到n,  res += numTrees(j) * numTrees(n-j-1)</strong> 棵子树。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public int numTrees(int n) &#123;</span><br><span class="line">        int[] res = new int[n+1];</span><br><span class="line">        res[0] = 1; res[1] = 1;</span><br><span class="line">        for(int i = 2; i &lt;= n; i ++)&#123;</span><br><span class="line">            for(int j = 0; j &lt; i; j ++)&#123;</span><br><span class="line">                res[i] += res[j] * res[i-j-1];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res[n];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 1 ms, 在Unique Binary Search Trees的Java提交中击败了20.73% 的用户<br>内存消耗 : 33.2 MB, 在Unique Binary Search Trees的Java提交中击败了9.48% 的用户</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;给定一个整数 n，求以 1 … n 为节点组成的二叉搜索树有多少种？&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;示例:&lt;/st
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode95. 不同的二叉搜索树 II</title>
-    <link href="http://yoursite.com/2019/05/05/leetcode95-%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91-II/"/>
-    <id>http://yoursite.com/2019/05/05/leetcode95-不同的二叉搜索树-II/</id>
-    <published>2019-05-05T09:45:23.000Z</published>
-    <updated>2019-05-05T09:45:50.613Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>给定一个整数 n，生成所有由 1 … n 为节点所组成的二叉搜索树。</p><p><strong>示例:</strong></p><p><strong>输入:</strong> 3<br> <strong>输出:</strong> [   [1,null,3,2],   [3,2,null,1],   [3,1,null,null,2],<br>[2,1,3],   [1,null,2,null,3] ]<br><strong>解释:</strong> 以上的输出对应以下 5 种不同结构的二叉搜索树：<br><img src="https://img-blog.csdnimg.cn/20190505172755456.png" alt="在这里插入图片描述"></p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>使用分治+递归的方法建树，<strong>[1,n]中取k(1&lt;=k&lt;=n)为根节点，则他的左子树必定为[1,k-1]，右子树为[k+1,n]</strong>，所以递归调用建树的方法，最后把他所有的左右子树整合在一起。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode left;</span><br><span class="line"> *     TreeNode right;</span><br><span class="line"> *     TreeNode(int x) &#123; val = x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;TreeNode&gt; generateTrees(int n) &#123;</span><br><span class="line">        if(n == 0) return new ArrayList&lt;&gt;();</span><br><span class="line">        return generateTreeHelper(1,n);</span><br><span class="line">    &#125;</span><br><span class="line">    public List&lt;TreeNode&gt; generateTreeHelper(int i, int j)&#123;</span><br><span class="line">        List&lt;TreeNode&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">        //i&gt;j返回一个空的子树</span><br><span class="line">        if(i &gt; j) &#123;</span><br><span class="line">            res.add(null);</span><br><span class="line">            return res;</span><br><span class="line">        &#125;</span><br><span class="line">        //i==j返回一个结点的子树</span><br><span class="line">        if(i == j)&#123;</span><br><span class="line">            res.add(new TreeNode(i));</span><br><span class="line">            return res;</span><br><span class="line">        &#125;</span><br><span class="line">        //分治+递归建树</span><br><span class="line">        for(int k = i; k &lt;= j; k++)&#123;</span><br><span class="line">            List&lt;TreeNode&gt; left = generateTreeHelper(i,k-1);</span><br><span class="line">            List&lt;TreeNode&gt; right = generateTreeHelper(k+1,j);</span><br><span class="line">            for(TreeNode tmpR: right)&#123;</span><br><span class="line">                for(TreeNode tmpL: left)&#123;</span><br><span class="line">                    TreeNode tn = new TreeNode(k);</span><br><span class="line">                    tn.left = tmpL;</span><br><span class="line">                    tn.right = tmpR;</span><br><span class="line">                    res.add(tn);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 5 ms, 在Unique Binary Search Trees II的Java提交中击败了66.57% 的用户<br>内存消耗 : 38.8 MB, 在Unique Binary Search Trees II的Java提交中击败了68.05% 的用户</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;给定一个整数 n，生成所有由 1 … n 为节点所组成的二叉搜索树。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;示例:&lt;/st
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode93. 复原IP地址</title>
-    <link href="http://yoursite.com/2019/05/05/leetcode93-%E5%A4%8D%E5%8E%9FIP%E5%9C%B0%E5%9D%80/"/>
-    <id>http://yoursite.com/2019/05/05/leetcode93-复原IP地址/</id>
-    <published>2019-05-05T09:35:00.000Z</published>
-    <updated>2019-05-05T09:45:10.830Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>给定一个只包含数字的字符串，复原它并返回所有可能的 IP 地址格式。</p><p><strong>示例:</strong></p><p><strong>输入:</strong> “25525511135”<br><strong>输出:</strong> [“255.255.11.135”, “255.255.111.35”]</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>记录每次放入的ip节，对字符串其进行回溯，即每次放入前1-3个数字，一直深度即可。<br>需要注意的是：<br>1.如果第1个数字是0的话可以直接剪枝（必须，不然会解答错误，因为ip节可能出现00这种情况）。<br>2.如果s的长度大于还未放入的ip节数*3可以剪枝。<br>3.放入4个之后即count==0，如果s不为空，则不用继续深度搜索。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">//93. 复原IP地址</span><br><span class="line">    public List&lt;String&gt; restoreIpAddresses(String s) &#123;</span><br><span class="line">        ArrayList&lt;String&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">        dfs(res, 4, s, new StringBuilder(16));</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    public void dfs(List&lt;String&gt; list, int count, String s, StringBuilder ip)&#123;</span><br><span class="line">//        大于最大的长度</span><br><span class="line">        if(s.length() &gt; 3 * count) return;</span><br><span class="line">        //ip中已经放入4个时</span><br><span class="line">        if(count == 0)&#123;</span><br><span class="line">            if(s.isEmpty()) &#123;</span><br><span class="line">                //去掉最后多的“”&quot;.&quot;</span><br><span class="line">                list.add(ip.substring(0,ip.length()-1));</span><br><span class="line">            &#125;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i = 1; i &lt;= 3 &amp;&amp; i &lt;= s.length(); i ++)&#123;</span><br><span class="line">            String tmp  = s.substring(0,i);</span><br><span class="line">            if(Integer.parseInt(tmp) &lt;= 255)&#123;</span><br><span class="line">                int len = ip.length();</span><br><span class="line">                ip.append(tmp);</span><br><span class="line">                ip.append(&quot;.&quot;);</span><br><span class="line">                dfs(list, count-1, s.substring(i), ip);</span><br><span class="line">                ip.delete(len, ip.length());</span><br><span class="line">                if(tmp.equals(&quot;0&quot;))&#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else &#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 5 ms, 在Restore IP Addresses的Java提交中击败了73.10% 的用户<br>内存消耗 : 35.2 MB, 在Restore IP Addresses的Java提交中击败了77.65% 的用户</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;给定一个只包含数字的字符串，复原它并返回所有可能的 IP 地址格式。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;示例:&lt;/st
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title> leetcode反转链表2</title>
-    <link href="http://yoursite.com/2019/05/05/leetcode%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A82/"/>
-    <id>http://yoursite.com/2019/05/05/leetcode反转链表2/</id>
-    <published>2019-05-05T09:34:54.000Z</published>
-    <updated>2019-05-05T09:44:58.776Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>反转从位置 m 到 n 的链表。请使用一趟扫描完成反转。</p><p><strong>说明:</strong> 1 ≤ m ≤ n ≤ 链表长度。</p><p><strong>示例:</strong></p><p><strong>输入:</strong> 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL, m = 2, n = 4<br><strong>输出:</strong> 1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;NULL</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>把前面的结点直接接到新链表后面，最后一个结点为<strong>index</strong>，需要反转的结点依次<strong>插入到index后面</strong>，即 <strong>p.next = index.next;           index.next = p;</strong>最后把剩下的结点放到第一个插入index后面的结点即可。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public ListNode reverseBetween(ListNode head, int m, int n) &#123;</span><br><span class="line">        ListNode resList = new ListNode(0);</span><br><span class="line">        ListNode p = head;</span><br><span class="line">        ListNode index = resList;</span><br><span class="line">        //不用反转的结点</span><br><span class="line">        for(int i = 1; i &lt; m; i ++) &#123;</span><br><span class="line">            index.next = p;</span><br><span class="line">            p = p.next;</span><br><span class="line">            index = index.next;</span><br><span class="line">        &#125;</span><br><span class="line">        //需要反转的第一个结点</span><br><span class="line">        ListNode next = index.next;</span><br><span class="line">        next = p;</span><br><span class="line">        p = p.next;</span><br><span class="line">        index.next = next;</span><br><span class="line">        if(p == null) return resList.next;</span><br><span class="line">        ListNode q = p.next;</span><br><span class="line">        //其他结点放在第一个结点之后</span><br><span class="line">        for(int i = m; i &lt; n; i ++) &#123;</span><br><span class="line">            p.next = index.next;</span><br><span class="line">            index.next = p;</span><br><span class="line">            p = q;</span><br><span class="line">            if(q != null) q = q.next;</span><br><span class="line">        &#125;</span><br><span class="line">        //把剩下的结点接上去</span><br><span class="line">        next.next = p;</span><br><span class="line">        return resList.next;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 1 ms, 在Reverse Linked List II的Java提交中击败了94.17% 的用户<br>内存消耗 : 33.8 MB, 在Reverse Linked List II的Java提交中击败了92.92% 的用户</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;反转从位置 m 到 n 的链表。请使用一趟扫描完成反转。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;说明:&lt;/strong&gt; 
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode90. 子集 II</title>
-    <link href="http://yoursite.com/2019/05/04/leetcode90-%E5%AD%90%E9%9B%86-II/"/>
-    <id>http://yoursite.com/2019/05/04/leetcode90-子集-II/</id>
-    <published>2019-05-04T13:33:52.000Z</published>
-    <updated>2019-05-04T13:34:04.024Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个可能包含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。</p><p><strong>说明：</strong> 解集不能包含重复的子集。</p><p><strong>示例:</strong></p><p><strong>输入:</strong> [1,2,2]<br><strong>输出:</strong><br>[<br>  [2],<br>  [1],<br>  [1,2,2],<br>  [2,2],<br>  [1,2],<br>  []<br>]</p><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>先排列数组，再遍历数组，每遍历到一个元素，就把链表的元素取出来复制，都加上这个元素再放回结果链表，重复的不放入结果链表即可。可以直接用链表的contains方法，也可以使用下标记录。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><pre><code>class Solution {    public List&lt;List&lt;Integer&gt;&gt; subsetsWithDup(int[] nums) {        List&lt;List&lt;Integer&gt;&gt; res = new ArrayList&lt;List&lt;Integer&gt;&gt;();        Arrays.sort(nums);        List&lt;Integer&gt; list = new ArrayList&lt;&gt;();        res.add(list);        int l, r, len = 0;        for(int i = 0; i &lt; nums.length; i ++) {            r = res.size();            //减去上一次新增的链表数量，即上一次增加的链表才需要取出来            if(i != 0 &amp;&amp; nums[i] == nums[i-1]) l = r-len;            //不是重复的则res的所有都需要拿出来            else l = 0;            //新增的链表数量            len = r - l;            for(int j = l; j &lt; r; j ++) {                list = new ArrayList&lt;&gt;(res.get(j));                list.add(nums[i]);                res.add(list);            }        }        return res;        }}</code></pre><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 3 ms, 在Subsets II的Java提交中击败了94.02% 的用户<br>内存消耗 : 38 MB, 在Subsets II的Java提交中击败了60.93% 的用户</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;p&gt;给定一个可能包含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;说明：&lt;/strong&gt; 解
       
     
     </summary>
