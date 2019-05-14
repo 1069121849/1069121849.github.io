@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-13T16:00:28.605Z</updated>
+  <updated>2019-05-14T07:25:28.694Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JVM学习笔记</title>
+    <link href="http://yoursite.com/2019/05/14/JVM%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://yoursite.com/2019/05/14/JVM学习/</id>
+    <published>2019-05-14T07:25:39.746Z</published>
+    <updated>2019-05-14T07:25:28.694Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="JVM如何加载-class文件"><a href="#JVM如何加载-class文件" class="headerlink" title="JVM如何加载.class文件"></a>JVM如何加载.class文件</h3><p><strong>JVM虚拟机</strong></p><p><img src="C:\Users\xin\AppData\Roaming\Typora\typora-user-images\1557804421382.png" alt="1557804421382"></p><p>Class Loader：以及特定格式，加载class文件到内存</p><p>Execution Engine：对命令进行解析</p><p>Native Interface：融合不同开发语言的原生库为java所用</p><p>Runtime Data Area：JVM内存空间结构模型</p><h3 id="类从编译到执行的过程"><a href="#类从编译到执行的过程" class="headerlink" title="类从编译到执行的过程"></a>类从编译到执行的过程</h3><p>编译器将java源文件编译成class字节码文件</p><p>ClassLoader将字节码转换为JVM中的Class对象</p><p>JVM利用Class对象实例化为实例对象</p><h3 id="ClassLoader"><a href="#ClassLoader" class="headerlink" title="ClassLoader"></a>ClassLoader</h3><p>ClassLoader在Java中有着非常重要的作用，它主要工作在Class装载的加载阶段，其主要作用是从系统外部获取Class二进制数据流。它是Java的核心组件，所有的Class都是由ClassLoader进行加载的，ClassLoader负责通过将Class文件里的二进制数据流装载进系统，然后交给Java虚拟机进行链接、初始化等操作。</p><h3 id="ClassLoader的种类"><a href="#ClassLoader的种类" class="headerlink" title="ClassLoader的种类"></a>ClassLoader的种类</h3><ul><li><p>[ ] BootStrapClassLoader：C++编写，加载核心库java.*</p></li><li><p>[ ] ExtClassLoader：Java编写，加载扩展库javax.*</p></li><li><p>[ ] AppClassLoader：Java编写，加载程序所在目录</p></li><li><p>[ ] 自定义ClassLoader：Java编写，定制化加载</p></li></ul><h3 id="类的加载方式"><a href="#类的加载方式" class="headerlink" title="类的加载方式"></a>类的加载方式</h3><p>隐式加载：new</p><p>显式加载：loadClass，forName等</p><h3 id="类的装载过程"><a href="#类的装载过程" class="headerlink" title="类的装载过程"></a>类的装载过程</h3><ol><li>加载： 通过ClassLoader加载class文件字节码，生成Class对象</li><li>链接：<ul><li>校验：检查加载的class的正确性和安全性</li><li>准备：为类变量分配存储空间并设置类变量初始值</li><li>解析：JVM将常量池内的符号引用转换为直接引用</li></ul></li><li>初始化：执行类变量赋值和静态代码块</li></ol><h3 id="loadClass和forName的区别"><a href="#loadClass和forName的区别" class="headerlink" title="loadClass和forName的区别"></a>loadClass和forName的区别</h3><p>Class.forName得到的class是已经初始化完成的</p><p>ClassLoader.loadClass得到的clas是还没有链接的</p><h3 id="JVM内存模型-JDK8"><a href="#JVM内存模型-JDK8" class="headerlink" title="JVM内存模型-JDK8"></a>JVM内存模型-JDK8</h3><p><img src="C:\Users\xin\AppData\Roaming\Typora\typora-user-images\1557805138541.png" alt="1557805138541"></p><ul><li>线程私有：程序计数器、虚拟机栈、本地方法栈</li><li>线程共享：MetaSpace、Java堆</li></ul><h4 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h4><ul><li>当前线程所执行的字节码行号指示器（逻辑）</li><li>改变计数器的值来选取下一条需要执行的字节码指令</li><li>和线程是一对一的关系，即“线程私有”</li><li>对Java方法计数，如果是Native方法则计数器值为Undefined</li><li>不会发生内存泄漏</li></ul><h4 id="Java虚拟机栈（Stack）"><a href="#Java虚拟机栈（Stack）" class="headerlink" title="Java虚拟机栈（Stack）"></a>Java虚拟机栈（Stack）</h4><p><img src="C:\Users\xin\AppData\Roaming\Typora\typora-user-images\1557813527355.png" alt="1557813527355"></p><ul><li>Java方法执行的内存模型</li><li>包含多个栈帧</li></ul><h5 id="局部变量表和操作数栈"><a href="#局部变量表和操作数栈" class="headerlink" title="局部变量表和操作数栈"></a>局部变量表和操作数栈</h5><ul><li>局部变量表：包含方法执行过程中的所有变量</li><li>操作数栈：入栈、出栈、复制、交换、产生消费变量</li></ul><h5 id="递归为什么会引发java-lang-StackOverflowError异常"><a href="#递归为什么会引发java-lang-StackOverflowError异常" class="headerlink" title="递归为什么会引发java.lang.StackOverflowError异常"></a>递归为什么会引发java.lang.StackOverflowError异常</h5><p>递归过深，栈帧数超过虚拟栈深度</p><h4 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h4><p>与虚拟机栈相似，主要作用于标注了native的方法</p><h4 id="元空间（Metaspace）："><a href="#元空间（Metaspace）：" class="headerlink" title="元空间（Metaspace）："></a>元空间（Metaspace）：</h4><p>存储已被虚拟机加载的类信息。随着JDK8的到来，JVM不再有方法区（PermGen），原方法区存储的信息被分成两部分：</p><p>1、虚拟机加载的类信息，被移动到元空间。</p><p>2、运行时常量池，被移动到了堆中<strong>（静态成员变量）</strong>。</p><h5 id="MetaSpace（元空间）相比PermGen（永久代）的优势"><a href="#MetaSpace（元空间）相比PermGen（永久代）的优势" class="headerlink" title="MetaSpace（元空间）相比PermGen（永久代）的优势"></a>MetaSpace（元空间）相比PermGen（永久代）的优势</h5><p>元数据区取代了1.7版本及以前的永久代。元数据区和永久代本质上都是方法区的实现。方法区存放虚拟机加载的类信息，静态变量，常量等数据。</p><ul><li>字符串常量池存在永久代中，容易出现性能问题和内存溢出</li><li>类和方法的信息大小难以确定，给永久代的大小指定带来困难</li><li>永久代会给GC带来不必要的复杂性</li><li>方便HotSpot与其他JVM如 Jrockit的集成</li></ul><h4 id="Java堆（Heap）"><a href="#Java堆（Heap）" class="headerlink" title="Java堆（Heap）"></a>Java堆（Heap）</h4><ul><li>对象实例的分配区域</li><li>GC管理的主要区域</li></ul><h4 id="直接内存（没有在上图体现出来）"><a href="#直接内存（没有在上图体现出来）" class="headerlink" title="直接内存（没有在上图体现出来）"></a>直接内存（没有在上图体现出来）</h4><p>jdk1.4引入了NIO，它可以使用Native函数库直接分配堆外内存。</p><h3 id="JVM三大性能调优参数-Xms-Xmx-Xss的含义"><a href="#JVM三大性能调优参数-Xms-Xmx-Xss的含义" class="headerlink" title="JVM三大性能调优参数 -Xms -Xmx -Xss的含义"></a>JVM三大性能调优参数 -Xms -Xmx -Xss的含义</h3><ul><li>-Xss：规定了每个线程虚拟机栈（堆栈）的大小</li><li>-Xms：堆的初始值</li><li>-Xmx：堆能达到的最大值</li></ul><p>一般Xms和Xmx设置为一样的值，因为扩容时会发生内存抖动。</p><h3 id="Java内存模型中堆和栈的区别——内存分配策略"><a href="#Java内存模型中堆和栈的区别——内存分配策略" class="headerlink" title="Java内存模型中堆和栈的区别——内存分配策略"></a>Java内存模型中堆和栈的区别——内存分配策略</h3><ul><li>静态存储：编译时确定每个数据目标在运行时的存储空间需求</li><li>栈式存储：数据区需求在编译时未知，运行时模块入口前确定</li><li>堆式存储：编译时或运行时模块入口都无法确定，动态分配</li></ul><h3 id="Java内存模型中堆和栈的区别"><a href="#Java内存模型中堆和栈的区别" class="headerlink" title="Java内存模型中堆和栈的区别"></a>Java内存模型中堆和栈的区别</h3><ul><li>管理方式：栈自动释放，堆需要GC</li><li>空间大小：栈比对小</li><li>碎片相关：栈产生的碎片远小于堆</li><li>分配方式：栈支持静态和动态分配，而堆仅支持动态分配</li><li>效率：栈的效率比堆高</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;JVM如何加载-class文件&quot;&gt;&lt;a href=&quot;#JVM如何加载-class文件&quot; class=&quot;headerlink&quot; title=&quot;JVM如何加载.class文件&quot;&gt;&lt;/a&gt;JVM如何加载.class文件&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;JVM虚拟机&lt;/st
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode152. 乘积最大子序列</title>
@@ -526,35 +549,6 @@
         &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;给定一个单链表，其中的元素按升序排序，将其转换为高度平衡的二叉搜索树。&lt;/p&gt;
 &lt;p&gt;本题中，一个高度平衡二叉树是
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode106. 从中序与后序遍历序列构造二叉树</title>
-    <link href="http://yoursite.com/2019/05/07/leetcode106.%20%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
-    <id>http://yoursite.com/2019/05/07/leetcode106. 从中序与后序遍历序列构造二叉树/</id>
-    <published>2019-05-07T03:20:40.826Z</published>
-    <updated>2019-05-07T03:20:56.515Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>根据一棵树的中序遍历与后序遍历构造二叉树。</p><p><strong>注意:</strong> 你可以假设树中没有重复的元素。</p><p>例如，给出</p><p>中序遍历 inorder = [9,3,15,20,7] 后序遍历 postorder = [9,15,7,20,3] 返回如下的二叉树：<br><img src="https://img-blog.csdnimg.cn/20190507110245228.png" alt="在这里插入图片描述"></p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>跟使用前序遍历和中序遍历建树一样的思路，就是后序遍历的最后结点为根结点root而已。<br>这题我学习了leetcode上的一个小技巧，在遍历中序遍历的时候从尾遍历，提交结果就快了近10倍，可能是用例问题 <strong>？</strong></p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public TreeNode buildTree(int[] inorder, int[] postorder) &#123;</span><br><span class="line">        int len = inorder.length;</span><br><span class="line">        if(len == 0) return null;</span><br><span class="line">        return helper(inorder,0,len, postorder,0,len);</span><br><span class="line">    &#125;</span><br><span class="line">    public TreeNode helper(int[] inorder, int inStart, int inEnd, int[] postorder, int postStart, int postEnd) &#123;</span><br><span class="line">        if(postEnd == 0) return null;</span><br><span class="line">        TreeNode root = null;</span><br><span class="line">        int rootVal = postorder[postEnd-1];</span><br><span class="line">        for(int i = inEnd-1; i &gt;= inStart; i --)&#123;</span><br><span class="line">            if(inorder[i] == rootVal)&#123;</span><br><span class="line">                root = new TreeNode(rootVal);</span><br><span class="line">                root.left = helper(inorder, inStart, i, postorder, postStart, postStart+i-inStart);</span><br><span class="line">                root.right = helper(inorder, i+1, inEnd, postorder, postStart+i-inStart, postEnd-1);</span><br><span class="line">                return root;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 3 ms, 在Construct Binary Tree from Inorder and Postorder Traversal的Java提交中击败了97.97% 的用户<br>内存消耗 : 35.3 MB, 在Construct Binary Tree from Inorder and Postorder Traversal的Java提交中击败了99.05% 的用户</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;根据一棵树的中序遍历与后序遍历构造二叉树。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;注意:&lt;/strong&gt; 你可以假设树中
       
     
     </summary>
