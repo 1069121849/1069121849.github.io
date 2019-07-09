@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="mysql,">
+  <meta name="keywords" content="Java,">
 
 
 
@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="索引模块为什么要使用索引避免全表扫描去查找数据，提升检索效率 什么样的信息能成为索引主键、唯一键等能区分数据的字段 索引的数据结构主流是B+树，还有哈希结构以及BitMap，其中MySQL不支持BitMap索引，基于InnoDB以及MyISAM的MySQL不显式支持哈希索引 密集索引和稀疏索引的区别密集索引文件中的每个搜索码都对应一个索引值 稀疏索引文件只为索引码的某些值建立索引项 如何定位并优化">
-<meta name="keywords" content="mysql">
+<meta name="description" content="## Error和Exception的区别 从概念角度解析java的异常处理机制 Error：程序无法处理的系统错误，编译器不做坚持 Exception：程序可以处理的异常，捕获后可能恢复  Java的异常体系从责任角度看：  Error属于JVM需要负担的责任 RuntimeException是程序应该负担的责任 CheckedException可检测异常是Java编译器应该承担的责任  Ch">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据库学习">
-<meta property="og:url" content="http://yoursite.com/2019/05/13/数据库/index.html">
+<meta property="og:title" content="java异常">
+<meta property="og:url" content="http://yoursite.com/2019/07/06/Java异常/index.html">
 <meta property="og:site_name" content="白哥的博客">
-<meta property="og:description" content="索引模块为什么要使用索引避免全表扫描去查找数据，提升检索效率 什么样的信息能成为索引主键、唯一键等能区分数据的字段 索引的数据结构主流是B+树，还有哈希结构以及BitMap，其中MySQL不支持BitMap索引，基于InnoDB以及MyISAM的MySQL不显式支持哈希索引 密集索引和稀疏索引的区别密集索引文件中的每个搜索码都对应一个索引值 稀疏索引文件只为索引码的某些值建立索引项 如何定位并优化">
+<meta property="og:description" content="## Error和Exception的区别 从概念角度解析java的异常处理机制 Error：程序无法处理的系统错误，编译器不做坚持 Exception：程序可以处理的异常，捕获后可能恢复  Java的异常体系从责任角度看：  Error属于JVM需要负担的责任 RuntimeException是程序应该负担的责任 CheckedException可检测异常是Java编译器应该承担的责任  Ch">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-13T08:22:25.048Z">
+<meta property="og:updated_time" content="2019-07-06T02:21:16.453Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据库学习">
-<meta name="twitter:description" content="索引模块为什么要使用索引避免全表扫描去查找数据，提升检索效率 什么样的信息能成为索引主键、唯一键等能区分数据的字段 索引的数据结构主流是B+树，还有哈希结构以及BitMap，其中MySQL不支持BitMap索引，基于InnoDB以及MyISAM的MySQL不显式支持哈希索引 密集索引和稀疏索引的区别密集索引文件中的每个搜索码都对应一个索引值 稀疏索引文件只为索引码的某些值建立索引项 如何定位并优化">
+<meta name="twitter:title" content="java异常">
+<meta name="twitter:description" content="## Error和Exception的区别 从概念角度解析java的异常处理机制 Error：程序无法处理的系统错误，编译器不做坚持 Exception：程序可以处理的异常，捕获后可能恢复  Java的异常体系从责任角度看：  Error属于JVM需要负担的责任 RuntimeException是程序应该负担的责任 CheckedException可检测异常是Java编译器应该承担的责任  Ch">
 
 
 
@@ -129,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/13/数据库/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/06/Java异常/">
 
 
 
 
 
-  <title>数据库学习 | 白哥的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>java异常 | 白哥的博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -310,7 +310,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/13/数据库/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/06/Java异常/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="白哥">
@@ -327,7 +327,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">数据库学习</h1>
+          <h1 class="post-title" itemprop="name headline">java异常</h1>
         
 
         <div class="post-meta">
@@ -339,8 +339,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-13T08:24:29+08:00">
-                2019-05-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-06T10:20:08+08:00">
+                2019-07-06
               </time>
             
 
@@ -349,28 +349,6 @@
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -398,7 +376,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  939
+                  383
                 </span>
               
 
@@ -414,7 +392,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3 分钟
+                  1 分钟
                 </span>
               
             </div>
@@ -435,72 +413,49 @@
       
 
       
-        <h2 id="索引模块"><a href="#索引模块" class="headerlink" title="索引模块"></a>索引模块</h2><h3 id="为什么要使用索引"><a href="#为什么要使用索引" class="headerlink" title="为什么要使用索引"></a>为什么要使用索引</h3><p>避免全表扫描去查找数据，提升检索效率</p>
-<h3 id="什么样的信息能成为索引"><a href="#什么样的信息能成为索引" class="headerlink" title="什么样的信息能成为索引"></a>什么样的信息能成为索引</h3><p>主键、唯一键等能区分数据的字段</p>
-<h3 id="索引的数据结构"><a href="#索引的数据结构" class="headerlink" title="索引的数据结构"></a>索引的数据结构</h3><p>主流是B+树，还有哈希结构以及BitMap，其中MySQL不支持BitMap索引，基于InnoDB以及MyISAM的MySQL不显式支持哈希索引</p>
-<h3 id="密集索引和稀疏索引的区别"><a href="#密集索引和稀疏索引的区别" class="headerlink" title="密集索引和稀疏索引的区别"></a>密集索引和稀疏索引的区别</h3><p>密集索引文件中的每个搜索码都对应一个索引值</p>
-<p>稀疏索引文件只为索引码的某些值建立索引项</p>
-<h3 id="如何定位并优化慢查询sql"><a href="#如何定位并优化慢查询sql" class="headerlink" title="如何定位并优化慢查询sql"></a>如何定位并优化慢查询sql</h3><p>根据慢日志定位慢查询sql语句</p>
-<p>使用explain 等工具分析sql</p>
-<p>修改sql或者尽量让sql走索引；<strong>force index()</strong> <strong>强制走某个索引</strong></p>
-<h3 id="索引是建立得越多越好吗"><a href="#索引是建立得越多越好吗" class="headerlink" title="索引是建立得越多越好吗"></a>索引是建立得越多越好吗</h3><p>数据量小的表不需要建立索引，建立会增加额外的索引开销</p>
-<p>数据变更需要维护索引，隐藏更多的索引意味着更多的维护成本</p>
-<p>更多的索引意味着也需要更多的空间</p>
-<h2 id="数据库锁"><a href="#数据库锁" class="headerlink" title="数据库锁"></a>数据库锁</h2><h3 id="MyISAM和InnoDB关于锁方面的区别是什么"><a href="#MyISAM和InnoDB关于锁方面的区别是什么" class="headerlink" title="MyISAM和InnoDB关于锁方面的区别是什么"></a>MyISAM和InnoDB关于锁方面的区别是什么</h3><p>MyISAM默认使用的是表级锁，不支持行级锁</p>
-<p>InnoDB默认用的是行级锁，也支持表级锁</p>
-<h4 id="MyISAM适合的场景"><a href="#MyISAM适合的场景" class="headerlink" title="MyISAM适合的场景"></a>MyISAM适合的场景</h4><p>1.频繁执行全表count语句</p>
-<p>2.对数据进行增删改的频率不高，查询非常频繁</p>
-<p>3.没有事务</p>
-<h4 id="InnoDB适合的场景"><a href="#InnoDB适合的场景" class="headerlink" title="InnoDB适合的场景"></a>InnoDB适合的场景</h4><p>1.数据增删改查都相当频繁</p>
-<p>2.可靠性要求比较高，要求支持事务</p>
-<h3 id="数据库锁的分类"><a href="#数据库锁的分类" class="headerlink" title="数据库锁的分类"></a>数据库锁的分类</h3><ul>
-<li>按锁的粒度划分，可分为表级锁、行级锁、页级锁</li>
-<li>按锁级别划分，可分为共享锁、排它锁</li>
-<li>按加锁方式划分，可分为自动锁，显式锁</li>
-<li>按操作划分，可分为DML锁、DDL锁</li>
-<li>按使用方式划分，可分为乐观锁、悲观锁</li>
+        <p>﻿## Error和Exception的区别</p>
+<h3 id="从概念角度解析java的异常处理机制"><a href="#从概念角度解析java的异常处理机制" class="headerlink" title="从概念角度解析java的异常处理机制"></a>从概念角度解析java的异常处理机制</h3><ul>
+<li>Error：程序无法处理的系统错误，编译器不做坚持</li>
+<li>Exception：程序可以处理的异常，捕获后可能恢复</li>
 </ul>
-<h3 id="事务隔离级别以及各级别下的并发访问问题"><a href="#事务隔离级别以及各级别下的并发访问问题" class="headerlink" title="事务隔离级别以及各级别下的并发访问问题"></a>事务隔离级别以及各级别下的并发访问问题</h3><ul>
-<li>更新丢失—-mysql所有事务隔离级别在数据库层面上均可避免</li>
-<li>脏读——read-committed事务隔离级别以上可避免</li>
-<li>不可重复读——repeatable-read事务隔离级别以上可避免</li>
-<li>幻读—–serializable事务隔离级别可避免</li>
+<h3 id="Java的异常体系"><a href="#Java的异常体系" class="headerlink" title="Java的异常体系"></a>Java的异常体系</h3><p>从责任角度看：</p>
+<ol>
+<li>Error属于JVM需要负担的责任</li>
+<li>RuntimeException是程序应该负担的责任</li>
+<li>CheckedException可检测异常是Java编译器应该承担的责任</li>
+</ol>
+<p>Check Exception必须try catch或者抛出</p>
+<p>抛出错误之后就结束程序运行</p>
+<h2 id="常见Error以及Exception"><a href="#常见Error以及Exception" class="headerlink" title="常见Error以及Exception"></a>常见Error以及Exception</h2><h3 id="RuntimeException"><a href="#RuntimeException" class="headerlink" title="RuntimeException"></a>RuntimeException</h3><ol>
+<li>NullPointException - 空指针引用异常</li>
+<li>ClassCastException - 类型强制转换异常</li>
+<li>IllegalArgumentException - 传递非法参数异常</li>
+<li>IndexOutOfBoundsException - 下标越界异常</li>
+<li>NumberFormatException - 数字格式异常</li>
+</ol>
+<h3 id="非RuntimeException"><a href="#非RuntimeException" class="headerlink" title="非RuntimeException"></a>非RuntimeException</h3><ol>
+<li>ClassNotFoundException - 找不到指定clas的异常</li>
+<li>IOException - IO操作异常</li>
+</ol>
+<h3 id="Error"><a href="#Error" class="headerlink" title="Error"></a>Error</h3><ol>
+<li>NoClassDefFoundError - 找不到class定义的异常</li>
+<li>StackOverflowError - 深度递归导致栈被耗尽而抛出的异常</li>
+<li>OutOfMemoryError - 内存溢出异常</li>
+</ol>
+<p>NoClassDefFoundError的成因</p>
+<ol>
+<li>类依赖的class或者jar不存在</li>
+<li>类文件存在，但是存在不同的域中</li>
+<li>大小写问题，javac编译的时候是无视大小写的，很有可能编译出来的class文件就与想要的不一样</li>
+</ol>
+<h2 id="Java的异常处理机制"><a href="#Java的异常处理机制" class="headerlink" title="Java的异常处理机制"></a>Java的异常处理机制</h2><ul>
+<li>抛出异常：创建异常对象，交由运行时系统处理</li>
+<li>捕获异常：寻找合适的异常处理器处理异常，否则终止运行</li>
 </ul>
-<h2 id="MySQL语法"><a href="#MySQL语法" class="headerlink" title="MySQL语法"></a>MySQL语法</h2><h3 id="GROUP-BY"><a href="#GROUP-BY" class="headerlink" title="GROUP BY"></a>GROUP BY</h3><ul>
-<li><p>[ ] 满足select选出的列<strong>要么是group by的列要么是sum，max等列函数中的列(针对一张表)</strong>。</p>
-</li>
-<li><p>[ ] 列函数对于group by子句定义的每个组各返回一个结果</p>
-</li>
+<h3 id="Java异常处理消耗性能的地方"><a href="#Java异常处理消耗性能的地方" class="headerlink" title="Java异常处理消耗性能的地方"></a>Java异常处理消耗性能的地方</h3><ul>
+<li>try-catch块影响JVM的优化</li>
+<li>异常对象实例需要保存栈快照等信息，开销较大</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#查询所有同学的学号、选课数、总成绩</span><br><span class="line">select student_id, count(course_id), sum(score)</span><br><span class="line">from score</span><br><span class="line">group by student_id</span><br></pre></td></tr></table></figure>
-<h3 id="HAVING"><a href="#HAVING" class="headerlink" title="HAVING"></a>HAVING</h3><ul>
-<li style="list-style: none"><input type="checkbox"> 通常与GROUP BY子句一起使用</li>
-<li style="list-style: none"><input type="checkbox"> WHERE过滤行，HAVING过滤组</li>
-<li style="list-style: none"><input type="checkbox"> 出现在同一sql的顺序：WHERE &gt; GROUP UP &gt; HAVING</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#查询平均成绩大于60的同学的学号和平均成绩</span><br><span class="line">select student_id, avg(score)</span><br><span class="line">from score</span><br><span class="line">group by student_id,</span><br><span class="line">having avg(score)&gt;60</span><br><span class="line"></span><br><span class="line">#取出student_id为1的学生的成绩情况</span><br><span class="line">select * from score where student_id = 1;</span><br><span class="line">#如果省略group by子句，having子句行为跟where一样</span><br><span class="line">select * from score having student_id = 1;</span><br></pre></td></tr></table></figure>
-<p>查询没有学全所有课的同学的学号、姓名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">select stu.student_id, stu.name</span><br><span class="line">from score s, student stu</span><br><span class="line">where stu.student_id = s.student_id</span><br><span class="line">group by s.student_id</span><br><span class="line">having count(*) &lt;</span><br><span class="line">(</span><br><span class="line">	select count(*) from course</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>查询表中name的数据，并且desc是降序排序，asc是升序。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select name from student order by name desc;</span><br></pre></td></tr></table></figure>
-<p>查询表中id从1到2000000的数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from table_name where id between 1 and 2000000;</span><br></pre></td></tr></table></figure>
-<p>更新表中的数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update table_name set account = newAccount  where id between 1 and 2000000;</span><br></pre></td></tr></table></figure>
-<p>给表加锁</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lock tables table_name read | write;</span><br></pre></td></tr></table></figure>
-<p>释放锁</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unlock tables;</span><br></pre></td></tr></table></figure>
-<p>查询事务隔离级别</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select @@tx_isolation;</span><br></pre></td></tr></table></figure>
-<p>修改事务隔离级别为read-committed，可以避免脏读，不可以避免不可重复读</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED;</span><br></pre></td></tr></table></figure>
-<p>开始事务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">START TRANSACTION;</span><br></pre></td></tr></table></figure>
-<p>回滚事务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ROLLBACK;</span><br></pre></td></tr></table></figure>
-<p>提交事务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">COMMIT;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -531,7 +486,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/mysql/" rel="tag"># mysql</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
         </div>
       
@@ -544,8 +499,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/12/ArrayList源码阅读/" rel="next" title="ArrayList源码阅读">
-                <i class="fa fa-chevron-left"></i> ArrayList源码阅读
+              <a href="/2019/07/05/Linux学习笔记-大三期末/" rel="next" title="Linux学习笔记">
+                <i class="fa fa-chevron-left"></i> Linux学习笔记
               </a>
             
           </div>
@@ -554,8 +509,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/13/leetcode134. 加油站/" rel="prev" title="leetcode134. 加油站">
-                leetcode134. 加油站 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/07/07/leetcode313. 超级丑数/" rel="prev" title="leetcode313. 超级丑数">
+                leetcode313. 超级丑数 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -635,7 +590,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">95</span>
+                  <span class="site-state-item-count">98</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -657,7 +612,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -711,7 +666,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#索引模块"><span class="nav-number">1.</span> <span class="nav-text">索引模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要使用索引"><span class="nav-number">1.1.</span> <span class="nav-text">为什么要使用索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么样的信息能成为索引"><span class="nav-number">1.2.</span> <span class="nav-text">什么样的信息能成为索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引的数据结构"><span class="nav-number">1.3.</span> <span class="nav-text">索引的数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#密集索引和稀疏索引的区别"><span class="nav-number">1.4.</span> <span class="nav-text">密集索引和稀疏索引的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何定位并优化慢查询sql"><span class="nav-number">1.5.</span> <span class="nav-text">如何定位并优化慢查询sql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引是建立得越多越好吗"><span class="nav-number">1.6.</span> <span class="nav-text">索引是建立得越多越好吗</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库锁"><span class="nav-number">2.</span> <span class="nav-text">数据库锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MyISAM和InnoDB关于锁方面的区别是什么"><span class="nav-number">2.1.</span> <span class="nav-text">MyISAM和InnoDB关于锁方面的区别是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MyISAM适合的场景"><span class="nav-number">2.1.1.</span> <span class="nav-text">MyISAM适合的场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#InnoDB适合的场景"><span class="nav-number">2.1.2.</span> <span class="nav-text">InnoDB适合的场景</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库锁的分类"><span class="nav-number">2.2.</span> <span class="nav-text">数据库锁的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务隔离级别以及各级别下的并发访问问题"><span class="nav-number">2.3.</span> <span class="nav-text">事务隔离级别以及各级别下的并发访问问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL语法"><span class="nav-number">3.</span> <span class="nav-text">MySQL语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GROUP-BY"><span class="nav-number">3.1.</span> <span class="nav-text">GROUP BY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HAVING"><span class="nav-number">3.2.</span> <span class="nav-text">HAVING</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#从概念角度解析java的异常处理机制"><span class="nav-number">1.</span> <span class="nav-text">从概念角度解析java的异常处理机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java的异常体系"><span class="nav-number">2.</span> <span class="nav-text">Java的异常体系</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#常见Error以及Exception"><span class="nav-number"></span> <span class="nav-text">常见Error以及Exception</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RuntimeException"><span class="nav-number">1.</span> <span class="nav-text">RuntimeException</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非RuntimeException"><span class="nav-number">2.</span> <span class="nav-text">非RuntimeException</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Error"><span class="nav-number">3.</span> <span class="nav-text">Error</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java的异常处理机制"><span class="nav-number"></span> <span class="nav-text">Java的异常处理机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java异常处理消耗性能的地方"><span class="nav-number">1.</span> <span class="nav-text">Java异常处理消耗性能的地方</span></a></li></ol></li></div>
             
 
           </div>
