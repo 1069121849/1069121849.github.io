@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-07-09T15:01:16.748Z</updated>
+  <updated>2019-07-13T12:56:37.396Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,109 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java线程学习</title>
+    <link href="http://yoursite.com/2019/07/13/Java%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://yoursite.com/2019/07/13/Java线程学习/</id>
+    <published>2019-07-13T08:18:32.793Z</published>
+    <updated>2019-07-13T12:56:37.396Z</updated>
+    
+    <content type="html"><![CDATA[<p>﻿# Java线程学习</p><h2 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h2><ul><li>进程是资源分配的最小单位，线程是CPU调度的最小单位。</li><li>进程可以看作是独立的应用，线程不可以。</li><li>进程有独立的地址空间，互相不影响，线程只是进程的不同执行路径。</li><li>线程没有独立的地址空间，多进程程序比多线程程序健壮</li><li>进程的切换开销比线程大</li></ul><h2 id="Java进程和线程的关系"><a href="#Java进程和线程的关系" class="headerlink" title="Java进程和线程的关系"></a>Java进程和线程的关系</h2><p>每运行一个程序就会产生一个进程，进程至少包含一个线程。</p><p>每个进程对应一个JVM实例，多个线程共享JVM里的堆。</p><p>Java采用单线程编程模型，程序会自动创建主线程。</p><p>主线程可以创建子线程，原则上要后于子线程完成执行。</p><h2 id="Thread中的start和run方法的区别"><a href="#Thread中的start和run方法的区别" class="headerlink" title="Thread中的start和run方法的区别"></a>Thread中的start和run方法的区别</h2><p>调用start()方法会<strong>创建</strong>一个新的子线程并启动。</p><p>run()方法只是Thread的一个普通方法的调用。</p><h2 id="Thread和Runnable的区别"><a href="#Thread和Runnable的区别" class="headerlink" title="Thread和Runnable的区别"></a>Thread和Runnable的区别</h2><p>Thread是类，Runnable是接口。</p><p>Thread是实现了Runnable接口的类，使得run支持多线程。</p><p>因类的单一继承原则，推荐多使用Runnable接口。</p><h2 id="如何实现处理线程的返回值"><a href="#如何实现处理线程的返回值" class="headerlink" title="如何实现处理线程的返回值"></a>如何实现处理线程的返回值</h2><p>主线程等待法</p><p>使用Thread中的join阻塞当前线程以等待子线程处理完毕</p><p>通过Callable接口实现：通过Future或者线程池获取。</p><h2 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h2><ol><li>新建（New）：创建后尚未启动的线程状态</li><li>运行（Runnable）：包含运行中Running和就绪状态Ready</li><li>无限期等待（Waiting）：不会被分配CPU执行时间，需要显式被唤醒</li><li>限期等待（Timed Waiting）：在一定时间后悔由系统自动唤醒</li><li>阻塞（Blocked）：等待获取排它锁</li><li>结束（Terminated）：已终止线程的状态，线程已经结束执行</li></ol><h2 id="sleep和wait的区别"><a href="#sleep和wait的区别" class="headerlink" title="sleep和wait的区别"></a>sleep和wait的区别</h2><p><strong>基本差别</strong></p><ul><li>sleep是Thread类的方法，wait是Object类中定义的方法</li><li>sleep()方法可以在任何地方使用</li><li>wait()方法只能在synchronized方法或synchronized块中使用</li></ul><p><strong>最主要的本质区别</strong></p><ul><li>Thread.sleep只会让出CPU，不会导致锁行为的改变</li><li>Object.wait不仅会让出CPU，还会释放已经占有的同步资源锁</li></ul><h2 id="notify和notifyAll的区别"><a href="#notify和notifyAll的区别" class="headerlink" title="notify和notifyAll的区别"></a>notify和notifyAll的区别</h2><h3 id="锁池"><a href="#锁池" class="headerlink" title="锁池"></a>锁池</h3><p>​    假设线程A已经拥有了某个对象的（不是类）锁而其他线程B、C想调用这个对象的某个synchronized方法（或块），由于B、C线程在进入对象的synchronized方法（或块）之前必须先获得该对象锁的拥有权，而恰巧该对象的锁目前正被线程A所占用，此时B、C线程就会被阻塞，进入一个地方等待锁的释放，这个地方就是该对象的<strong>锁池</strong>。</p><p>锁池就是线程竞争锁时所被放入的地方。</p><h3 id="等待池"><a href="#等待池" class="headerlink" title="等待池"></a>等待池</h3><p>​    假设线程A调用了某个对象的wait()方法，线程A就会释放该对象的锁，同时线程A就会进入到了该对象的<strong>等待池</strong>中，进入到等待池中的线程，不会去竞争该对象的锁。</p><ul><li>notifyAll会让所有处于等待池的线程全部进入锁池去竞争获取锁的机会</li><li>notify只会随机选取一个处于等待池中的线程进入锁池去竞争获取锁的机会</li></ul><h2 id="yieId"><a href="#yieId" class="headerlink" title="yieId"></a>yieId</h2><p>当调用Thread.yieId()方法时，会给线程调度器一个当前线程愿意让出CPU的暗示，但是线程调度器可能会忽略这个暗示。调用该方法不影响锁的行为。</p><h2 id="如何中断线程"><a href="#如何中断线程" class="headerlink" title="如何中断线程"></a>如何中断线程</h2><p><strong>已经被抛弃的方法</strong></p><ul><li>通过stop()方法停止线程</li><li>通过调用suspend和resume方法</li></ul><p><strong>目前使用的方法</strong></p><ul><li>调用interrupt()，通知线程应该中断了<ol><li>如果线程处于被阻塞状态，那么线程将立即退出被阻塞状态，并抛出一个InterruptedException异常</li><li>如果线程处于正常活动状态，那么会将该线程的中断标志设置为true。被设置中断标志的线程将继续政策执行，不受影响。</li></ol></li><li>需要被调度的线程配合中断<ol><li>在正常运行任何时，经常检查本线程的中断标志位，如果被设置了中断标志就自行停止线程</li><li>如果线程处于正常活动状态，那么就会将该线程的中断标准位设置为true。被设置中断标志的线程将继续政策执行，不受影响</li></ol></li></ul><h1 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h1><h2 id="线程安全问题的主要诱因"><a href="#线程安全问题的主要诱因" class="headerlink" title="线程安全问题的主要诱因"></a>线程安全问题的主要诱因</h2><ul><li>存在共享数据（也成临界资源）</li><li>存在多条线程共同操作这些共享数据</li></ul><p>解决问题的根本方法：</p><p>​    同一时刻有且只有一个线程在操作共享数据，其他线程必须等到该线程处理完数据后再对共享数据进行操作</p><h2 id="互斥锁的特性"><a href="#互斥锁的特性" class="headerlink" title="互斥锁的特性"></a>互斥锁的特性</h2><p>互斥性：即在同一时间只允许一个线程持有某个对象锁，通过这种特性来实现多线程的协调机制，这样在就实现了<strong>同一时间只有一个线程对需要同步的代码块（复合操作）进行访问</strong>。互斥性也称为操作的<strong>原子性</strong>。</p><p>可见性：必须确保在锁被释放之前，对共享变量所做的修改，对于随后获得该锁的另一个线程是可见的（即<strong>在获得锁时所获得的共享变量值是最新的</strong>），否则，另一个线程可能是在本地缓冲的某个副本继续进行操作，从而引起不一致。</p><h2 id="对象锁和类锁的总结"><a href="#对象锁和类锁的总结" class="headerlink" title="对象锁和类锁的总结"></a>对象锁和类锁的总结</h2><ol><li>有线程访问对象的同步代码块时，另外的线程可以访问该对象的非同步代码块；</li><li>若锁住的是同一个对象，一个线程在访问对象的<strong>同步代码块</strong>时，另一个访问对象的<strong>同步代码块</strong>的线程会被阻塞；</li><li>若锁住的是同一个对象，一个线程在访问对象的<strong>同步方法</strong>时，另一个访问对象的<strong>同步方法</strong>的线程会被阻塞；</li><li>若锁住的是同一个对象，一个线程在访问对象的<strong>同步代码块</strong>时，另一个访问对象的<strong>同步方法</strong>的线程会被阻塞，反之亦然；</li><li>同一个类的不同对象的对象锁互不干扰；</li><li>类锁由于也是一种特殊的对象锁，因此与1、2、3、4一致，而由于一个类只有一把对象锁，所以同一个类的不同对象，使用类锁将会是同步的。</li><li>类锁和对象锁互不干扰。</li></ol><h2 id="重入"><a href="#重入" class="headerlink" title="重入"></a>重入</h2><p>当某个线程请求一个由其他线程持有的锁时，发出请求的线程就会阻塞，但当一个线程再次请求自己持有对象锁的临界资源时，这种情况属于重入。由于对象锁是可重入的，因此如果某个线程试图获得一个已经由它自己持有的锁，那么这个请求就会成功。</p><h1 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h1><p><strong>实现原理</strong></p><p>同步方法是在flags标志中加入 ACC_SYNCHRONIZED</p><p>同步代码块是使用monitor （管程）实现</p><h2 id="Mark-Word（对象头）"><a href="#Mark-Word（对象头）" class="headerlink" title="Mark Word（对象头）"></a>Mark Word（对象头）</h2><p><img src="https://img-blog.csdnimg.cn/20190713205144719.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NDQ4NTc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h2><ul><li>许多情况下，共享数据的锁定状态持续时间较短，切换线程不值得</li><li>通过让线程执行忙循环等待锁的释放，不让出CPU</li><li>缺点：若锁被其他线程长时间占用，会带来许多性能上的开销</li></ul><h2 id="自适应自旋锁"><a href="#自适应自旋锁" class="headerlink" title="自适应自旋锁"></a>自适应自旋锁</h2><ul><li>自旋的次数不再固定</li><li>由前一次在同一个锁上的自旋时间及锁的拥有者的状态来决定</li></ul><h2 id="锁消除"><a href="#锁消除" class="headerlink" title="锁消除"></a>锁消除</h2><p>JIT编译时，对运行上下文进行扫描，去除不可能存在竞争的锁</p><h2 id="锁粗化"><a href="#锁粗化" class="headerlink" title="锁粗化"></a>锁粗化</h2><p>通过扩大加锁的范围，避免反复加锁和解锁</p><h2 id="synchronized的四种状态"><a href="#synchronized的四种状态" class="headerlink" title="synchronized的四种状态"></a>synchronized的四种状态</h2><p>无锁、偏向锁、轻量级锁、重量级锁</p><p>锁膨胀方向：无锁 → 偏向锁 → 轻量级锁 → 重量级锁</p><h3 id="无锁：没有加锁"><a href="#无锁：没有加锁" class="headerlink" title="无锁：没有加锁"></a>无锁：没有加锁</h3><h3 id="偏向锁：减少同一线程获取锁的代价"><a href="#偏向锁：减少同一线程获取锁的代价" class="headerlink" title="偏向锁：减少同一线程获取锁的代价"></a>偏向锁：减少同一线程获取锁的代价</h3><p>大多数情况下，锁不存在多线程竞争，总是由同一线程多次获得</p><p>核心思想：</p><p>如果一个线程获得了锁，那么锁就进入偏向模式，此时Mark Word的结构也变成为偏向锁结构，当该线程再次请求锁时，无需再做任何同步操作，即获取锁的过程只需要坚持Mark Word的锁标记位为偏向锁以及当前线程Id等于Mark Word的ThreadID即可，这样就省去了大量有关锁申请的操作。</p><p>不适合于锁竞争毕竟激烈的多线程场合</p><h3 id="轻量级锁"><a href="#轻量级锁" class="headerlink" title="轻量级锁"></a>轻量级锁</h3><p>轻量级锁是由偏向锁升级来的，偏向锁运行在一个线程进入同步块的情况下，当第二个线程加入竞争时，偏向锁就会升级为轻量级锁。</p><p>适应的场景：线程交替执行同步块</p><p>若存在同一时间访问同一锁的情况，就会导致轻量级锁膨胀为重量级锁</p><h3 id="锁的内存语义"><a href="#锁的内存语义" class="headerlink" title="锁的内存语义"></a>锁的内存语义</h3><p>当线程释放锁时，Java内存模型会<strong>把该线程对应的本地内存中的共享变量刷新到主内存中</strong>；</p><p>而当线程获得锁时，Java内存模型会把该线程对应的本地内存置为无效，从而使得被监视器保护的临界区代码必须<strong>从主内存中读取共享变量</strong>。</p><h3 id="偏向锁、轻量级锁、重量级锁的汇总"><a href="#偏向锁、轻量级锁、重量级锁的汇总" class="headerlink" title="偏向锁、轻量级锁、重量级锁的汇总"></a>偏向锁、轻量级锁、重量级锁的汇总</h3><p><img src="https://img-blog.csdnimg.cn/2019071320520517.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NDQ4NTc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="synchronized和ReentrantLock的区别"><a href="#synchronized和ReentrantLock的区别" class="headerlink" title="synchronized和ReentrantLock的区别"></a>synchronized和ReentrantLock的区别</h2><h3 id="ReentrantLock（再入锁）"><a href="#ReentrantLock（再入锁）" class="headerlink" title="ReentrantLock（再入锁）"></a>ReentrantLock（再入锁）</h3><ul><li>位于java.util.concurrent.locks包</li><li>和CountDownLatch、FutureTask、Semaphore一样基于AQS实现</li><li>能够实现比synchronized更细粒度的控制</li><li>调用lock()之后，必须调用unlock()释放锁</li><li>性能未必比synchronized高，并且也是可重入的</li></ul><h3 id="ReentrantLock公平性的设置"><a href="#ReentrantLock公平性的设置" class="headerlink" title="ReentrantLock公平性的设置"></a>ReentrantLock公平性的设置</h3><ul><li>ReentrantLock fairLock = new ReentrantLock(true);</li><li>参数为true时，倾向于将锁赋予等待时间最久的线程</li><li>公平锁：获取锁的顺序按先后调用lock方法的顺序（慎用）</li><li>非公平锁：抢占的顺序不一定，看运气</li><li>synchronized是非公平锁</li></ul><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>synchronized是关键字，ReentrantLock是类</p><p>ReentrantLock可以对获取锁的等待时间进行设置，避免死锁</p><p>ReentrantLock可以获取各种锁的信息</p><p>ReentrantLock可以灵活地实现多路通知</p><p>机制：synchronized操作Mark Word，lock调用Unsafe类的park()方法</p><h2 id="Java内存模型JMM"><a href="#Java内存模型JMM" class="headerlink" title="Java内存模型JMM"></a>Java内存模型JMM</h2><p>Java内存模型（即Java Memory Model，简称JMM）本身是一种抽象的概念，并不真实存在，它描述的是一组规则或规范，通过这组规范定义了程序中各个变量（包括实力字段，静态字段和构成数组对象的元素）的访问方式。<br><img src="https://img-blog.csdnimg.cn/20190713205217373.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NDQ4NTc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>线程间的通信都是通过主内存来完成，线程并不能直接修改主内存的数据，必须把数据取到工作内存当中进行操作，之后再写回主内存。</p><h2 id="JMM如何解决可见性问题"><a href="#JMM如何解决可见性问题" class="headerlink" title="JMM如何解决可见性问题"></a>JMM如何解决可见性问题</h2><h3 id="指令重排序需要满足的条件"><a href="#指令重排序需要满足的条件" class="headerlink" title="指令重排序需要满足的条件"></a>指令重排序需要满足的条件</h3><ul><li>在单线程环境下不能改变程序运行的结果</li><li>存在数据依赖关系的不允许重拍下</li></ul><p>无法通过happens-before原则推导出来的，才能进行指令的重排序</p><p>A操作的结果需要对B操作可见，则A与B存在happens-before关系</p><h3 id="happens-before的八大原则"><a href="#happens-before的八大原则" class="headerlink" title="happens-before的八大原则"></a>happens-before的八大原则</h3><ol><li>程序次序规则：一个线程内，按照代码顺序，书写在前面的操作先行发生于书写在后面的操作；</li><li>锁定规则：一个unlock操作先行发生于后面对同一个锁的lock操作；</li><li>volatile变量规则：对一个变量的写操作先行发生于后面对这个变量的读操作；</li><li>传递规则：如果A操作先行发生于操作B，而B操作又先行发生于C操作，则A操作先行发生于C操作；</li><li>线程启动规则：Thread对象的start()方法先行发生于此线程的每一个动作；</li><li>线程中断规则：对线程interrupt()方法的调用先行发生于被中断线程的代码检测到中断事件的发生；</li><li>线程终结规则：线程的所有操作都先行发生于线程的终止检测，我们可以通过Thread.join()方法结束、Thread.isAlieve()的返回值手动检测到线程已经终止执行；</li><li>对象终结规则：一个对象的初始化完成先行发生于它的finalize()方法的开始；</li></ol><h2 id="volatile-：JVM提供的轻量级同步机制"><a href="#volatile-：JVM提供的轻量级同步机制" class="headerlink" title="volatile ：JVM提供的轻量级同步机制"></a>volatile ：JVM提供的轻量级同步机制</h2><ul><li>保证被volatile修饰的共享变量对所有线程总是可见的</li><li>禁止指令重排序优化</li></ul><h3 id="volatile变量为何立即可见？"><a href="#volatile变量为何立即可见？" class="headerlink" title="volatile变量为何立即可见？"></a>volatile变量为何立即可见？</h3><p>当写一个volatile变量时，JMM会把该线程对应的工作内存中的共享变量值刷新到主内存中；</p><p>当读取一个volatile变量时，JMM会把该线程对应的工作内存置为无效，迫使其从主内存中获取共享变量的最新值。</p><h3 id="volatile如何禁止重拍优化"><a href="#volatile如何禁止重拍优化" class="headerlink" title="volatile如何禁止重拍优化"></a>volatile如何禁止重拍优化</h3><p>内存屏障（memory barrier）</p><p>1.保证特点操作的执行顺序</p><p>2.保证某些变量的内存可见性</p><p>通过插入内存屏障指令禁止在内存屏障前后的指令执行重排序优化</p><p>强制刷出各种CPU的缓存数据，因此任何CPU上的线程都能读取到这些数据的最新版本。</p><h2 id="volatile和synchronized的区别"><a href="#volatile和synchronized的区别" class="headerlink" title="volatile和synchronized的区别"></a>volatile和synchronized的区别</h2><ol><li>vilatile本质是高手JVM当前变量在寄存器（工作内存）中的值是不确定的，需要从主存中读取；synchronized则是锁定该变量，只有当前线程可以访问该变量，其他线程被阻塞住直到该线程完成变量操作位置</li><li>volatile仅能使用在变量级别；synchronized则可以使用在变量、方法和类级别</li><li>volatile仅能实现变量的修改可见性，不能保证原子性；而synchronized则可以保证变量修改的可见性和原子性</li><li>volatile不会造成线程的阻塞，synchronized可能会造成线程的阻塞</li><li>volatile标记的变量不会被编译器优化，synchronized标记的变量可以被编译器优化</li></ol><h2 id="CAS（compare-And-Swap）"><a href="#CAS（compare-And-Swap）" class="headerlink" title="CAS（compare And Swap）"></a>CAS（compare And Swap）</h2><p>一种高效实现线程安全性的方法</p><ul><li>支持原子更新操作，适用于计数器，序列发生器等场景</li><li>属于乐观锁机制，号称lock-free</li><li>CAS操作失败时，由开发者决定是继续尝试，还是执行别的操作</li></ul><h3 id="CAS多数情况下对开发者来说是透明的"><a href="#CAS多数情况下对开发者来说是透明的" class="headerlink" title="CAS多数情况下对开发者来说是透明的"></a>CAS多数情况下对开发者来说是透明的</h3><ul><li>J.U.C（java.util.concurrent）的atomic包提供了常用的原子性数据类型以及引用、数组等相关原子类型和更新操作工具，是很多线程安全程序的首选</li><li>Unsafe类虽然提供CAS服务，但因能够操作任意内存地址读写而有隐患</li><li>Java9以后，可以使用Variable Handle API来替代Unsafe</li></ul><h1 id="Java线程池"><a href="#Java线程池" class="headerlink" title="Java线程池"></a>Java线程池</h1><h2 id="Fork-Join框架"><a href="#Fork-Join框架" class="headerlink" title="Fork/Join框架"></a>Fork/Join框架</h2><p>把大任务分割成若干个小任务并行执行，最终汇总每个小任务结果后得到大任务的结果的框架</p><p><img src="https://img-blog.csdnimg.cn/2019071320524613.png" alt="在这里插入图片描述"></p><h2 id="为什么要使用线程池"><a href="#为什么要使用线程池" class="headerlink" title="为什么要使用线程池"></a>为什么要使用线程池</h2><p>降低资源消耗</p><p>提高线程的可管理性</p><h2 id="线程池的继承关系"><a href="#线程池的继承关系" class="headerlink" title="线程池的继承关系"></a>线程池的继承关系</h2><p><img src="https://img-blog.csdnimg.cn/20190713205256514.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NDQ4NTc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="ThreadPoolExecutor的构造函数"><a href="#ThreadPoolExecutor的构造函数" class="headerlink" title="ThreadPoolExecutor的构造函数"></a>ThreadPoolExecutor的构造函数</h2><p>corePoolSize：核心线程数量</p><p>maximumPoolSize：线程不够用时能够创建的最大线程数</p><p>workQueue：任务等待队列</p><p>keepAliveTime：抢占的顺序不一定，随机</p><p>threadFactory：创建新线程，Executors.defaultThreadFactory</p><p>handler：线程池的饱和策略</p><ul><li>AbortPilicy:直接抛出异常，这是默认策略</li><li>CallerRunsPolicy:用调用者所在的线程来执行任务</li><li>DiscardOlestPolicy:丢弃队列中靠最前的任务，并执行当前任务</li><li>DiscardPolicy:直接丢弃任务</li><li>实现RejectedExecutionHandler接口的自定义handler</li></ul><h2 id="新任务提交execute执行后的判断"><a href="#新任务提交execute执行后的判断" class="headerlink" title="新任务提交execute执行后的判断"></a>新任务提交execute执行后的判断</h2><ul><li>如果运行的线程少于corePoolSize，则创建新线程来处理任务，即使线程池中的其他线程是空闲的</li><li>如果线程池中的线程数量大于等于corePoolSize且小于maximumPoolSize，则只有当workQueue满时，才创建新的线程去处理任务；</li><li>如果设置的corePoolSize和maximumPoolSize相同，则创建的线程池的大小是固定的，这时如果有新任务提交，若workQueue未满，则将请求放入workQueue中， 等待有空闲的线程去从workQueue中取任务并处理</li><li>如果运行的线程数量大于等于maximumPoolSize，这时如果workQueue已经慢了，则通过handler所指定的策略来处理任务</li></ul><h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><p><img src="https://img-blog.csdnimg.cn/20190713205344322.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NDQ4NTc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="线程池的状态"><a href="#线程池的状态" class="headerlink" title="线程池的状态"></a>线程池的状态</h2><ul><li>Running（运行）：能接受新提交的任务，并且也能处理阻塞队列中的任务</li><li>Shutdown（关闭）：不再接受新提交的任务，但可以处理存量任务</li><li>Stop（停止）：不再接受新提交的任务，也不处理存量任务</li><li>Tidying（整理）：所有的任务都已经终止</li><li>Terminated（终止）：terminated()方法执行完进入该状态</li></ul><p><img src="https://img-blog.csdnimg.cn/20190713205357817.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NDQ4NTc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="线程池的大小如何选定"><a href="#线程池的大小如何选定" class="headerlink" title="线程池的大小如何选定"></a>线程池的大小如何选定</h2><p>CPU密集型：线程数=按照核数或者核数+1设定</p><p>I/O密集型：线程数=CPU核数*（1+平均等待时间/平均工作时间）</p><h2 id="利用Executors创建不同的线程池满足不同场景的需求"><a href="#利用Executors创建不同的线程池满足不同场景的需求" class="headerlink" title="利用Executors创建不同的线程池满足不同场景的需求"></a>利用Executors创建不同的线程池满足不同场景的需求</h2><ol><li>newFixedThreadPool(int nThreads)指定工作线程数量的线程池</li><li>newCachedThreadPool()处理大量短时间工作任务的线程池<ol><li>试图缓存线程并重用，当无缓存线程可用时，就会创建新的工作线程</li><li>如果线程闲置的时间超过阈值，则会被终止并移除缓存</li><li>系统长时间闲置的时候，不会消耗什么资源</li></ol></li><li>newSingleThreadExecutor()创建唯一的工作者线程来执行任务，如果线程异常结束，会有另一个线程取代它</li><li><p>newSingleThreadScheduledExecutor或new ScheduledThreadPool(int corePoolSize)定时或者周期性的工作调度，两者的区别在于单一工作线程还是多个线程<br>池满足不同场景的需求</p></li><li><p>newFixedThreadPool(int nThreads)指定工作线程数量的线程池</p></li><li>newCachedThreadPool()处理大量短时间工作任务的线程池<ol><li>试图缓存线程并重用，当无缓存线程可用时，就会创建新的工作线程</li><li>如果线程闲置的时间超过阈值，则会被终止并移除缓存</li><li>系统长时间闲置的时候，不会消耗什么资源</li></ol></li><li>newSingleThreadExecutor()创建唯一的工作者线程来执行任务，如果线程异常结束，会有另一个线程取代它</li><li>newSingleThreadScheduledExecutor或new ScheduledThreadPool(int corePoolSize)定时或者周期性的工作调度，两者的区别在于单一工作线程还是多个线程</li><li>newWorkStealingPool()内部会构建ForkJoinPool，利用Working-stealing算法，并行的处理任务，不保证处理顺序<br><strong>ps：学习视频来自慕课网剑指Java面试-Offer直通车</strong>  </li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;﻿# Java线程学习&lt;/p&gt;
+&lt;h2 id=&quot;进程和线程的区别&quot;&gt;&lt;a href=&quot;#进程和线程的区别&quot; class=&quot;headerlink&quot; title=&quot;进程和线程的区别&quot;&gt;&lt;/a&gt;进程和线程的区别&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;进程是资源分配的最小单位，线程是CPU调度
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode328. 奇偶链表</title>
+    <link href="http://yoursite.com/2019/07/11/leetcode328.%20%E5%A5%87%E5%81%B6%E9%93%BE%E8%A1%A8/"/>
+    <id>http://yoursite.com/2019/07/11/leetcode328. 奇偶链表/</id>
+    <published>2019-07-11T07:56:30.846Z</published>
+    <updated>2019-07-11T11:41:23.185Z</updated>
+    
+    <content type="html"><![CDATA[<p>﻿## 题目</p><blockquote><p>给定一个单链表，把所有的奇数节点和偶数节点分别排在一起。请注意，这里的奇数节点和偶数节点指的是节点编号的奇偶性，而不是节点的值的奇偶性。</p><p>请尝试使用原地算法完成。你的算法的空间复杂度应为 O(1)，时间复杂度应为 O(nodes)，nodes 为节点总数。</p><p><strong>示例 1:</strong></p><p><strong>输入:</strong> 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL<br><strong>输出:</strong> 1-&gt;3-&gt;5-&gt;2-&gt;4-&gt;NULL<br><strong>示例 2:</strong></p><p><strong>输入:</strong> 2-&gt;1-&gt;3-&gt;5-&gt;6-&gt;4-&gt;7-&gt;NULL<br><strong>输出:</strong> 2-&gt;3-&gt;6-&gt;7-&gt;1-&gt;5-&gt;4-&gt;NULL<br><strong>说明:</strong></p><p>应当保持奇数节点和偶数节点的相对顺序。 链表的第一个节点视为奇数节点，第二个节点视为偶数节点，以此类推。</p><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/odd-even-linked-list" target="_blank" rel="noopener">https://leetcode-cn.com/problems/odd-even-linked-list</a></p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这题没啥好说的，直接给2个结点，奇数下标结点odd，偶数下标结点even，奇数下标的接奇数结点后边，偶数下标接偶数结点后边，最后2条链连接即可。<br>注意：处理一下最后的结点的问题，因为连接后的结点之后还是在原链表上，所以要把<strong>最后结点的next置为null</strong>；我使用的方法要注意区分链表长度是奇数个还是偶数个的情况。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode oddEvenList(ListNode head) &#123;</span><br><span class="line">        ListNode odd = new ListNode(0);</span><br><span class="line">        ListNode even = new ListNode(0);</span><br><span class="line">        ListNode p = odd, q = even;</span><br><span class="line">        while (head != null &amp;&amp; head.next != null) &#123;</span><br><span class="line">            p.next = head;</span><br><span class="line">            q.next = head.next;</span><br><span class="line">            p = p.next;</span><br><span class="line">            q = q.next;</span><br><span class="line">            head = head.next.next;</span><br><span class="line">        &#125;</span><br><span class="line">        q.next = null;</span><br><span class="line">        if (head != null) &#123;</span><br><span class="line">            p.next = head;</span><br><span class="line">            p.next.next = even.next;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            p.next = even.next;</span><br><span class="line">        &#125;</span><br><span class="line">        return odd.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p><img src="https://img-blog.csdnimg.cn/20190711155626733.png" alt="在这里插入图片描述"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;﻿## 题目&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;给定一个单链表，把所有的奇数节点和偶数节点分别排在一起。请注意，这里的奇数节点和偶数节点指的是节点编号的奇偶性，而不是节点的值的奇偶性。&lt;/p&gt;
+&lt;p&gt;请尝试使用原地算法完成。你的算法的空间复杂度应为 O(1)，时间复杂
+      
+    
+    </summary>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode324. 摆动排序 II</title>
+    <link href="http://yoursite.com/2019/07/10/leetcode324.%20%E6%91%86%E5%8A%A8%E6%8E%92%E5%BA%8F%20II/"/>
+    <id>http://yoursite.com/2019/07/10/leetcode324. 摆动排序 II/</id>
+    <published>2019-07-10T03:41:04.546Z</published>
+    <updated>2019-07-10T03:42:08.790Z</updated>
+    
+    <content type="html"><![CDATA[<p>﻿## 题目</p><blockquote><p>给定一个无序的数组 nums，将它重新排列成 nums[0] &lt; nums[1] &gt; nums[2] &lt; nums[3]… 的顺序。</p><p><strong>示例 1:</strong></p><p><strong>输入:</strong> nums = [1, 5, 1, 1, 6, 4]<br><strong>输出:</strong> 一个可能的答案是 [1, 4, 1, 5, 1, 6]<br><strong>示例 2:</strong></p><p><strong>输入:</strong> nums = [1, 3, 2, 2, 3, 1]<br><strong>输出:</strong> 一个可能的答案是 [2, 3, 1, 3, 1, 2]</p><p>来源：力扣（LeetCode） 链接：<a href="https://leetcode-cn.com/problems/wiggle-sort-ii" target="_blank" rel="noopener">https://leetcode-cn.com/problems/wiggle-sort-ii</a></p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>第一步：把数组复制到tmp并排序,这样小的和大的就分开来，小的在nums[0,index-1],大的是nums[index,length]<br>第二步：把小的最大的放在第i位，大的最大放在i+1位，因为题目一定有解，所以这样就可以避免冲突，即相等的情况。<br>第三步：处理数组长度为奇数的情况，即最后一位在这种情况要赋予tmp[0]。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public void wiggleSort(int[] nums) &#123;</span><br><span class="line">        int[] tmp = Arrays.copyOf(nums, nums.length);</span><br><span class="line">        Arrays.sort(tmp);</span><br><span class="line">        int index = (nums.length+1)/2;</span><br><span class="line">        for (int i = 0, j = nums.length; i &lt; nums.length - 1; i=i+2) &#123;</span><br><span class="line">            nums[i] = tmp[--index];</span><br><span class="line">            nums[i+1] = tmp[--j];</span><br><span class="line">        &#125;</span><br><span class="line">        nums[nums.length - 1] = nums.length % 2 == 0 ? nums[nums.length - 1] : tmp[0];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p><img src="https://img-blog.csdnimg.cn/20190710114047759.png" alt="在这里插入图片描述"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;﻿## 题目&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;给定一个无序的数组 nums，将它重新排列成 nums[0] &amp;lt; nums[1] &amp;gt; nums[2] &amp;lt; nums[3]… 的顺序。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;示例 1:&lt;/strong&gt;&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode319. 灯泡开关</title>
+    <link href="http://yoursite.com/2019/07/10/leetcode319.%20%E7%81%AF%E6%B3%A1%E5%BC%80%E5%85%B3/"/>
+    <id>http://yoursite.com/2019/07/10/leetcode319. 灯泡开关/</id>
+    <published>2019-07-10T02:38:13.914Z</published>
+    <updated>2019-07-10T03:41:50.855Z</updated>
+    
+    <content type="html"><![CDATA[<p>﻿## 题目</p><blockquote><p>初始时有 n 个灯泡关闭。 第 1 轮，你打开所有的灯泡。 第 2 轮，每两个灯泡你关闭一次。 第 3<br>轮，每三个灯泡切换一次开关（如果关闭则开启，如果开启则关闭）。第 i 轮，每 i 个灯泡切换一次开关。 对于第 n<br>轮，你只切换最后一个灯泡的开关。 找出 n 轮后有多少个亮着的灯泡。</p><p><strong>示例:</strong></p><p><strong>输入:</strong> 3<br><strong>输出:</strong> 1<br><strong>解释:</strong>  初始时, 灯泡状态 [关闭, 关闭, 关闭]. 第一轮后, 灯泡状态 [开启, 开启, 开启]. 第二轮后, 灯泡状态 [开启, 关闭, 开启]. 第三轮后, 灯泡状态 [开启, 关闭, 关闭]. </p><p>你应该返回 1，因为只有一个灯泡还亮着。</p><p>来源：力扣（LeetCode） 链接：<a href="https://leetcode-cn.com/problems/bulb-switcher" target="_blank" rel="noopener">https://leetcode-cn.com/problems/bulb-switcher</a></p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>起始思路：<br>从后往前逆推，因为第i+1轮并不能影响到前面第i轮得到的结果，所以f(i+1) = (i+1) + f(i)，把单独的第i+1次拿出来处理，一直递归直到i为0。<br>之后的思路：<br>因为如果第i轮能影响到第k个灯泡的结果，则说明该轮是k的因数，由因为必存在另一个因数j，使得i*j==k，所以，要使得灯泡开，只有存在i==j这一种情况，所以问题就变得异常简单了。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public int bulbSwitch(int n) &#123;</span><br><span class="line">        int res = 0;</span><br><span class="line">        for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">            int tmp = i*i;</span><br><span class="line">            if (tmp &gt; n) &#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            res++;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p><img src="https://img-blog.csdnimg.cn/20190710103804655.png" alt="在这里插入图片描述"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;﻿## 题目&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;初始时有 n 个灯泡关闭。 第 1 轮，你打开所有的灯泡。 第 2 轮，每两个灯泡你关闭一次。 第 3&lt;br&gt;轮，每三个灯泡切换一次开关（如果关闭则开启，如果开启则关闭）。第 i 轮，每 i 个灯泡切换一次开关。 对于第
+      
+    
+    </summary>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode318. 最大单词长度乘积</title>
@@ -446,127 +549,6 @@
     
     </summary>
     
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode207. 课程表</title>
-    <link href="http://yoursite.com/2019/05/24/leetcode207.%20%E8%AF%BE%E7%A8%8B%E8%A1%A8/"/>
-    <id>http://yoursite.com/2019/05/24/leetcode207. 课程表/</id>
-    <published>2019-05-24T01:28:29.406Z</published>
-    <updated>2019-05-24T05:40:04.017Z</updated>
-    
-    <content type="html"><![CDATA[<p>﻿## 题目</p><blockquote><p>现在你总共有 n 门课需要选，记为 0 到 n-1。</p><p>在选修某些课程之前需要一些先修课程。 例如，想要学习课程 0 ，你需要先完成课程 1 ，我们用一个匹配来表示他们: [0,1]</p><p>给定课程总量以及它们的先决条件，判断是否可能完成所有课程的学习？</p><p><strong>示例 1:</strong></p><p><strong>输入:</strong> 2, [[1,0]]<br><strong>输出:</strong> true<br><strong>解释:</strong> 总共有 2 门课程。学习课程 1 之前，你需要完成课程 0。所以这是可能的。<br><strong>示例 2:</strong></p><p><strong>输入:</strong> 2, [[1,0],[0,1]]<br><strong>输出:</strong> false<br><strong>解释:</strong> 总共有 2 门课程。学习课程 1 之前，你需要先完成​课程 0；并且学习课程 0 之前，你还应先完成课程 1。这是不可能的。<br><strong>说明:</strong></p><p>输入的先决条件是由边缘列表表示的图形，而不是邻接矩阵。详情请参见图的表示法。 你可以假定输入的先决条件中没有重复的边。<br><strong>提示:</strong></p><p>这个问题相当于查找一个循环是否存在于有向图中。如果存在循环，则不存在拓扑排序，因此不可能选取所有课程进行学习。 通过 DFS 进行拓扑排序</p><ul><li>一个关于Coursera的精彩视频教程（21分钟），介绍拓扑排序的基本概念。 拓扑排序也可以通过 BFS 完成。</li></ul></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>我的解法是直接把图的边剪断，如果最后能够完成所有点没有相连的边即能够完成所有课程，也是故意不用提示的做法去做的。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public boolean canFinish(int numCourses, int[][] prerequisites) &#123;</span><br><span class="line">        //存储可以选读的课程</span><br><span class="line">        List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">        Map&lt;Integer, Integer&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">        for (int i = 0; i &lt; prerequisites.length; i++) &#123;</span><br><span class="line">            if(!map.containsKey(prerequisites[i][0]))&#123;</span><br><span class="line">                map.put(prerequisites[i][0], 1);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                map.put(prerequisites[i][0], map.get(prerequisites[i][0]) + 1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; numCourses; i++) &#123;</span><br><span class="line">            if(!map.containsKey(i))&#123;</span><br><span class="line">                list.add(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int len = prerequisites.length;</span><br><span class="line">        while(!list.isEmpty()) &#123;</span><br><span class="line">            int tmp = list.remove(list.size()-1);</span><br><span class="line">            for (int i = 0; i &lt; prerequisites.length; i++) &#123;</span><br><span class="line">                if (prerequisites[i][1] == tmp) &#123;</span><br><span class="line">                    len--;</span><br><span class="line">                    if(map.get(prerequisites[i][0]) == 1)&#123;</span><br><span class="line">                        list.add(prerequisites[i][0]);</span><br><span class="line">                    &#125; else&#123;</span><br><span class="line">                        map.put(prerequisites[i][0], map.get(prerequisites[i][0])-1);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return len == 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 47 ms, 在Course Schedule的Java提交中击败了40.49% 的用户<br>内存消耗 : 43.1 MB, 在Course Schedule的Java提交中击败了79.55% 的用户</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;﻿## 题目&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;现在你总共有 n 门课需要选，记为 0 到 n-1。&lt;/p&gt;
-&lt;p&gt;在选修某些课程之前需要一些先修课程。 例如，想要学习课程 0 ，你需要先完成课程 1 ，我们用一个匹配来表示他们: [0,1]&lt;/p&gt;
-&lt;p&gt;给定课程总
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode201. 数字范围按位与</title>
-    <link href="http://yoursite.com/2019/05/23/leetcode201.%20%E6%95%B0%E5%AD%97%E8%8C%83%E5%9B%B4%E6%8C%89%E4%BD%8D%E4%B8%8E/"/>
-    <id>http://yoursite.com/2019/05/23/leetcode201. 数字范围按位与/</id>
-    <published>2019-05-23T13:50:51.069Z</published>
-    <updated>2019-05-24T01:01:31.113Z</updated>
-    
-    <content type="html"><![CDATA[<p>﻿## 题目</p><blockquote><p>给定范围 [m, n]，其中 0 &lt;= m &lt;= n &lt;= 2147483647，返回此范围内所有数字的按位与（包含 m, n 两端点）。</p><p><strong>示例 1:</strong> </p><p><strong>输入:</strong> [5,7]<br><strong>输出:</strong> 4<br><strong>示例 2:</strong></p><p><strong>输入:</strong> [0,1]<br><strong>输出:</strong> 0</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>把n、m后面不一样的去掉，剩下一样的，因为不一样的&amp;之后的就是0，使用一个变量保存有多少个0。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int rangeBitwiseAnd(int m, int n) &#123;</span><br><span class="line">        if (m == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int tmp = 1;</span><br><span class="line">        while(n != m)&#123;</span><br><span class="line">            m &gt;&gt;= 1;</span><br><span class="line">            n &gt;&gt;= 1;</span><br><span class="line">            tmp &lt;&lt;= 1;</span><br><span class="line">        &#125;</span><br><span class="line">        return m * tmp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 36 ms, 在Bitwise AND of Numbers Range的Java提交中击败了30.45% 的用户<br>内存消耗 : 36.5 MB, 在Bitwise AND of Numbers Range的Java提交中击败了10.42% 的用户</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;﻿## 题目&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;给定范围 [m, n]，其中 0 &amp;lt;= m &amp;lt;= n &amp;lt;= 2147483647，返回此范围内所有数字的按位与（包含 m, n 两端点）。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;示例 1:&lt;/strong&gt; &lt;
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode199. 二叉树的右视图</title>
-    <link href="http://yoursite.com/2019/05/21/leetcode199.%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%8F%B3%E8%A7%86%E5%9B%BE/"/>
-    <id>http://yoursite.com/2019/05/21/leetcode199. 二叉树的右视图/</id>
-    <published>2019-05-21T13:46:54.492Z</published>
-    <updated>2019-05-21T14:18:57.470Z</updated>
-    
-    <content type="html"><![CDATA[<p>﻿## 题目</p><p>给定一棵二叉树，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。</p><p><strong>示例:</strong></p><p><strong>输入:</strong> [1,2,3,null,5,null,4]<br><strong>输出:</strong> [1, 3, 4]<br><strong>解释:</strong></p><p>   <img src="https://img-blog.csdnimg.cn/2019052121450834.png" alt="1            &lt;--- /   \2     3         &lt;--- \     \  5     4       &lt;---"></p><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p> 层次遍历，使用一个队列，每次把右结点先放入，再放入左结点，每一层的最右个结点加入结果即可。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode left;</span><br><span class="line"> *     TreeNode right;</span><br><span class="line"> *     TreeNode(int x) &#123; val = x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;Integer&gt; rightSideView(TreeNode root) &#123;</span><br><span class="line">        if (root == null) &#123;</span><br><span class="line">            return new ArrayList&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">        LinkedList&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();</span><br><span class="line">        List&lt;Integer&gt; res = new ArrayList&lt;&gt;();</span><br><span class="line">        queue.add(root);</span><br><span class="line">        while (!queue.isEmpty())&#123;</span><br><span class="line">            TreeNode tn = queue.peek();</span><br><span class="line">            int size = queue.size();</span><br><span class="line">            res.add(tn.val);</span><br><span class="line">            while(size &gt; 0)&#123;</span><br><span class="line">                tn = queue.remove();</span><br><span class="line">                if (tn.right != null)&#123;</span><br><span class="line">                    queue.add(tn.right);</span><br><span class="line">                &#125;</span><br><span class="line">                if (tn.left != null) &#123;</span><br><span class="line">                    queue.add(tn.left);</span><br><span class="line">                &#125;</span><br><span class="line">                size --;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 3 ms, 在Binary Tree Right Side View的Java提交中击败了69.61% 的用户<br>内存消耗 : 35.1 MB, 在Binary Tree Right Side View的Java提交中击败了44.50% 的用户</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;﻿## 题目&lt;/p&gt;
-&lt;p&gt;给定一棵二叉树，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;示例:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;输入:&lt;/strong&gt; [1,2,3,null,5,null,4]
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode187. 重复的DNA序列</title>
-    <link href="http://yoursite.com/2019/05/21/leetcode187.%20%E9%87%8D%E5%A4%8D%E7%9A%84DNA%E5%BA%8F%E5%88%97/"/>
-    <id>http://yoursite.com/2019/05/21/leetcode187. 重复的DNA序列/</id>
-    <published>2019-05-21T12:56:09.221Z</published>
-    <updated>2019-05-21T14:19:10.354Z</updated>
-    
-    <content type="html"><![CDATA[<p>﻿## 题目</p><blockquote><p>所有 DNA 由一系列缩写为 A，C，G 和 T 的核苷酸组成，例如：“ACGAATTCCG”。在研究 DNA 时，识别 DNA<br>中的重复序列有时会对研究非常有帮助。</p><p>编写一个函数来查找 DNA 分子中所有出现超多一次的10个字母长的序列（子串）。</p><p><strong>示例:</strong></p><p><strong>输入:</strong> s = “AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT”</p><p><strong>输出:</strong> [“AAAAACCCCC”, “CCCCCAAAAA”]</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>使用一个集合set，遍历一遍字符串，如果存入集合成功，则说明字符串是第一次出现，如果存入集合不成功，说明该字符串不是第一次出现，存入结果集合，最后把结果集合res转为链表返回即可。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;String&gt; findRepeatedDnaSequences(String s) &#123;</span><br><span class="line">        Set&lt;String&gt; set = new HashSet&lt;&gt;();</span><br><span class="line">        Set&lt;String&gt; res = new HashSet&lt;&gt;();</span><br><span class="line">        for (int i = 0; i &lt;= s.length()-10; i++) &#123;</span><br><span class="line">            String str = s.substring(i,i+10);</span><br><span class="line">            if(!set.add(str))&#123;</span><br><span class="line">                res.add(str);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return new ArrayList&lt;&gt;(res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 59 ms, 在Repeated DNA Sequences的Java提交中击败了42.82% 的用户<br>内存消耗 : 54.6 MB, 在Repeated DNA Sequences的Java提交中击败了19.19% 的用户</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;﻿## 题目&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;所有 DNA 由一系列缩写为 A，C，G 和 T 的核苷酸组成，例如：“ACGAATTCCG”。在研究 DNA 时，识别 DNA&lt;br&gt;中的重复序列有时会对研究非常有帮助。&lt;/p&gt;
-&lt;p&gt;编写一个函数来查找 DNA 分子
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
     
       <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
     
