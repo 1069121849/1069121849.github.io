@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-07-13T12:56:37.396Z</updated>
+  <updated>2019-08-04T14:51:17.935Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,139 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>剑指offer-二叉树的镜像</title>
+    <link href="http://yoursite.com/2019/08/04/%E5%89%91%E6%8C%87offer-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%95%9C%E5%83%8F/"/>
+    <id>http://yoursite.com/2019/08/04/剑指offer-二叉树的镜像/</id>
+    <published>2019-08-04T14:48:27.548Z</published>
+    <updated>2019-08-04T14:51:17.935Z</updated>
+    
+    <content type="html"><![CDATA[<p>﻿## 题目</p><p>操作给定的二叉树，将其变换为源二叉树的镜像。</p><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p><strong>递归解法</strong><br>第一步：如果根节点为空，直接结束；<br>第二步：交换2个子结点的位置；<br>第三步：递归子结点。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public void Mirror(TreeNode root) &#123;</span><br><span class="line">        if (root == null) return;</span><br><span class="line">        TreeNode temp = root.left;</span><br><span class="line">        root.left = root.right;</span><br><span class="line">        root.right = temp;</span><br><span class="line">        Mirror(root.left);</span><br><span class="line">        Mirror(root.right);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p><img src="https://img-blog.csdnimg.cn/20190804224824721.png" alt="在这里插入图片描述"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;﻿## 题目&lt;/p&gt;
+&lt;p&gt;操作给定的二叉树，将其变换为源二叉树的镜像。&lt;/p&gt;
+&lt;h2 id=&quot;解题思路&quot;&gt;&lt;a href=&quot;#解题思路&quot; class=&quot;headerlink&quot; title=&quot;解题思路&quot;&gt;&lt;/a&gt;解题思路&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;递归解法&lt;/stro
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+      <category term="剑指offer" scheme="http://yoursite.com/tags/%E5%89%91%E6%8C%87offer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指offer-树的子结构</title>
+    <link href="http://yoursite.com/2019/08/04/%E5%89%91%E6%8C%87offer-%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84/"/>
+    <id>http://yoursite.com/2019/08/04/剑指offer-树的子结构/</id>
+    <published>2019-08-04T07:32:38.876Z</published>
+    <updated>2019-08-04T14:50:47.185Z</updated>
+    
+    <content type="html"><![CDATA[<p>﻿## 题目</p><p>输入两棵二叉树A，B，判断B是不是A的子结构。（ps：我们约定空树不是任意一个树的子结构）</p><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>以下是使用的递归思路：<br>第一步：如果root2为空，则说明root2是root1的子结构。<strong>（这需要一个辅助条件，就是这题目上要求，root2为空即返回false需要排除掉）</strong> 如果root1为空，则说明不是root1的子结构。<br>第二步：如果root1和root2不相同，则返回root1的子节点和root2的比较。<br>第三步：如果root1和root2相同，则比较他们的子节点是否相同，如果相同返回true，如果不相同，则返回root1的子节点和root2的比较。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//树的子结构</span><br><span class="line">    public boolean HasSubtree(TreeNode root1, TreeNode root2) &#123;</span><br><span class="line">        if (root2 == null) return false;</span><br><span class="line">        return helper(root1, root2);</span><br><span class="line">    &#125;</span><br><span class="line">    public boolean helper(TreeNode root1, TreeNode root2) &#123;</span><br><span class="line">        if (root2 == null) return true;</span><br><span class="line">        if (root1 == null) return false;</span><br><span class="line">        if (root1.val == root2.val) &#123;</span><br><span class="line">            if(helper(root1.left, root2.left)</span><br><span class="line">                    &amp;&amp; helper(root1.right, root2.right))&#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return helper(root1.left, root2) || helper(root1.right, root2);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p><img src="https://img-blog.csdnimg.cn/20190804152313615.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NDQ4NTc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;﻿## 题目&lt;/p&gt;
+&lt;p&gt;输入两棵二叉树A，B，判断B是不是A的子结构。（ps：我们约定空树不是任意一个树的子结构）&lt;/p&gt;
+&lt;h2 id=&quot;解题思路&quot;&gt;&lt;a href=&quot;#解题思路&quot; class=&quot;headerlink&quot; title=&quot;解题思路&quot;&gt;&lt;/a&gt;解题思路&lt;/h
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+      <category term="剑指offer" scheme="http://yoursite.com/tags/%E5%89%91%E6%8C%87offer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指offer-合并两个排序的链表</title>
+    <link href="http://yoursite.com/2019/08/04/%E5%89%91%E6%8C%87offer-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%8E%92%E5%BA%8F%E7%9A%84%E9%93%BE%E8%A1%A8/"/>
+    <id>http://yoursite.com/2019/08/04/剑指offer-合并两个排序的链表/</id>
+    <published>2019-08-04T06:03:09.886Z</published>
+    <updated>2019-08-04T14:50:04.189Z</updated>
+    
+    <content type="html"><![CDATA[<p>﻿## 题目</p><p>输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。</p><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>第一步：定义一条新的空链表<br>第二步：比较两条链表的表头，把小的接在新链表后面，直到某一条链表为空<br>第三步：把不为空的另一条链表接在新链表后面即可。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public ListNode Merge(ListNode list1,ListNode list2) &#123;</span><br><span class="line">        ListNode res = new ListNode(0);</span><br><span class="line">        ListNode p = res;</span><br><span class="line">        while (list1 != null &amp;&amp; list2 != null) &#123;</span><br><span class="line">            if (list1.val &lt;= list2.val) &#123;</span><br><span class="line">                p.next = list1;</span><br><span class="line">                list1 = list1.next;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                p.next = list2;</span><br><span class="line">                list2 = list2.next;</span><br><span class="line">            &#125;</span><br><span class="line">            p = p.next;</span><br><span class="line">        &#125;</span><br><span class="line">        if (list1 == null) &#123;</span><br><span class="line">            p.next = list2;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            p.next = list1;</span><br><span class="line">        &#125;</span><br><span class="line">        return res.next;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p><img src="https://img-blog.csdnimg.cn/20190804140258846.png" alt="在这里插入图片描述"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;﻿## 题目&lt;/p&gt;
+&lt;p&gt;输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。&lt;/p&gt;
+&lt;h2 id=&quot;解题思路&quot;&gt;&lt;a href=&quot;#解题思路&quot; class=&quot;headerlink&quot; title=&quot;解题思路&quot;&gt;&lt;/a&gt;解题思路&lt;/
+      
+    
+    </summary>
+    
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="剑指offer" scheme="http://yoursite.com/tags/%E5%89%91%E6%8C%87offer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode334. 递增的三元子序列</title>
+    <link href="http://yoursite.com/2019/07/14/leetcode334.%20%E9%80%92%E5%A2%9E%E7%9A%84%E4%B8%89%E5%85%83%E5%AD%90%E5%BA%8F%E5%88%97/"/>
+    <id>http://yoursite.com/2019/07/14/leetcode334. 递增的三元子序列/</id>
+    <published>2019-07-14T02:51:20.421Z</published>
+    <updated>2019-07-14T02:51:17.764Z</updated>
+    
+    <content type="html"><![CDATA[<p>﻿## 题目</p><blockquote><p>给定一个未排序的数组，判断这个数组中是否存在长度为 3 的递增子序列。</p><p>数学表达式如下:</p><p>如果存在这样的 i, j, k,  且满足 0 ≤ i &lt; j &lt; k ≤ n-1， 使得 arr[i] &lt; arr[j] &lt; arr[k]<br>，返回 true ; 否则返回 false 。 说明: 要求算法的时间复杂度为 O(n)，空间复杂度为 O(1) 。</p><p>示例 1:</p><p>输入: [1,2,3,4,5] 输出: true 示例 2:</p><p>输入: [5,4,3,2,1] 输出: false</p><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/increasing-triplet-subsequence" target="_blank" rel="noopener">https://leetcode-cn.com/problems/increasing-triplet-subsequence</a></p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>第一步：转化题目，求长度为3的递增子序列，等同于维护3个下标，如题目所述。<br>第二步：使用2个变量保存最小的2个数值，即min1为数组当前的最小值，min2为第二小的值。<br>第三步：如果出现小于min1的值，更新min1；如果出现小于min2的值，更新min2。（本人所写代码中使用了小于等于，是因为要排除等于的情况）<br>第四步：如果找到大于min2的数，则说明存在长度为3的递增子序列</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public boolean increasingTriplet(int[] nums) &#123;</span><br><span class="line">        if (nums.length &lt; 3) return false;</span><br><span class="line">        int min1 = nums[0];</span><br><span class="line">        int min2 = Integer.MAX_VALUE;</span><br><span class="line">        for (int i = 1; i &lt; nums.length; i++) &#123;</span><br><span class="line">            if (nums[i] &lt;= min1) &#123;</span><br><span class="line">                min1 = nums[i];</span><br><span class="line">            &#125; else if (nums[i] &lt;= min2) &#123;</span><br><span class="line">                min2 = nums[i];</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p><img src="https://img-blog.csdnimg.cn/20190713221603642.png" alt="在这里插入图片描述"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;﻿## 题目&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;给定一个未排序的数组，判断这个数组中是否存在长度为 3 的递增子序列。&lt;/p&gt;
+&lt;p&gt;数学表达式如下:&lt;/p&gt;
+&lt;p&gt;如果存在这样的 i, j, k,  且满足 0 ≤ i &amp;lt; j &amp;lt; k ≤ n-1， 使得
+      
+    
+    </summary>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode318. 最大单词长度乘积</title>
+    <link href="http://yoursite.com/2019/07/14/leetcode337.%20%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D%20III/"/>
+    <id>http://yoursite.com/2019/07/14/leetcode337. 打家劫舍 III/</id>
+    <published>2019-07-14T02:42:58.913Z</published>
+    <updated>2019-07-14T02:51:32.950Z</updated>
+    
+    <content type="html"><![CDATA[<p>﻿## 题目</p><blockquote><p>在上次打劫完一条街道之后和一圈房屋后，小偷又发现了一个新的可行窃的地区。这个地区只有一个入口，我们称之为“根”。<br>除了“根”之外，每栋房子有且只有一个“父“房子与之相连。一番侦察之后，聪明的小偷意识到“这个地方的所有房屋的排列类似于一棵二叉树”。<br>如果两个直接相连的房子在同一天晚上被打劫，房屋将自动报警。 计算在不触动警报的情况下，小偷一晚能够盗取的最高金额。<br><strong>示例 1:</strong></p><p>输入: [3,2,3,null,3,null,1]<br><img src="https://img-blog.csdnimg.cn/20190714103836323.png" alt="在这里插入图片描述"></p><p>输出: 7<br>解释: 小偷一晚能够盗取的最高金额 = 3 + 3 + 1 = 7.<br><strong>示例 2:</strong></p><p>输入: [3,4,5,1,3,null,1]<br><img src="https://img-blog.csdnimg.cn/20190714103843845.png" alt="在这里插入图片描述"><br>输出: 9<br>解释: 小偷一晚能够盗取的最高金额 = 4 + 5 = 9.</p><p>来源：力扣（LeetCode） 链接：<a href="https://leetcode-cn.com/problems/house-robber-iii" target="_blank" rel="noopener">https://leetcode-cn.com/problems/house-robber-iii</a></p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>第一步：父节点如果被偷，则2个子结点必不可能被偷；父节点不被偷，则2个子结点有被偷的情况，即偷左右，偷左不偷右，偷右不偷左，左右都不偷4种。<br>第二步：深度搜索，返回一个数组res，res[0]表示当前节点被偷，res[1]表示当前节点不被偷；<br>第三步：返回max(res[0],res[1])</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode left;</span><br><span class="line"> *     TreeNode right;</span><br><span class="line"> *     TreeNode(int x) &#123; val = x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int rob(TreeNode root) &#123;</span><br><span class="line">        int[] res = dfs(root);</span><br><span class="line">        return Math.max(res[0], res[1]);</span><br><span class="line">    &#125;</span><br><span class="line">    public int[] dfs(TreeNode root) &#123;</span><br><span class="line">        int[] res = new int[2];</span><br><span class="line">        if (root == null) return res;</span><br><span class="line">        int[] left = dfs(root.left);</span><br><span class="line">        int[] right = dfs(root.right);</span><br><span class="line">        res[0] = root.val + left[1] + right[1];</span><br><span class="line">        res[1] = Math.max(right[0], right[1]) +Math.max(left[0],left[1]);</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p><img src="https://img-blog.csdnimg.cn/20190714104243432.png" alt="在这里插入图片描述"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;﻿## 题目&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在上次打劫完一条街道之后和一圈房屋后，小偷又发现了一个新的可行窃的地区。这个地区只有一个入口，我们称之为“根”。&lt;br&gt;除了“根”之外，每栋房子有且只有一个“父“房子与之相连。一番侦察之后，聪明的小偷意识到“这个地方的所
+      
+    
+    </summary>
+    
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+    
+  </entry>
   
   <entry>
     <title>Java线程学习</title>
@@ -407,148 +540,6 @@
     
     
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode220. 存在重复元素 III</title>
-    <link href="http://yoursite.com/2019/06/06/leetcode220.%20%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%20III/"/>
-    <id>http://yoursite.com/2019/06/06/leetcode220. 存在重复元素 III/</id>
-    <published>2019-06-06T03:26:32.976Z</published>
-    <updated>2019-06-06T07:57:25.114Z</updated>
-    
-    <content type="html"><![CDATA[<p>﻿## 题目</p><blockquote><p>给定一个整数数组，判断数组中是否有两个不同的索引 i 和 j，使得 nums [i] 和 nums [j] 的差的绝对值最大为 t，并且 i<br>和 j 之间的差的绝对值最大为 ķ。</p><p><strong>示例 1:</strong></p><p><strong>输入:</strong> nums = [1,2,3,1], k = 3, t = 0<br><strong>输出:</strong> true<br><strong>示例 2:</strong></p><p><strong>输入:</strong> nums = [1,0,1,1], k = 1, t = 2<br><strong>输出</strong>: true<br><strong>示例 3:</strong></p><p><strong>输入:</strong> nums = [1,5,9,1,5,9], k = 2, t = 3<br><strong>输出:</strong> false</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>此题有2种解题思路。<br>第一种：根据数组下标，根据下标相差不超过k去找出符合条件的元素<br>第二种：根据数组元素的值，根据值不超过t去找出符合条件的元素<br><strong>思路一：</strong>  这思路比较容易想到，<br>首先，遍历数组nums[i]；<br>然后，再去找出[i,i+k]之间是否有符合题目要求的元素；<br>如果有，则返回true，没有则继续查找。<br>在此题中的样例40这种思路是ac不了的，必须加个判断条件<strong>if(k==10000) return false;</strong><br>（才能通过，这条件也是我使用第二种方法ac之后看了别人的代码才知道的。）<br><strong>思路二：</strong><br>第一步： 使用一个数组，保存每一个nums的值和对应的下标<br>第二步： 通过其中的值进行排序<br>第三步： <strong>根据nums [i] 和 nums [j] 的差的绝对值小于等于t</strong>去判断<strong>nums [i] 和 nums [j] 的下标的差是否是小于等于k</strong>，如果是则返回true，不是则继续查找。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><p>思路一<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) &#123;</span><br><span class="line">        int pre = 0, next = 1;</span><br><span class="line">        if(k==10000) return false;</span><br><span class="line">        while (pre &lt; nums.length) &#123;</span><br><span class="line">            while (next - pre &lt;= k) &#123;</span><br><span class="line">                if (next &gt;= nums.length) break;</span><br><span class="line">                if (Math.abs((long)nums[next] - nums[pre]) &lt;= t) &#123;</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">                next++;</span><br><span class="line">            &#125;</span><br><span class="line">            next = ++pre + 1;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>思路二</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) &#123;</span><br><span class="line">        int[][] numsAndIndex = new int[nums.length][2];</span><br><span class="line">        for (int i = 0; i &lt; nums.length; i++) &#123;</span><br><span class="line">            numsAndIndex[i][0] = nums[i];</span><br><span class="line">            numsAndIndex[i][1] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        //使用匿名函数Overrides method in Comparator</span><br><span class="line">        //根据二位数组的第一位去排序</span><br><span class="line">        Arrays.sort(numsAndIndex,(a,b) -&gt; (a[0]-b[0]));</span><br><span class="line">        for (int i = 0; i &lt; numsAndIndex.length; i++) &#123;</span><br><span class="line">            for (int j = i+1; j &lt; numsAndIndex.length; j++) &#123;</span><br><span class="line">                if (Math.abs((long)numsAndIndex[j][0] - numsAndIndex[i][0]) &gt; t)&#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                if (Math.abs(numsAndIndex[j][1] - numsAndIndex[i][1]) &lt;= k)&#123;</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p><strong>第一种</strong><br>成功<br>显示详情<br>执行用时 : 0 ms, 在Contains Duplicate III的Java提交中击败了100.00% 的用户<br>内存消耗 : 37.3 MB, 在Contains Duplicate III的Java提交中击败了81.18% 的用户<br><strong>第二种</strong><br>成功<br>显示详情<br>执行用时 : 90 ms, 在Contains Duplicate III的Java提交中击败了11.48% 的用户<br>内存消耗 : 38.8 MB, 在Contains Duplicate III的Java提交中击败了69.10% 的用户</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;﻿## 题目&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;给定一个整数数组，判断数组中是否有两个不同的索引 i 和 j，使得 nums [i] 和 nums [j] 的差的绝对值最大为 t，并且 i&lt;br&gt;和 j 之间的差的绝对值最大为 ķ。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;示例
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode216. 组合总和 III</title>
-    <link href="http://yoursite.com/2019/05/30/leetcode216.%20%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C%20III/"/>
-    <id>http://yoursite.com/2019/05/30/leetcode216. 组合总和 III/</id>
-    <published>2019-05-30T11:14:19.721Z</published>
-    <updated>2019-06-05T12:45:49.491Z</updated>
-    
-    <content type="html"><![CDATA[<p>﻿## 题目</p><blockquote><p>找出所有相加之和为 n 的 k 个数的组合。组合中只允许含有 1 - 9 的正整数，并且每种组合中不存在重复的数字。</p><p><strong>说明：</strong></p><p>所有数字都是正整数。 解集不能包含重复的组合。<br><strong>示例 1:</strong></p><p><strong>输入:</strong> k = 3, n = 7<br><strong>输出:</strong> [[1,2,4]]<br><strong>示例 2:</strong></p><p><strong>输入:</strong> k = 3, n = 9<br><strong>输出:</strong> [[1,2,6], [1,3,5], [2,3,4]]</p></blockquote><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>就是用深度搜索进行k个(1-9)的数全排列，如果等于n，则放入结果集，注意一下去重即可。<br>去重的思路：在dfs方法传入一个参数num，每次全排列的下一个位数都从num+1开始，就可以去除重复的值了。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;List&lt;Integer&gt;&gt; combinationSum3(int k, int n) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res =  new ArrayList&lt;&gt;();</span><br><span class="line">        List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">        dfs(res, list, n,k,0,0);</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void dfs(List&lt;List&lt;Integer&gt;&gt; res, List&lt;Integer&gt; list, int n, int k, int sum, int num) &#123;</span><br><span class="line">        if(sum &gt; n) return;</span><br><span class="line">        if (list.size() == k)&#123;</span><br><span class="line">            if(sum == n) &#123;</span><br><span class="line">                res.add(new ArrayList&lt;&gt;(list));</span><br><span class="line">            &#125;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = num+1; i &lt;= 9; i++) &#123;</span><br><span class="line">            list.add(i);</span><br><span class="line">            dfs(res, list, n, k, sum+i, i);</span><br><span class="line">            list.remove(list.size()-1);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 2 ms, 在Combination Sum III的Java提交中击败了67.42% 的用户<br>内存消耗 : 33.6 MB, 在Combination Sum III的Java提交中击败了29.97% 的用户</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;﻿## 题目&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;找出所有相加之和为 n 的 k 个数的组合。组合中只允许含有 1 - 9 的正整数，并且每种组合中不存在重复的数字。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;说明：&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;所有数字都是正整数。 解集不能包
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode215. 数组中的第K个最大元素</title>
-    <link href="http://yoursite.com/2019/05/29/leetcode215.%20%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%AC%ACK%E4%B8%AA%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/"/>
-    <id>http://yoursite.com/2019/05/29/leetcode215. 数组中的第K个最大元素/</id>
-    <published>2019-05-29T13:20:57.243Z</published>
-    <updated>2019-05-30T01:48:25.788Z</updated>
-    
-    <content type="html"><![CDATA[<p>﻿## 题目</p><blockquote><p>在未排序的数组中找到第 k 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。</p><p><strong>示例 1:</strong></p><p><strong>输入:</strong> [3,2,1,5,6,4] 和 k = 2<br><strong>输出:</strong> 5<br><strong>示例 2:</strong></p><p><strong>输入:</strong> [3,2,3,1,2,4,5,5,6] 和 k = 4<br><strong>输出:</strong> 4<br><strong>说明:</strong></p><p>你可以假设 k 总是有效的，且 1 ≤ k ≤ 数组的长度。</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>学过算法的应该清楚这题是使用快排的思想来解决。<br>第一步：利用快排的方法，每次取一个数num，把一个数组分为左右2堆，左边的比num小，右边的比num大，返回num在数组的位置index；<br>第二步：判断index和数组长度len-k的大小，如果<strong>index &gt; nums.length-k</strong>则说明第k大的数在[l,index-1]之间，否则在[index+1,r]之间；<br>第三步：再回到第一步继续判断直到<strong>index==nums.length-k</strong>即可。</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int findKthLargest(int[] nums, int k) &#123;</span><br><span class="line">        int p = 0, r = nums.length-1;</span><br><span class="line">        if(p &gt;= r) &#123;</span><br><span class="line">            return nums[p];</span><br><span class="line">        &#125;</span><br><span class="line">        int index = partition(nums, p, r);</span><br><span class="line">        while (index != nums.length-k) &#123;</span><br><span class="line">            if (index &gt; nums.length-k) &#123;</span><br><span class="line">                r = index - 1;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                p = index + 1;</span><br><span class="line">            &#125;</span><br><span class="line">            index = partition(nums, p, r);</span><br><span class="line">        &#125;</span><br><span class="line">        return nums[nums.length-k];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int partition(int[] nums, int l, int r) &#123;</span><br><span class="line">    //使用随机化的快速排序，会大大加快速度（leetcode的样例就是这么刁钻）</span><br><span class="line">        int random = l+(int)(Math.random()*(r-l));</span><br><span class="line">        swap(nums, l, random);</span><br><span class="line">        int x = nums[l];</span><br><span class="line">        int lo = l+1, hi = r;</span><br><span class="line">        while (lo &lt;= hi) &#123;</span><br><span class="line">            while (lo &lt;= hi &amp;&amp; nums[lo] &lt; x) &#123;</span><br><span class="line">                lo++;</span><br><span class="line">            &#125;</span><br><span class="line">            while (lo &lt;= hi &amp;&amp; nums[hi] &gt; x) &#123;</span><br><span class="line">                hi--;</span><br><span class="line">            &#125;</span><br><span class="line">            if (lo &lt;= hi) &#123;</span><br><span class="line">                swap(nums, lo++, hi--);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        swap(nums, l, hi);</span><br><span class="line">        return hi;</span><br><span class="line">    &#125;</span><br><span class="line">    //交换数组中的元素位置</span><br><span class="line">    public void swap(int[] nums, int n, int m) &#123;</span><br><span class="line">        if (n == m) return;</span><br><span class="line">        int tmp = nums[n];</span><br><span class="line">        nums[n] = nums[m];</span><br><span class="line">        nums[m] = tmp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 3 ms, 在Kth Largest Element in an Array的Java提交中击败了97.95% 的用户<br>内存消耗 : 39 MB, 在Kth Largest Element in an Array的Java提交中击败了67.34% 的用户</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;﻿## 题目&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;在未排序的数组中找到第 k 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;示例 1:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;输入
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JVM学习笔记</title>
-    <link href="http://yoursite.com/2019/05/29/JVM%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%9D%A2%E8%AF%95/"/>
-    <id>http://yoursite.com/2019/05/29/JVM学习笔记-面试/</id>
-    <published>2019-05-29T07:07:54.126Z</published>
-    <updated>2019-05-29T07:12:28.280Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="JVM学习"><a href="#JVM学习" class="headerlink" title="JVM学习"></a>JVM学习</h2><h3 id="JVM如何加载-class文件"><a href="#JVM如何加载-class文件" class="headerlink" title="JVM如何加载.class文件"></a>JVM如何加载.class文件</h3><p><strong>JVM虚拟机</strong></p><p><img src="https://img-blog.csdnimg.cn/20190529150652107.png" alt="在这里插入图片描述"><br>Class Loader：以及特定格式，加载class文件到内存</p><p>Execution Engine：对命令进行解析</p><p>Native Interface：融合不同开发语言的原生库为java所用</p><p>Runtime Data Area：JVM内存空间结构模型</p><h3 id="类从编译到执行的过程"><a href="#类从编译到执行的过程" class="headerlink" title="类从编译到执行的过程"></a>类从编译到执行的过程</h3><p>编译器将java源文件编译成class字节码文件</p><p>ClassLoader将字节码转换为JVM中的Class对象</p><p>JVM利用Class对象实例化为实例对象</p><h3 id="ClassLoader"><a href="#ClassLoader" class="headerlink" title="ClassLoader"></a>ClassLoader</h3><p>ClassLoader在Java中有着非常重要的作用，它主要工作在Class装载的加载阶段，其主要作用是从系统外部获取Class二进制数据流。它是Java的核心组件，所有的Class都是由ClassLoader进行加载的，ClassLoader负责通过将Class文件里的二进制数据流装载进系统，然后交给Java虚拟机进行链接、初始化等操作。</p><h3 id="ClassLoader的种类"><a href="#ClassLoader的种类" class="headerlink" title="ClassLoader的种类"></a>ClassLoader的种类</h3><ul><li><p>[ ] BootStrapClassLoader：C++编写，加载核心库java.*</p></li><li><p>[ ] ExtClassLoader：Java编写，加载扩展库javax.*</p></li><li><p>[ ] AppClassLoader：Java编写，加载程序所在目录</p></li><li><p>[ ] 自定义ClassLoader：Java编写，定制化加载</p></li></ul><h3 id="类的加载方式"><a href="#类的加载方式" class="headerlink" title="类的加载方式"></a>类的加载方式</h3><p>隐式加载：new</p><p>显式加载：loadClass，forName等</p><h3 id="类的装载过程"><a href="#类的装载过程" class="headerlink" title="类的装载过程"></a>类的装载过程</h3><ol><li>加载： 通过ClassLoader加载class文件字节码，生成Class对象</li><li>链接：<ul><li>校验：检查加载的class的正确性和安全性</li><li>准备：为类变量分配存储空间并设置类变量初始值</li><li>解析：JVM将常量池内的符号引用转换为直接引用</li></ul></li><li>初始化：执行类变量赋值和静态代码块</li></ol><h3 id="loadClass和forName的区别"><a href="#loadClass和forName的区别" class="headerlink" title="loadClass和forName的区别"></a>loadClass和forName的区别</h3><p>Class.forName得到的class是已经初始化完成的</p><p>ClassLoader.loadClass得到的clas是还没有链接的</p><h3 id="JVM内存模型-JDK8"><a href="#JVM内存模型-JDK8" class="headerlink" title="JVM内存模型-JDK8"></a>JVM内存模型-JDK8</h3><p><img src="https://img-blog.csdnimg.cn/20190529150723636.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NDQ4NTc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><ul><li>线程私有：程序计数器、虚拟机栈、本地方法栈</li><li>线程共享：MetaSpace、Java堆</li></ul><h4 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h4><ul><li>当前线程所执行的字节码行号指示器（逻辑）</li><li>改变计数器的值来选取下一条需要执行的字节码指令</li><li>和线程是一对一的关系，即“线程私有”</li><li>对Java方法计数，如果是Native方法则计数器值为Undefined</li><li>不会发生内存泄漏</li></ul><h4 id="Java虚拟机栈（Stack）"><a href="#Java虚拟机栈（Stack）" class="headerlink" title="Java虚拟机栈（Stack）"></a>Java虚拟机栈（Stack）</h4><p><img src="https://img-blog.csdnimg.cn/20190529150740675.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NDQ4NTc0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><ul><li>Java方法执行的内存模型</li><li>包含多个栈帧</li></ul><h5 id="局部变量表和操作数栈"><a href="#局部变量表和操作数栈" class="headerlink" title="局部变量表和操作数栈"></a>局部变量表和操作数栈</h5><ul><li>局部变量表：包含方法执行过程中的所有变量</li><li>操作数栈：入栈、出栈、复制、交换、产生消费变量</li></ul><h5 id="递归为什么会引发java-lang-StackOverflowError异常"><a href="#递归为什么会引发java-lang-StackOverflowError异常" class="headerlink" title="递归为什么会引发java.lang.StackOverflowError异常"></a>递归为什么会引发java.lang.StackOverflowError异常</h5><p>递归过深，栈帧数超过虚拟栈深度</p><h4 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h4><p>与虚拟机栈相似，主要作用于标注了native的方法</p><h4 id="元空间（Metaspace）："><a href="#元空间（Metaspace）：" class="headerlink" title="元空间（Metaspace）："></a>元空间（Metaspace）：</h4><p>存储已被虚拟机加载的类信息。随着JDK8的到来，JVM不再有方法区（PermGen），原方法区存储的信息被分成两部分：</p><p>1、虚拟机加载的类信息，被移动到元空间。</p><p>2、运行时常量池，被移动到了堆中<strong>（静态成员变量）</strong>。</p><h5 id="MetaSpace（元空间）相比PermGen（永久代）的优势"><a href="#MetaSpace（元空间）相比PermGen（永久代）的优势" class="headerlink" title="MetaSpace（元空间）相比PermGen（永久代）的优势"></a>MetaSpace（元空间）相比PermGen（永久代）的优势</h5><p>元数据区取代了1.7版本及以前的永久代。元数据区和永久代本质上都是方法区的实现。方法区存放虚拟机加载的类信息，静态变量，常量等数据。</p><ul><li>字符串常量池存在永久代中，容易出现性能问题和内存溢出</li><li>类和方法的信息大小难以确定，给永久代的大小指定带来困难</li><li>永久代会给GC带来不必要的复杂性</li><li>方便HotSpot与其他JVM如 Jrockit的集成</li></ul><h4 id="Java堆（Heap）"><a href="#Java堆（Heap）" class="headerlink" title="Java堆（Heap）"></a>Java堆（Heap）</h4><ul><li>对象实例的分配区域</li><li>GC管理的主要区域</li></ul><h4 id="直接内存（没有在上图体现出来）"><a href="#直接内存（没有在上图体现出来）" class="headerlink" title="直接内存（没有在上图体现出来）"></a>直接内存（没有在上图体现出来）</h4><p>jdk1.4引入了NIO，它可以使用Native函数库直接分配堆外内存。</p><h3 id="JVM三大性能调优参数-Xms-Xmx-Xss的含义"><a href="#JVM三大性能调优参数-Xms-Xmx-Xss的含义" class="headerlink" title="JVM三大性能调优参数 -Xms -Xmx -Xss的含义"></a>JVM三大性能调优参数 -Xms -Xmx -Xss的含义</h3><ul><li>-Xss：规定了每个线程虚拟机栈（堆栈）的大小</li><li>-Xms：堆的初始值</li><li>-Xmx：堆能达到的最大值</li></ul><p>一般Xms和Xmx设置为一样的值，因为扩容时会发生内存抖动。</p><h3 id="Java内存模型中堆和栈的区别——内存分配策略"><a href="#Java内存模型中堆和栈的区别——内存分配策略" class="headerlink" title="Java内存模型中堆和栈的区别——内存分配策略"></a>Java内存模型中堆和栈的区别——内存分配策略</h3><ul><li>静态存储：编译时确定每个数据目标在运行时的存储空间需求</li><li>栈式存储：数据区需求在编译时未知，运行时模块入口前确定</li><li>堆式存储：编译时或运行时模块入口都无法确定，动态分配</li></ul><h3 id="Java内存模型中堆和栈的区别"><a href="#Java内存模型中堆和栈的区别" class="headerlink" title="Java内存模型中堆和栈的区别"></a>Java内存模型中堆和栈的区别</h3><ul><li>管理方式：栈自动释放，堆需要GC</li><li>空间大小：栈比对小</li><li>碎片相关：栈产生的碎片远小于堆</li><li>分配方式：栈支持静态和动态分配，而堆仅支持动态分配</li><li>效率：栈的效率比堆高</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;JVM学习&quot;&gt;&lt;a href=&quot;#JVM学习&quot; class=&quot;headerlink&quot; title=&quot;JVM学习&quot;&gt;&lt;/a&gt;JVM学习&lt;/h2&gt;&lt;h3 id=&quot;JVM如何加载-class文件&quot;&gt;&lt;a href=&quot;#JVM如何加载-class文件&quot; class=&quot;he
-      
-    
-    </summary>
-    
-      <category term="笔记" scheme="http://yoursite.com/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode208.实现Tire</title>
-    <link href="http://yoursite.com/2019/05/24/leetcode208.%20%E5%AE%9E%E7%8E%B0%20Trie%20(%E5%89%8D%E7%BC%80%E6%A0%91)/"/>
-    <id>http://yoursite.com/2019/05/24/leetcode208. 实现 Trie (前缀树)/</id>
-    <published>2019-05-24T12:08:06.153Z</published>
-    <updated>2019-07-05T01:52:33.812Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="categories-算法"><a href="#categories-算法" class="headerlink" title="categories: 算法"></a>categories: 算法</h2><p>﻿## 题目</p><blockquote><p>实现一个 Trie (前缀树)，包含 insert, search, 和 startsWith 这三个操作。</p><p><strong>示例:</strong></p><p>Trie trie = new Trie();</p><p>trie.insert(“apple”); trie.search(“apple”);   // 返回 true<br>trie.search(“app”);     // 返回 false trie.startsWith(“app”); // 返回 true<br>trie.insert(“app”);    trie.search(“app”);     // 返回 true<br><strong>说明:</strong></p><p>你可以假设所有的输入都是由小写字母 a-z 构成的。 保证所有输入均为非空字符串。</p></blockquote><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>创建一个结点类，每个结点有26个子结点（26个字母），一个布尔变量，表示该结点是否是某个单词的结尾。<br>然后完成题目要求即可</p><h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">class Trie &#123;</span><br><span class="line">    public class TrieNode&#123;</span><br><span class="line">        boolean isWord;</span><br><span class="line">        TrieNode[] letters = new TrieNode[26];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    TrieNode root ;</span><br><span class="line">    public Trie() &#123;</span><br><span class="line">        root = new TrieNode();</span><br><span class="line">    &#125;</span><br><span class="line">    /** Inserts a word into the trie. */</span><br><span class="line">    public void insert(String word) &#123;</span><br><span class="line">        if (word != null) &#123;</span><br><span class="line">            char[] chars = word.toCharArray();</span><br><span class="line">            TrieNode tmp = root;</span><br><span class="line">            for (int i = 0; i &lt; chars.length; i++) &#123;</span><br><span class="line">                if(tmp.letters[chars[i]-&apos;a&apos;] == null)</span><br><span class="line">                    tmp.letters[chars[i]-&apos;a&apos;] = new TrieNode();</span><br><span class="line">                tmp = tmp.letters[chars[i]-&apos;a&apos;];</span><br><span class="line">            &#125;</span><br><span class="line">            tmp.isWord = true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /** Returns if the word is in the trie. */</span><br><span class="line">    public boolean search(String word) &#123;</span><br><span class="line">        if (word != null) &#123;</span><br><span class="line">            char[] chars = word.toCharArray();</span><br><span class="line">            TrieNode tmp = root;</span><br><span class="line">            for (int i = 0; i &lt; chars.length; i++) &#123;</span><br><span class="line">                if (tmp.letters[chars[i]-&apos;a&apos;] == null)</span><br><span class="line">                    return false;</span><br><span class="line">                tmp = tmp.letters[chars[i]-&apos;a&apos;];</span><br><span class="line">            &#125;</span><br><span class="line">            return tmp.isWord;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /** Returns if there is any word in the trie that starts with the given prefix. */</span><br><span class="line">    public boolean startsWith(String prefix) &#123;</span><br><span class="line">        char[] chars = prefix.toCharArray();</span><br><span class="line">        TrieNode tmp = root;</span><br><span class="line">        for (int i = 0; i &lt; chars.length; i++) &#123;</span><br><span class="line">            if (tmp.letters[chars[i]-&apos;a&apos;] == null)</span><br><span class="line">                return false;</span><br><span class="line">            tmp = tmp.letters[chars[i]-&apos;a&apos;];</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="提交结果"><a href="#提交结果" class="headerlink" title="提交结果"></a>提交结果</h2><p>成功<br>显示详情<br>执行用时 : 163 ms, 在Implement Trie (Prefix Tree)的Java提交中击败了88.17% 的用户<br>内存消耗 : 61.8 MB, 在Implement Trie (Prefix Tree)的Java提交中击败了76.08% 的用户</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;categories-算法&quot;&gt;&lt;a href=&quot;#categories-算法&quot; class=&quot;headerlink&quot; title=&quot;categories: 算法&quot;&gt;&lt;/a&gt;categories: 算法&lt;/h2&gt;&lt;p&gt;﻿## 题目&lt;/p&gt;
-&lt;blockquote&gt;
-
-      
-    
-    </summary>
-    
     
       <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
     
