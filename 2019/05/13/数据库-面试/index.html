@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="白哥的博客">
 <meta property="og:description" content="索引模块为什么要使用索引避免全表扫描去查找数据，提升检索效率 什么样的信息能成为索引主键、唯一键等能区分数据的字段 索引的数据结构主流是B+树，还有哈希结构以及BitMap，其中MySQL不支持BitMap索引，基于InnoDB以及MyISAM的MySQL不显式支持哈希索引 密集索引和稀疏索引的区别密集索引文件中的每个搜索码都对应一个索引值 稀疏索引文件只为索引码的某些值建立索引项 如何定位并优化">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-13T08:22:25.048Z">
+<meta property="og:updated_time" content="2019-08-09T10:43:03.841Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库学习">
 <meta name="twitter:description" content="索引模块为什么要使用索引避免全表扫描去查找数据，提升检索效率 什么样的信息能成为索引主键、唯一键等能区分数据的字段 索引的数据结构主流是B+树，还有哈希结构以及BitMap，其中MySQL不支持BitMap索引，基于InnoDB以及MyISAM的MySQL不显式支持哈希索引 密集索引和稀疏索引的区别密集索引文件中的每个搜索码都对应一个索引值 稀疏索引文件只为索引码的某些值建立索引项 如何定位并优化">
@@ -398,7 +398,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  939
+                  1k
                 </span>
               
 
@@ -460,7 +460,11 @@
 <li>按操作划分，可分为DML锁、DDL锁</li>
 <li>按使用方式划分，可分为乐观锁、悲观锁</li>
 </ul>
-<h3 id="事务隔离级别以及各级别下的并发访问问题"><a href="#事务隔离级别以及各级别下的并发访问问题" class="headerlink" title="事务隔离级别以及各级别下的并发访问问题"></a>事务隔离级别以及各级别下的并发访问问题</h3><ul>
+<h3 id="事务隔离级别以及各级别下的并发访问问题"><a href="#事务隔离级别以及各级别下的并发访问问题" class="headerlink" title="事务隔离级别以及各级别下的并发访问问题"></a>事务隔离级别以及各级别下的并发访问问题</h3><p>未提交读：事务中的修改，即使没有提交，对其他事务也是可见的。</p>
+<p>提交读：一个事务只能读取已经提交的事务所做的修改。</p>
+<p>可重复读：保证同一个事务中多次读取同样的数据结果是一样的。</p>
+<p>可串行化：强制事务串行执行。</p>
+<ul>
 <li>更新丢失—-mysql所有事务隔离级别在数据库层面上均可避免</li>
 <li>脏读——read-committed事务隔离级别以上可避免</li>
 <li>不可重复读——repeatable-read事务隔离级别以上可避免</li>
@@ -635,7 +639,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">108</span>
+                  <span class="site-state-item-count">118</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -657,7 +661,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
